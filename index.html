@@ -371,9 +371,9 @@
                         </button>
                     </div>
 
-                    <a href="https://pay.jeko.africa/pl/4f580acc-5df9-440e-b168-6beb65823beaGeko" target="_blank" rel="noopener noreferrer" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-3 px-4 rounded-xl text-xs shadow-md flex items-center justify-center gap-2 transition">
+                    <a href="https://pay.jeko.africa/pl/4f580acc-5df9-440e-b168-6beb65823bea" target="_blank" rel="noopener noreferrer" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-3 px-4 rounded-xl text-xs shadow-md flex items-center justify-center gap-2 transition">
                         <i class="fas fa-link"></i>
-                        <span>Lien de paiement Jeko</span>
+                        <span>Payer pour Avenir (Lien Jeko)</span>
                     </a>
                 </div>
 
@@ -388,9 +388,9 @@
 
                     <div class="flex flex-wrap items-center justify-between gap-2 bg-[#070b14]/90 border border-blue-800/70 rounded-xl p-3">
                         <div class="text-xs font-bold text-blue-100">
-                            Payer via Jeko :
+                            Payer pour Avenir via Jeko :
                         </div>
-                        <a href="https://pay.jeko.africa/pl/4f580acc-5df9-440e-b168-6beb65823beaGeko" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold inline-flex items-center gap-1.5">
+                        <a href="https://pay.jeko.africa/pl/4f580acc-5df9-440e-b168-6beb65823bea" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold inline-flex items-center gap-1.5">
                             <span>Lien Paiement Jeko</span>
                             <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
                         </a>
@@ -746,6 +746,7 @@
     <script>
         const DAY_MS = 24 * 60 * 60 * 1000;
         const WITHDRAW_FEE_RATE = 0.06; // 6% déduit
+        const REFERRAL_BASE_URL = 'https://avenircapitalavenir-commits.github.io/avenir-capital-68/';
 
         const INVESTMENT_PLANS_9 = [
             { id: 'plan-1', name: '🌱 Plan 1 — Découverte', price: 3000, daily: 120, days: 8 },
@@ -1234,9 +1235,8 @@
         }
 
         function getReferralLink() {
-            if (!currentUser) return '';
-            const base = window.location.href.split('?')[0];
-            return `${base}?ref=${currentUser.referralCode}`;
+            if (!currentUser) return `${REFERRAL_BASE_URL}?ref=AVN-000000`;
+            return `${REFERRAL_BASE_URL}?ref=${encodeURIComponent(currentUser.referralCode)}`;
         }
 
         function copyReferralCode() {
@@ -1249,7 +1249,7 @@
             if (!currentUser) return;
             const link = getReferralLink();
             navigator.clipboard?.writeText(link).catch(() => {});
-            notify('Lien de parrainage copié ! Envoyez-le à votre filleul.');
+            notify('Lien de parrainage copié ! Bonus 1 000 FCFA dès le 1er rechargement validé.');
         }
 
         function formatFCFA(num) {
