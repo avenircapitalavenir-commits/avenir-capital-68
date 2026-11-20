@@ -78,7 +78,7 @@
         <div id="toast-content" class="px-4 py-3 rounded-xl shadow-xl border flex items-center gap-3 text-xs font-bold"></div>
     </div>
 
-    <!-- ÉCRAN D'AUTHENTIFICATION -->
+    <!-- ÉCRAN D'AUTHENTIFICATION (MEMBRES UNIQUEMENT) -->
     <div id="auth-screen" class="min-h-screen flex flex-col justify-center px-6 py-10 max-w-md mx-auto">
         <div class="text-center mb-7">
             <div class="w-16 h-16 brand-gradient rounded-2xl mx-auto flex items-center justify-center shadow-md mb-4">
@@ -90,9 +90,8 @@
 
         <div class="real-card rounded-3xl p-6">
             <div class="flex border-b border-slate-200 mb-6">
-                <button onclick="switchAuthTab('login')" id="tab-login" class="w-1/3 pb-3 text-xs font-bold border-b-2 border-blue-700 text-blue-700">Connexion</button>
-                <button onclick="switchAuthTab('register')" id="tab-register" class="w-1/3 pb-3 text-xs font-bold border-b-2 border-transparent text-slate-400">Inscription</button>
-                <button onclick="switchAuthTab('admin-register')" id="tab-admin-register" class="w-1/3 pb-3 text-xs font-bold border-b-2 border-transparent text-slate-400">Inscr. Admin</button>
+                <button onclick="switchAuthTab('login')" id="tab-login" class="w-1/2 pb-3 text-xs font-bold border-b-2 border-blue-700 text-blue-700">Connexion</button>
+                <button onclick="switchAuthTab('register')" id="tab-register" class="w-1/2 pb-3 text-xs font-bold border-b-2 border-transparent text-slate-400">Inscription</button>
             </div>
 
             <!-- CONNEXION -->
@@ -139,56 +138,6 @@
                 </button>
             </form>
 
-            <!-- PAGE SPÉCIALE INSCRIPTION ADMINISTRATEUR -->
-            <form id="admin-register-form" onsubmit="handleAdminRegister(event)" class="space-y-4 hidden">
-                <div class="bg-blue-50 border border-blue-200 rounded-xl p-3 text-xs text-blue-900">
-                    <div class="flex items-center gap-2 font-extrabold">
-                        <i class="fas fa-user-shield text-blue-700"></i>
-                        <span>Inscription Administrateur</span>
-                    </div>
-                    <p class="text-[11px] text-blue-700 mt-1">
-                        Les administrateurs inscrits apparaîtront sur la page d'accueil. Code par défaut : <strong class="font-mono">ADMIN-AVN</strong>
-                    </p>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Nom complet de l'administrateur</label>
-                    <input type="text" id="adm-reg-name" required placeholder="Koné Aminata (Admin)" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-4 text-sm text-slate-900 focus:outline-none focus:border-blue-700">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Numéro de téléphone</label>
-                    <div class="relative">
-                        <span class="absolute left-3.5 top-3 text-slate-500 text-sm font-semibold">+225</span>
-                        <input type="tel" id="adm-reg-phone" required placeholder="07 00 00 00 00" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 pl-14 pr-4 text-sm text-slate-900 focus:outline-none focus:border-blue-700">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Rôle / Poste</label>
-                    <select id="adm-reg-role" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-4 text-sm font-bold text-slate-900 focus:outline-none focus:border-blue-700">
-                        <option value="Super Administrateur">Super Administrateur</option>
-                        <option value="Gestionnaire Paiements">Gestionnaire Paiements</option>
-                        <option value="Support & Validation">Support & Validation</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Code d'autorisation Admin</label>
-                    <input type="text" id="adm-reg-code" required placeholder="ADMIN-AVN" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-4 text-sm uppercase font-mono text-slate-900 focus:outline-none focus:border-blue-700">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Mot de passe</label>
-                    <input type="password" id="adm-reg-pass" required placeholder="Minimum 6 caractères" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-4 text-sm text-slate-900 focus:outline-none focus:border-blue-700">
-                </div>
-
-                <button type="submit" class="w-full brand-gradient text-white font-bold py-3 rounded-xl shadow-md hover:opacity-95 transition mt-2 flex items-center justify-center gap-2">
-                    <i class="fas fa-shield-check"></i>
-                    <span>Inscrire l'administrateur</span>
-                </button>
-            </form>
-
             <!-- Accès rapide Service Client depuis l'écran auth -->
             <div class="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
                 <span class="text-slate-500 font-medium">Besoin d'aide ?</span>
@@ -209,10 +158,7 @@
                     <i class="fas fa-landmark text-white text-sm"></i>
                 </div>
                 <div>
-                    <div class="flex items-center gap-1.5">
-                        <h1 class="text-base font-extrabold text-slate-900 leading-none">Avenir <span class="text-blue-700">Capital</span></h1>
-                        <span id="header-admin-badge" class="hidden text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-blue-900 text-blue-100 uppercase">Admin</span>
-                    </div>
+                    <h1 class="text-base font-extrabold text-slate-900 leading-none">Avenir <span class="text-blue-700">Capital</span></h1>
                     <span class="text-[11px] text-slate-500 font-medium" id="header-user-name">Bienvenue</span>
                 </div>
             </div>
@@ -223,20 +169,16 @@
                     <span>Service Client</span>
                 </button>
 
-                <button onclick="openAdminModal()" title="Administration" class="w-8 h-8 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-700 hover:text-blue-700">
-                    <i class="fas fa-shield-halved text-xs"></i>
-                </button>
-
                 <button onclick="logoutAndReconnect()" id="header-auth-btn" title="Se déconnecter / Reconnecter" class="w-8 h-8 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-rose-600 hover:bg-rose-50">
                     <i class="fas fa-right-from-bracket text-xs"></i>
                 </button>
             </div>
         </header>
 
-        <!-- CONTENU DES PAGES (SÉPARÉES) -->
+        <!-- CONTENU DES PAGES -->
         <main class="px-4 pt-4">
 
-            <!-- PAGE 1 : TABLEAU DE BORD DU SOLDE (PAGE D'ACCUEIL) -->
+            <!-- PAGE 1 : TABLEAU DE BORD DU SOLDE -->
             <section id="page-dashboard" class="space-y-4">
                 <div class="rounded-3xl p-6 brand-gradient text-white shadow-md">
                     <div class="flex justify-between items-start">
@@ -274,7 +216,7 @@
                     </div>
                 </div>
 
-                <!-- Actions rapides : Service Client & Session (Déconnexion / Reconnexion) -->
+                <!-- Actions rapides : Service Client & Session -->
                 <div class="grid grid-cols-2 gap-3">
                     <button onclick="openCustomerServiceModal()" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-blue-400 transition">
                         <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0">
@@ -297,40 +239,7 @@
                     </button>
                 </div>
 
-                <!-- VUE COMPLÈTE DES ADMINISTRATEURS INSCRITS SUR LA PAGE D'ACCUEIL -->
-                <div class="real-card rounded-2xl p-4 space-y-3">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center">
-                                <i class="fas fa-user-shield text-xs"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-xs font-extrabold text-slate-900 uppercase tracking-wide">Administrateurs Inscrits</h3>
-                                <p class="text-[10px] text-slate-500">Vue globale sur la page d'accueil</p>
-                            </div>
-                        </div>
-                        <span id="home-admins-count" class="text-[11px] font-extrabold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700">0 admin</span>
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-2 text-center bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs">
-                        <div>
-                            <p class="text-[10px] text-slate-500">Admins actifs</p>
-                            <p id="home-stat-admins" class="font-extrabold text-slate-900 mt-0.5">0</p>
-                        </div>
-                        <div>
-                            <p class="text-[10px] text-slate-500">Membres inscrits</p>
-                            <p id="home-stat-members" class="font-extrabold text-blue-700 mt-0.5">0</p>
-                        </div>
-                        <div>
-                            <p class="text-[10px] text-slate-500">En attente</p>
-                            <p id="home-stat-pending" class="font-extrabold text-amber-700 mt-0.5">0</p>
-                        </div>
-                    </div>
-
-                    <div id="home-admins-list" class="space-y-2"></div>
-                </div>
-
-                <!-- Navigation vers chaque espace séparé -->
+                <!-- Navigation vers chaque espace -->
                 <div class="grid grid-cols-2 gap-3">
                     <button onclick="navigateTo('plans')" class="real-card rounded-2xl p-4 text-left hover:border-blue-400 transition">
                         <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center mb-2">
@@ -418,7 +327,7 @@
                 <div id="my-purchased-packs-list" class="space-y-2.5"></div>
             </section>
 
-            <!-- PAGE 4 : RECHARGE (PAGE D'ACCUEIL MODE DE PAIEMENT + DÉTAIL PAIEMENT + CONFIRMATION) -->
+            <!-- PAGE 4 : RECHARGE -->
             <section id="page-recharge" class="hidden space-y-4">
                 <div class="flex justify-between items-center">
                     <button type="button" onclick="handleRechargeBackButton()" class="text-xs font-extrabold text-blue-800 hover:underline flex items-center gap-1">
@@ -468,7 +377,7 @@
                     </a>
                 </div>
 
-                <!-- ÉTAPE 1 : FORMULAIRE DE RECHARGE (BLEU NOIR) -->
+                <!-- ÉTAPE 1 : FORMULAIRE DE RECHARGE -->
                 <div id="recharge-step-1" class="recharge-dark-blue-card rounded-2xl p-4 space-y-4 hidden">
                     <div class="flex items-center justify-between border-b border-blue-900/70 pb-2.5">
                         <span class="text-xs font-extrabold text-blue-200">Étape 1/2 : Paiement & ID transaction</span>
@@ -519,7 +428,7 @@
                     </button>
                 </div>
 
-                <!-- ÉTAPE 2 : CONFIRMATION OBLIGATOIRE DU PAIEMENT (BLEU NOIR) -->
+                <!-- ÉTAPE 2 : CONFIRMATION OBLIGATOIRE DU PAIEMENT -->
                 <div id="recharge-step-2" class="recharge-dark-blue-card rounded-2xl p-4 space-y-4 hidden border-2 border-blue-500">
                     <div class="flex items-center justify-between border-b border-blue-900/70 pb-3">
                         <div>
@@ -620,7 +529,6 @@
                         <input type="number" id="withdraw-amount" required min="1000" oninput="updateWithdrawFeePreview()" placeholder="Ex: 5000" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-4 text-sm font-bold text-slate-900 focus:outline-none focus:border-blue-700">
                     </div>
 
-                    <!-- Récapitulatif : Frais -6% déduits du montant retiré -->
                     <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 space-y-1.5 text-xs">
                         <div class="flex justify-between">
                             <span class="text-slate-500">Montant demandé :</span>
@@ -677,7 +585,7 @@
                 <div id="withdraw-history-list" class="space-y-2.5"></div>
             </section>
 
-            <!-- PAGE 9 : ÉQUIPE SEUL (LIEN PARRAINAGE, BONUS 1 000 F AUTO, FILLEULS & COMPTE LIÉ BLEU-VERT) -->
+            <!-- PAGE 9 : ÉQUIPE SEUL -->
             <section id="page-team" class="hidden space-y-4">
                 <div>
                     <h2 class="text-xl font-extrabold text-slate-900">Mon Équipe & Parrainage</h2>
@@ -729,7 +637,7 @@
                     <div id="team-members-list" class="space-y-2"></div>
                 </div>
 
-                <!-- Compte Lié / Portefeuille (6 chiffres) — BLEU VERT -->
+                <!-- Compte Lié / Portefeuille (6 chiffres) -->
                 <div class="wallet-teal-blue-card rounded-2xl p-4 space-y-3">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-2">
@@ -835,27 +743,9 @@
         </div>
     </div>
 
-    <!-- MODAL ADMINISTRATION -->
-    <div id="admin-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white border border-slate-200 rounded-3xl w-full max-w-md max-h-[85vh] flex flex-col overflow-hidden shadow-xl">
-            <div class="p-4 border-b border-slate-200 flex justify-between items-center">
-                <div class="flex items-center gap-2">
-                    <i class="fas fa-user-shield text-blue-700"></i>
-                    <h3 class="font-extrabold text-sm text-slate-900">Administration - Validations</h3>
-                </div>
-                <button onclick="closeAdminModal()" class="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="p-4 overflow-y-auto space-y-3" id="admin-queue-list"></div>
-        </div>
-    </div>
-
     <script>
         const DAY_MS = 24 * 60 * 60 * 1000;
-        const REFERRAL_BONUS_AMOUNT = 1000;
         const WITHDRAW_FEE_RATE = 0.06; // 6% déduit
-        const ADMIN_AUTH_CODE = 'ADMIN-AVN';
 
         const INVESTMENT_PLANS_9 = [
             { id: 'plan-1', name: '🌱 Plan 1 — Découverte', price: 3000, daily: 120, days: 8 },
@@ -916,20 +806,35 @@
 
             setInterval(() => {
                 if (currentUser) {
+                    usersDB = JSON.parse(localStorage.getItem('avenir_v6_users')) || usersDB;
+                    transactionsDB = JSON.parse(localStorage.getItem('avenir_v6_txs')) || transactionsDB;
+                    if (usersDB[currentUser.phone]) {
+                        currentUser = normalizeUser(usersDB[currentUser.phone]);
+                    }
                     const credited = processAutoDailyCredits(currentUser, true);
                     if (credited > 0) {
                         saveData();
                         notify(`Crédit journalier automatique : +${formatFCFA(credited)}`);
+                    } else {
+                        updateUI();
                     }
                 }
-            }, 60000);
+            }, 15000);
         };
+
+        window.addEventListener('storage', () => {
+            usersDB = JSON.parse(localStorage.getItem('avenir_v6_users')) || {};
+            transactionsDB = JSON.parse(localStorage.getItem('avenir_v6_txs')) || [];
+            supportTicketsDB = JSON.parse(localStorage.getItem('avenir_v6_tickets')) || [];
+            if (currentUser && usersDB[currentUser.phone]) {
+                currentUser = normalizeUser(usersDB[currentUser.phone]);
+                updateUI();
+            }
+        });
 
         function normalizeUser(user) {
             return {
                 ...user,
-                isAdmin: Boolean(user.isAdmin),
-                adminRole: user.adminRole || (user.isAdmin ? 'Administrateur' : null),
                 registeredAt: user.registeredAt || new Date().toLocaleDateString('fr-FR'),
                 balance: user.balance || 0,
                 revenueTotal: user.revenueTotal || 0,
@@ -1163,14 +1068,12 @@
         function switchAuthTab(tab) {
             document.getElementById('login-form').classList.toggle('hidden', tab !== 'login');
             document.getElementById('register-form').classList.toggle('hidden', tab !== 'register');
-            document.getElementById('admin-register-form').classList.toggle('hidden', tab !== 'admin-register');
 
-            const activeCls = 'w-1/3 pb-3 text-xs font-bold border-b-2 border-blue-700 text-blue-700';
-            const inactiveCls = 'w-1/3 pb-3 text-xs font-bold border-b-2 border-transparent text-slate-400';
+            const activeCls = 'w-1/2 pb-3 text-xs font-bold border-b-2 border-blue-700 text-blue-700';
+            const inactiveCls = 'w-1/2 pb-3 text-xs font-bold border-b-2 border-transparent text-slate-400';
 
             document.getElementById('tab-login').className = tab === 'login' ? activeCls : inactiveCls;
             document.getElementById('tab-register').className = tab === 'register' ? activeCls : inactiveCls;
-            document.getElementById('tab-admin-register').className = tab === 'admin-register' ? activeCls : inactiveCls;
         }
 
         function handleRegister(e) {
@@ -1208,8 +1111,6 @@
                 name,
                 phone,
                 pass,
-                isAdmin: false,
-                adminRole: null,
                 registeredAt: new Date().toLocaleDateString('fr-FR'),
                 balance: 0,
                 revenueTotal: 0,
@@ -1230,52 +1131,6 @@
             saveData();
             showMainApp();
             notify('Compte créé avec succès.');
-        }
-
-        function handleAdminRegister(e) {
-            e.preventDefault();
-            const name = document.getElementById('adm-reg-name').value.trim();
-            const phone = document.getElementById('adm-reg-phone').value.replace(/\s+/g, '');
-            const adminRole = document.getElementById('adm-reg-role').value;
-            const code = document.getElementById('adm-reg-code').value.trim().toUpperCase();
-            const pass = document.getElementById('adm-reg-pass').value;
-
-            if (code !== ADMIN_AUTH_CODE) {
-                return notify(`Code administrateur invalide (utilisez ${ADMIN_AUTH_CODE}).`, 'error');
-            }
-            if (usersDB[phone]) {
-                return notify('Ce numéro est déjà inscrit.', 'error');
-            }
-            if (pass.length < 6) {
-                return notify('Le mot de passe doit contenir au moins 6 caractères.', 'error');
-            }
-
-            const newAdmin = normalizeUser({
-                name,
-                phone,
-                pass,
-                isAdmin: true,
-                adminRole,
-                registeredAt: new Date().toLocaleDateString('fr-FR'),
-                balance: 0,
-                revenueTotal: 0,
-                referralBonusTotal: 0,
-                referralRewardPaid: false,
-                sponsorPhone: null,
-                referredBy: null,
-                activePlans: [],
-                wallet: null,
-                referralCode: 'AVN-' + phone.slice(-6).padStart(6, '0'),
-                team: []
-            });
-
-            usersDB[phone] = newAdmin;
-            currentUser = newAdmin;
-            localStorage.setItem('avenir_v6_session', phone);
-            localStorage.setItem('avenir_v6_last_phone', phone);
-            saveData();
-            showMainApp();
-            notify(`Administrateur ${name} inscrit et visible sur la page d'accueil !`);
         }
 
         function handleLogin(e) {
@@ -1401,50 +1256,6 @@
             return num.toLocaleString('fr-FR') + ' FCFA';
         }
 
-        function renderHomeAdminsOverview() {
-            const allUsers = Object.values(usersDB).map(normalizeUser);
-            const admins = allUsers.filter(u => u.isAdmin);
-            const members = allUsers.filter(u => !u.isAdmin);
-            const pendingCount = transactionsDB.filter(t => t.status === 'En attente').length;
-
-            document.getElementById('home-admins-count').innerText = `${admins.length} admin${admins.length > 1 ? 's' : ''}`;
-            document.getElementById('home-stat-admins').innerText = `${admins.length}`;
-            document.getElementById('home-stat-members').innerText = `${members.length}`;
-            document.getElementById('home-stat-pending').innerText = `${pendingCount}`;
-
-            const container = document.getElementById('home-admins-list');
-            if (admins.length === 0) {
-                container.innerHTML = `
-                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 flex items-center justify-between text-xs">
-                        <span class="text-slate-500">Aucun administrateur inscrit pour le moment.</span>
-                        <button type="button" onclick="logoutAndOpenAdminRegister()" class="text-blue-700 font-extrabold hover:underline">
-                            Inscrire un admin
-                        </button>
-                    </div>`;
-                return;
-            }
-
-            container.innerHTML = admins.map(adm => `
-                <div class="bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 flex items-center justify-between text-xs">
-                    <div>
-                        <div class="flex items-center gap-1.5">
-                            <p class="font-extrabold text-slate-900">${adm.name}</p>
-                            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">${adm.adminRole || 'Administrateur'}</span>
-                        </div>
-                        <p class="text-[11px] font-mono text-slate-500 mt-0.5">+225 ${adm.phone} • Inscrit le ${adm.registeredAt || '-'}</p>
-                    </div>
-                    <span class="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-1 rounded-lg">
-                        Actif
-                    </span>
-                </div>
-            `).join('');
-        }
-
-        function logoutAndOpenAdminRegister() {
-            logout();
-            switchAuthTab('admin-register');
-        }
-
         function updateUI() {
             if (!currentUser) return;
 
@@ -1452,7 +1263,6 @@
             const refBonus = currentUser.referralBonusTotal || 0;
 
             document.getElementById('header-user-name').innerText = currentUser.name;
-            document.getElementById('header-admin-badge').classList.toggle('hidden', !currentUser.isAdmin);
             document.getElementById('dash-balance').innerHTML = `${currentUser.balance.toLocaleString('fr-FR')} <span class="text-base font-bold text-blue-200">FCFA</span>`;
             document.getElementById('dash-revenue').innerText = '+' + formatFCFA(rev);
             document.getElementById('dash-ref-bonus').innerText = '+' + formatFCFA(refBonus);
@@ -1488,7 +1298,6 @@
             document.getElementById('referrer-name-display').innerText = currentUser.referredBy || 'Aucun';
             document.getElementById('team-bonus-total').innerText = formatFCFA(refBonus);
 
-            renderHomeAdminsOverview();
             renderMyPurchasedPacks();
             renderRechargeHistory();
             renderWithdrawPending();
@@ -1804,97 +1613,6 @@
                     </p>
                 </div>
             `).join('');
-        }
-
-        function openAdminModal() {
-            document.getElementById('admin-modal').classList.remove('hidden');
-            renderAdminQueue();
-        }
-
-        function closeAdminModal() {
-            document.getElementById('admin-modal').classList.add('hidden');
-        }
-
-        function renderAdminQueue() {
-            const container = document.getElementById('admin-queue-list');
-            const pending = transactionsDB.filter(t => t.status === 'En attente');
-
-            if (pending.length === 0) {
-                container.innerHTML = `<p class="text-center text-xs text-slate-400 py-6">Aucune demande en attente.</p>`;
-                return;
-            }
-
-            container.innerHTML = pending.map(tx => `
-                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3.5 space-y-2">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <p class="text-[11px] font-bold text-blue-700">${tx.type}</p>
-                            <p class="text-xs font-bold text-slate-900">${tx.userName} (${tx.userPhone})</p>
-                            ${tx.txid ? `<p class="text-[11px] font-mono text-slate-600">ID: ${tx.txid}</p>` : ''}
-                        </div>
-                        <p class="text-sm font-extrabold text-slate-900">${Math.abs(tx.amount).toLocaleString('fr-FR')} F</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-2 pt-1">
-                        <button onclick="adminAction('${tx.id}', 'approve')" class="bg-emerald-600 text-white font-bold py-1.5 rounded-lg text-xs">Valider</button>
-                        <button onclick="adminAction('${tx.id}', 'reject')" class="bg-rose-100 text-rose-700 font-bold py-1.5 rounded-lg text-xs">Rejeter</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function adminAction(txId, action) {
-            const tx = transactionsDB.find(t => t.id === txId);
-            if (!tx) return;
-            const user = usersDB[tx.userPhone] ? normalizeUser(usersDB[tx.userPhone]) : null;
-
-            if (action === 'approve') {
-                tx.status = 'Validé';
-                if (tx.amount > 0 && user) {
-                    user.balance += tx.amount;
-
-                    if (user.sponsorPhone && !user.referralRewardPaid && usersDB[user.sponsorPhone]) {
-                        const sponsor = normalizeUser(usersDB[user.sponsorPhone]);
-                        sponsor.balance += REFERRAL_BONUS_AMOUNT;
-                        sponsor.referralBonusTotal = (sponsor.referralBonusTotal || 0) + REFERRAL_BONUS_AMOUNT;
-
-                        const memberEntry = (sponsor.team || []).find(m => m.phone === user.phone);
-                        if (memberEntry) {
-                            memberEntry.recharged = true;
-                            memberEntry.bonusCredited = true;
-                        }
-
-                        user.referralRewardPaid = true;
-                        usersDB[sponsor.phone] = sponsor;
-
-                        transactionsDB.unshift({
-                            id: 'REF-' + Date.now(),
-                            userPhone: sponsor.phone,
-                            userName: sponsor.name,
-                            category: 'referral',
-                            type: `Bonus parrainage (${user.name})`,
-                            amount: REFERRAL_BONUS_AMOUNT,
-                            status: 'Validé',
-                            date: new Date().toLocaleDateString('fr-FR')
-                        });
-                    }
-
-                    usersDB[user.phone] = user;
-                }
-                notify('Transaction validée.');
-            } else {
-                tx.status = 'Rejeté';
-                if (tx.amount < 0 && user) {
-                    user.balance += Math.abs(tx.amount);
-                    usersDB[user.phone] = user;
-                }
-                notify('Transaction rejetée.', 'warning');
-            }
-
-            if (currentUser && usersDB[currentUser.phone]) {
-                currentUser = normalizeUser(usersDB[currentUser.phone]);
-            }
-            saveData();
-            renderAdminQueue();
         }
     </script>
 </body>
