@@ -16,59 +16,40 @@
             padding-bottom: 92px;
             user-select: none;
         }
+        input, textarea { user-select: text; }
 
         .real-card {
             background-color: #ffffff;
             border: 1px solid #e2e8f0;
             box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
         }
-
-        .brand-gradient {
-            background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
-        }
-
+        .brand-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); }
         .recharge-dark-blue-card {
             background: linear-gradient(160deg, #090d16 0%, #0f172a 65%, #172554 100%);
             border: 1px solid #1e3a8a;
             color: #f8fafc;
             box-shadow: 0 8px 24px rgba(9, 13, 22, 0.22);
         }
-
         .recharge-method-btn {
             background: linear-gradient(135deg, #0a1020 0%, #111d3a 100%);
             border: 1px solid #1e3a8a;
             transition: all 0.2s ease;
         }
-
         .recharge-method-btn:hover {
             border-color: #3b82f6;
             background: linear-gradient(135deg, #0f172a 0%, #172554 100%);
             transform: translateY(-1px);
         }
-
         .wallet-teal-blue-card {
             background: linear-gradient(155deg, #f0fdfa 0%, #ecfeff 55%, #eff6ff 100%);
             border: 1px solid #5eead4;
             box-shadow: 0 4px 16px rgba(13, 148, 136, 0.08);
         }
-
-        .wallet-teal-blue-btn {
-            background: linear-gradient(135deg, #0f766e 0%, #0284c7 100%);
-        }
-
-        .nav-active {
-            color: #1d4ed8;
-        }
-
-        .nav-active i {
-            transform: translateY(-2px);
-            transition: transform 0.2s ease;
-        }
-
-        ::-webkit-scrollbar {
-            width: 0px;
-            background: transparent;
-        }
+        .wallet-teal-blue-btn { background: linear-gradient(135deg, #0f766e 0%, #0284c7 100%); }
+        .nav-active { color: #1d4ed8; }
+        .nav-active i { transform: translateY(-2px); transition: transform 0.2s ease; }
+        ::-webkit-scrollbar { width: 0px; background: transparent; }
+        button:disabled { opacity: .6; pointer-events: none; }
     </style>
 </head>
 <body class="antialiased">
@@ -78,8 +59,18 @@
         <div id="toast-content" class="px-4 py-3 rounded-xl shadow-xl border flex items-center gap-3 text-xs font-bold"></div>
     </div>
 
+    <!-- ÉCRAN DE CHARGEMENT -->
+    <div id="splash" class="min-h-screen flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-14 h-14 brand-gradient rounded-2xl mx-auto flex items-center justify-center mb-3">
+                <i class="fas fa-landmark text-white text-xl"></i>
+            </div>
+            <p class="text-xs font-bold text-slate-500">Chargement…</p>
+        </div>
+    </div>
+
     <!-- ÉCRAN D'AUTHENTIFICATION (MEMBRES UNIQUEMENT) -->
-    <div id="auth-screen" class="min-h-screen flex flex-col justify-center px-6 py-10 max-w-md mx-auto">
+    <div id="auth-screen" class="hidden min-h-screen flex flex-col justify-center px-6 py-10 max-w-md mx-auto">
         <div class="text-center mb-7">
             <div class="w-16 h-16 brand-gradient rounded-2xl mx-auto flex items-center justify-center shadow-md mb-4">
                 <i class="fas fa-landmark text-white text-2xl"></i>
@@ -138,7 +129,6 @@
                 </button>
             </form>
 
-            <!-- Accès rapide Service Client depuis l'écran auth -->
             <div class="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
                 <span class="text-slate-500 font-medium">Besoin d'aide ?</span>
                 <button type="button" onclick="openCustomerServiceModal()" class="text-blue-700 font-extrabold hover:underline flex items-center gap-1.5">
@@ -169,7 +159,7 @@
                     <span>Service Client</span>
                 </button>
 
-                <button onclick="logoutAndReconnect()" id="header-auth-btn" title="Se déconnecter / Reconnecter" class="w-8 h-8 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-rose-600 hover:bg-rose-50">
+                <button onclick="logoutAndReconnect()" id="header-auth-btn" title="Se déconnecter" class="w-8 h-8 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-rose-600 hover:bg-rose-50">
                     <i class="fas fa-right-from-bracket text-xs"></i>
                 </button>
             </div>
@@ -216,7 +206,6 @@
                     </div>
                 </div>
 
-                <!-- Actions rapides : Service Client & Session -->
                 <div class="grid grid-cols-2 gap-3">
                     <button onclick="openCustomerServiceModal()" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-blue-400 transition">
                         <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0">
@@ -239,7 +228,6 @@
                     </button>
                 </div>
 
-                <!-- Navigation vers chaque espace -->
                 <div class="grid grid-cols-2 gap-3">
                     <button onclick="navigateTo('plans')" class="real-card rounded-2xl p-4 text-left hover:border-blue-400 transition">
                         <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center mb-2">
@@ -291,7 +279,7 @@
                 </div>
             </section>
 
-            <!-- PAGE 2 : INVESTISSEMENT SEUL (9 PLANS) -->
+            <!-- PAGE 2 : INVESTISSEMENT (9 PLANS) -->
             <section id="page-plans" class="hidden space-y-4">
                 <div class="flex justify-between items-center">
                     <div>
@@ -300,19 +288,18 @@
                     </div>
                     <span class="text-[11px] font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">Crédit auto</span>
                 </div>
-
                 <div id="plans-list" class="space-y-2.5"></div>
             </section>
 
-            <!-- PAGE 3 : PLANS D'INVESTISSEMENT ACHETÉS SEUL -->
+            <!-- PAGE 3 : PLANS ACTIFS -->
             <section id="page-packs" class="hidden space-y-4">
                 <div class="flex justify-between items-center">
                     <div>
                         <h2 class="text-xl font-extrabold text-slate-900">Mes Plans Actifs</h2>
                         <p class="text-xs text-slate-500 mt-1">Revenus journaliers crédités automatiquement.</p>
                     </div>
-                    <button onclick="simulateNextDay()" class="px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-[11px] font-bold">
-                        +1 Jour (Test auto)
+                    <button id="btn-sim-day" onclick="simulateNextDay()" class="hidden px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-[11px] font-bold">
+                        +1 Jour (Test)
                     </button>
                 </div>
 
@@ -340,7 +327,6 @@
                     </button>
                 </div>
 
-                <!-- PAGE D'ACCUEIL RECHARGE : CHOISIR LE MODE DE PAIEMENT -->
                 <div id="recharge-home-view" class="recharge-dark-blue-card rounded-3xl p-5 space-y-4">
                     <div>
                         <h2 class="text-xl font-extrabold text-white tracking-tight">Choisir le mode de paiement</h2>
@@ -377,7 +363,6 @@
                     </a>
                 </div>
 
-                <!-- ÉTAPE 1 : FORMULAIRE DE RECHARGE -->
                 <div id="recharge-step-1" class="recharge-dark-blue-card rounded-2xl p-4 space-y-4 hidden">
                     <div class="flex items-center justify-between border-b border-blue-900/70 pb-2.5">
                         <span class="text-xs font-extrabold text-blue-200">Étape 1/2 : Paiement & ID transaction</span>
@@ -387,9 +372,7 @@
                     </div>
 
                     <div class="flex flex-wrap items-center justify-between gap-2 bg-[#070b14]/90 border border-blue-800/70 rounded-xl p-3">
-                        <div class="text-xs font-bold text-blue-100">
-                            Payer pour Avenir via Jeko :
-                        </div>
+                        <div class="text-xs font-bold text-blue-100">Payer pour Avenir via Jeko :</div>
                         <a href="https://pay.jeko.africa/pl/4f580acc-5df9-440e-b168-6beb65823bea" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold inline-flex items-center gap-1.5">
                             <span>Lien Paiement Jeko</span>
                             <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
@@ -428,7 +411,6 @@
                     </button>
                 </div>
 
-                <!-- ÉTAPE 2 : CONFIRMATION OBLIGATOIRE DU PAIEMENT -->
                 <div id="recharge-step-2" class="recharge-dark-blue-card rounded-2xl p-4 space-y-4 hidden border-2 border-blue-500">
                     <div class="flex items-center justify-between border-b border-blue-900/70 pb-3">
                         <div>
@@ -478,7 +460,7 @@
                 </div>
             </section>
 
-            <!-- PAGE 5 : HISTORIQUE DES RECHARGES SEUL -->
+            <!-- PAGE 5 : HISTORIQUE DES RECHARGES -->
             <section id="page-recharge-history" class="hidden space-y-4">
                 <div class="flex justify-between items-center">
                     <div>
@@ -489,11 +471,10 @@
                         + Recharger
                     </button>
                 </div>
-
                 <div id="recharge-history-list" class="space-y-2.5"></div>
             </section>
 
-            <!-- PAGE 6 : DEMANDE DE RETRAIT SEUL (DÉDUCTION FRAIS 6%) -->
+            <!-- PAGE 6 : DEMANDE DE RETRAIT -->
             <section id="page-withdraw" class="hidden space-y-4">
                 <div class="flex justify-between items-center">
                     <div>
@@ -501,12 +482,8 @@
                         <p class="text-xs text-slate-500 mt-1">Frais de retrait : <strong>-6 % déduits</strong> sur le montant retiré.</p>
                     </div>
                     <div class="flex gap-1.5">
-                        <button onclick="navigateTo('withdraw-pending')" class="px-2.5 py-1.5 rounded-xl bg-amber-50 text-amber-800 text-[11px] font-bold">
-                            En attente
-                        </button>
-                        <button onclick="navigateTo('withdraw-history')" class="px-2.5 py-1.5 rounded-xl bg-slate-100 text-slate-800 text-[11px] font-bold">
-                            Historique
-                        </button>
+                        <button onclick="navigateTo('withdraw-pending')" class="px-2.5 py-1.5 rounded-xl bg-amber-50 text-amber-800 text-[11px] font-bold">En attente</button>
+                        <button onclick="navigateTo('withdraw-history')" class="px-2.5 py-1.5 rounded-xl bg-slate-100 text-slate-800 text-[11px] font-bold">Historique</button>
                     </div>
                 </div>
 
@@ -555,7 +532,7 @@
                 </form>
             </section>
 
-            <!-- PAGE 7 : DEMANDE DE RETRAIT EN ATTENTE SEUL -->
+            <!-- PAGE 7 : RETRAITS EN ATTENTE -->
             <section id="page-withdraw-pending" class="hidden space-y-4">
                 <div class="flex justify-between items-center">
                     <div>
@@ -566,11 +543,10 @@
                         + Nouveau retrait
                     </button>
                 </div>
-
                 <div id="withdraw-pending-list" class="space-y-2.5"></div>
             </section>
 
-            <!-- PAGE 8 : HISTORIQUE DES RETRAITS SEUL -->
+            <!-- PAGE 8 : HISTORIQUE DES RETRAITS -->
             <section id="page-withdraw-history" class="hidden space-y-4">
                 <div class="flex justify-between items-center">
                     <div>
@@ -581,11 +557,10 @@
                         Voir en attente
                     </button>
                 </div>
-
                 <div id="withdraw-history-list" class="space-y-2.5"></div>
             </section>
 
-            <!-- PAGE 9 : ÉQUIPE SEUL -->
+            <!-- PAGE 9 : ÉQUIPE -->
             <section id="page-team" class="hidden space-y-4">
                 <div>
                     <h2 class="text-xl font-extrabold text-slate-900">Mon Équipe & Parrainage</h2>
@@ -637,7 +612,6 @@
                     <div id="team-members-list" class="space-y-2"></div>
                 </div>
 
-                <!-- Compte Lié / Portefeuille (6 chiffres) -->
                 <div class="wallet-teal-blue-card rounded-2xl p-4 space-y-3">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-2">
@@ -697,7 +671,7 @@
     </div>
 
     <!-- MODAL SERVICE CLIENT -->
-    <div id="cs-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+    <div id="cs-modal" class="fixed inset-0 bg-slate-900/60 z-50 hidden flex items-center justify-center p-4">
         <div class="bg-white border border-slate-200 rounded-3xl w-full max-w-md max-h-[88vh] flex flex-col overflow-hidden shadow-xl">
             <div class="p-4 border-b border-slate-200 flex justify-between items-center brand-gradient text-white">
                 <div class="flex items-center gap-2.5">
@@ -743,10 +717,13 @@
         </div>
     </div>
 
+    <!-- ===================== LOGIQUE DE L'APPLICATION ===================== -->
     <script>
         const DAY_MS = 24 * 60 * 60 * 1000;
-        const WITHDRAW_FEE_RATE = 0.06; // 6% déduit
+        const WITHDRAW_FEE_RATE = 0.06;
+        const REFERRAL_BONUS = 1000;
         const REFERRAL_BASE_URL = 'https://avenircapitalavenir-commits.github.io/avenir-capital-68/';
+        const TEST_MODE = false; // true = affiche le bouton "+1 Jour" (à laisser false en production)
 
         const INVESTMENT_PLANS_9 = [
             { id: 'plan-1', name: '🌱 Plan 1 — Découverte', price: 3000, daily: 120, days: 8 },
@@ -775,15 +752,30 @@
         let pendingRechargeDraft = null;
         let rechargeSubView = 'home';
         let currentUser = null;
-        let usersDB = JSON.parse(localStorage.getItem('avenir_v6_users')) || {};
-        let transactionsDB = JSON.parse(localStorage.getItem('avenir_v6_txs')) || [];
-        let supportTicketsDB = JSON.parse(localStorage.getItem('avenir_v6_tickets')) || [];
+        let transactionsDB = [];
+        let supportTicketsDB = [];
 
+        // ---------- Utilitaires ----------
+        const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const newId = prefix => `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
+        const todayFR = () => new Date().toLocaleDateString('fr-FR');
+        const onlyDigits = s => (s || '').replace(/\D/g, '');
+
+        async function hashPin(pin) {
+            if (!window.crypto || !crypto.subtle) throw new Error('crypto-indisponible');
+            const data = new TextEncoder().encode(currentUser.phone + ':' + pin);
+            const buf = await crypto.subtle.digest('SHA-256', data);
+            return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // ---------- Démarrage ----------
         window.onload = () => {
             renderRechargeNumbers();
             renderPlans();
             syncRechargeAmountFromHome();
             updateWithdrawFeePreview();
+
+            if (TEST_MODE) document.getElementById('btn-sim-day').classList.remove('hidden');
 
             const params = new URLSearchParams(window.location.search);
             const urlRef = params.get('ref');
@@ -792,56 +784,40 @@
                 switchAuthTab('register');
             }
 
-            const savedPhone = localStorage.getItem('avenir_v6_session');
-            if (savedPhone && usersDB[savedPhone]) {
-                currentUser = normalizeUser(usersDB[savedPhone]);
-                processAutoDailyCredits(currentUser, false);
-                usersDB[savedPhone] = currentUser;
-                showMainApp();
-            } else {
-                const lastPhone = localStorage.getItem('avenir_v6_last_phone');
-                if (lastPhone) {
-                    document.getElementById('login-phone').value = lastPhone;
-                }
-            }
+            const lastPhone = localStorage.getItem('avenir_v6_last_phone');
+            if (lastPhone) document.getElementById('login-phone').value = lastPhone;
 
+            // Crédit journalier automatique
             setInterval(() => {
-                if (currentUser) {
-                    usersDB = JSON.parse(localStorage.getItem('avenir_v6_users')) || usersDB;
-                    transactionsDB = JSON.parse(localStorage.getItem('avenir_v6_txs')) || transactionsDB;
-                    if (usersDB[currentUser.phone]) {
-                        currentUser = normalizeUser(usersDB[currentUser.phone]);
-                    }
-                    const credited = processAutoDailyCredits(currentUser, true);
-                    if (credited > 0) {
-                        saveData();
-                        notify(`Crédit journalier automatique : +${formatFCFA(credited)}`);
-                    } else {
-                        updateUI();
-                    }
+                if (!currentUser) return;
+                const credited = processAutoDailyCredits(currentUser, true);
+                if (credited > 0) {
+                    saveData();
+                    notify(`Crédit journalier automatique : +${formatFCFA(credited)}`);
                 }
             }, 15000);
+
+            // Si Firebase ne répond pas (hors-ligne), on affiche quand même l'écran de connexion
+            setTimeout(() => {
+                if (!currentUser && !window.fbReady) revealAuth();
+            }, 6000);
         };
 
-        window.addEventListener('storage', () => {
-            usersDB = JSON.parse(localStorage.getItem('avenir_v6_users')) || {};
-            transactionsDB = JSON.parse(localStorage.getItem('avenir_v6_txs')) || [];
-            supportTicketsDB = JSON.parse(localStorage.getItem('avenir_v6_tickets')) || [];
-            if (currentUser && usersDB[currentUser.phone]) {
-                currentUser = normalizeUser(usersDB[currentUser.phone]);
-                updateUI();
-            }
-        });
+        function revealAuth() {
+            document.getElementById('splash').classList.add('hidden');
+            document.getElementById('main-app').classList.add('hidden');
+            document.getElementById('auth-screen').classList.remove('hidden');
+        }
 
         function normalizeUser(user) {
             return {
                 ...user,
-                registeredAt: user.registeredAt || new Date().toLocaleDateString('fr-FR'),
+                registeredAt: user.registeredAt || todayFR(),
                 balance: user.balance || 0,
                 revenueTotal: user.revenueTotal || 0,
                 referralBonusTotal: user.referralBonusTotal || 0,
                 referralRewardPaid: Boolean(user.referralRewardPaid),
-                sponsorPhone: user.sponsorPhone || null,
+                sponsorUid: user.sponsorUid || null,
                 referredBy: user.referredBy || null,
                 activePlans: (user.activePlans || []).map(p => ({
                     ...p,
@@ -874,7 +850,8 @@
                     const gain = daysToCredit * plan.daily;
                     plan.daysLeft -= daysToCredit;
                     plan.earnedSoFar = (plan.earnedSoFar || 0) + gain;
-                    plan.lastCreditAt = now;
+                    // on avance de N jours pleins (et non "now") pour ne perdre aucune fraction de jour
+                    plan.lastCreditAt = forceDays ? now : (plan.lastCreditAt || now) + daysToCredit * DAY_MS;
                     totalCredited += gain;
                 }
             });
@@ -883,31 +860,31 @@
                 user.balance += totalCredited;
                 user.revenueTotal += totalCredited;
                 transactionsDB.unshift({
-                    id: 'AUTO-' + Date.now(),
+                    id: newId('AUTO'),
                     userPhone: user.phone,
                     userName: user.name,
                     category: 'revenue',
                     type: 'Crédit journalier automatique (8j)',
                     amount: totalCredited,
                     status: 'Validé',
-                    date: new Date().toLocaleDateString('fr-FR')
+                    date: todayFR()
                 });
             }
-
             return totalCredited;
         }
 
         function simulateNextDay() {
-            if (!currentUser) return;
+            if (!TEST_MODE || !currentUser) return;
             const gain = processAutoDailyCredits(currentUser, true, 1);
             if (gain > 0) {
                 saveData();
-                notify(`+1 jour crédité automatiquement : +${formatFCFA(gain)}`);
+                notify(`+1 jour crédité : +${formatFCFA(gain)}`);
             } else {
                 notify('Aucun plan actif avec jours restants.', 'warning');
             }
         }
 
+        // ---------- Recharge ----------
         function renderRechargeNumbers() {
             const container = document.getElementById('recharge-numbers-list');
             container.innerHTML = RECHARGE_NUMBERS.map(item => `
@@ -973,6 +950,7 @@
             }
         }
 
+        // ---------- Plans ----------
         function renderPlans() {
             const container = document.getElementById('plans-list');
             container.innerHTML = INVESTMENT_PLANS_9.map(p => `
@@ -1014,7 +992,7 @@
 
             currentUser.balance -= plan.price;
             currentUser.activePlans.unshift({
-                id: 'PCK-' + Date.now(),
+                id: newId('PCK'),
                 name: plan.name,
                 price: plan.price,
                 daily: plan.daily,
@@ -1024,14 +1002,14 @@
             });
 
             transactionsDB.unshift({
-                id: 'TX-' + Date.now(),
+                id: newId('TX'),
                 userPhone: currentUser.phone,
                 userName: currentUser.name,
                 category: 'pack',
                 type: `Achat ${plan.name}`,
                 amount: -plan.price,
                 status: 'Validé',
-                date: new Date().toLocaleDateString('fr-FR')
+                date: todayFR()
             });
 
             saveData();
@@ -1039,14 +1017,10 @@
             navigateTo('packs');
         }
 
+        // Les données sont synchronisées vers Firebase par le module en bas de page (window.fbPush)
         function saveData() {
-            if (currentUser) {
-                usersDB[currentUser.phone] = currentUser;
-            }
-            localStorage.setItem('avenir_v6_users', JSON.stringify(usersDB));
-            localStorage.setItem('avenir_v6_txs', JSON.stringify(transactionsDB));
-            localStorage.setItem('avenir_v6_tickets', JSON.stringify(supportTicketsDB));
             updateUI();
+            if (window.fbPush) window.fbPush();
         }
 
         function notify(message, type = 'success') {
@@ -1060,10 +1034,11 @@
             };
 
             content.className = `px-4 py-3 rounded-xl shadow-lg border flex items-center gap-2.5 text-xs font-bold ${styles[type]}`;
-            content.innerHTML = `<i class="fas fa-info-circle"></i><span>${message}</span>`;
+            content.innerHTML = `<i class="fas fa-info-circle"></i><span>${esc(message)}</span>`;
 
             toast.classList.remove('hidden');
-            setTimeout(() => toast.classList.add('hidden'), 3400);
+            clearTimeout(window.__toastTimer);
+            window.__toastTimer = setTimeout(() => toast.classList.add('hidden'), 3400);
         }
 
         function switchAuthTab(tab) {
@@ -1077,125 +1052,37 @@
             document.getElementById('tab-register').className = tab === 'register' ? activeCls : inactiveCls;
         }
 
-        function handleRegister(e) {
-            e.preventDefault();
-            const name = document.getElementById('reg-name').value.trim();
-            const phone = document.getElementById('reg-phone').value.replace(/\s+/g, '');
-            const refCode = document.getElementById('reg-ref').value.trim().toUpperCase();
-            const pass = document.getElementById('reg-pass').value;
-
-            if (usersDB[phone]) {
-                return notify('Ce numéro est déjà inscrit.', 'error');
-            }
-
-            let sponsorPhone = null;
-            let referrerLabel = null;
-
-            if (refCode) {
-                const foundSponsor = Object.values(usersDB).find(u => (u.referralCode || '').toUpperCase() === refCode);
-                if (foundSponsor) {
-                    sponsorPhone = foundSponsor.phone;
-                    referrerLabel = `${foundSponsor.name} (${refCode})`;
-                    foundSponsor.team = foundSponsor.team || [];
-                    foundSponsor.team.unshift({
-                        name,
-                        phone,
-                        recharged: false,
-                        bonusCredited: false,
-                        date: new Date().toLocaleDateString('fr-FR')
-                    });
-                    usersDB[foundSponsor.phone] = foundSponsor;
-                }
-            }
-
-            const newUser = normalizeUser({
-                name,
-                phone,
-                pass,
-                registeredAt: new Date().toLocaleDateString('fr-FR'),
-                balance: 0,
-                revenueTotal: 0,
-                referralBonusTotal: 0,
-                referralRewardPaid: false,
-                sponsorPhone,
-                referredBy: referrerLabel,
-                activePlans: [],
-                wallet: null,
-                referralCode: 'AVN-' + phone.slice(-6).padStart(6, '0'),
-                team: []
-            });
-
-            usersDB[phone] = newUser;
-            currentUser = newUser;
-            localStorage.setItem('avenir_v6_session', phone);
-            localStorage.setItem('avenir_v6_last_phone', phone);
-            saveData();
-            showMainApp();
-            notify('Compte créé avec succès.');
-        }
-
-        function handleLogin(e) {
-            e.preventDefault();
-            const phone = document.getElementById('login-phone').value.replace(/\s+/g, '');
-            const pass = document.getElementById('login-pass').value;
-
-            const user = usersDB[phone];
-            if (!user || user.pass !== pass) {
-                return notify('Numéro ou mot de passe incorrect.', 'error');
-            }
-
-            currentUser = normalizeUser(user);
-            const autoGain = processAutoDailyCredits(currentUser, false);
-            usersDB[phone] = currentUser;
-            localStorage.setItem('avenir_v6_session', phone);
-            localStorage.setItem('avenir_v6_last_phone', phone);
-            showMainApp();
-            notify(autoGain > 0 ? `Bienvenue ${currentUser.name} ! +${formatFCFA(autoGain)} crédités.` : `Bienvenue, ${currentUser.name}`);
-        }
+        // handleRegister / handleLogin sont définis dans le module Firebase (en bas de page)
 
         function logout() {
             const lastPhone = currentUser ? currentUser.phone : localStorage.getItem('avenir_v6_last_phone');
-            if (lastPhone) {
-                localStorage.setItem('avenir_v6_last_phone', lastPhone);
-            }
-            localStorage.removeItem('avenir_v6_session');
+            if (lastPhone) localStorage.setItem('avenir_v6_last_phone', lastPhone);
+            if (window.fbSignOut) window.fbSignOut();
             currentUser = null;
+            transactionsDB = [];
+            supportTicketsDB = [];
             pendingRechargeDraft = null;
-            document.getElementById('main-app').classList.add('hidden');
-            document.getElementById('auth-screen').classList.remove('hidden');
+            revealAuth();
             switchAuthTab('login');
-            if (lastPhone) {
-                document.getElementById('login-phone').value = lastPhone;
-            }
+            if (lastPhone) document.getElementById('login-phone').value = lastPhone;
             document.getElementById('login-pass').value = '';
         }
 
         function logoutAndReconnect() {
             const name = currentUser ? currentUser.name : '';
             logout();
-            notify(name ? `Déconnecté (${name}). Vous pouvez vous reconnecter.` : 'Déconnecté. Prêt pour reconnexion.', 'warning');
-            setTimeout(() => {
-                document.getElementById('login-pass')?.focus();
-            }, 100);
+            notify(name ? `Déconnecté (${name}). Vous pouvez vous reconnecter.` : 'Déconnecté.', 'warning');
+            setTimeout(() => document.getElementById('login-pass')?.focus(), 100);
         }
 
         function showMainApp() {
+            document.getElementById('splash').classList.add('hidden');
             document.getElementById('auth-screen').classList.add('hidden');
             document.getElementById('main-app').classList.remove('hidden');
             updateUI();
         }
 
-        const ALL_PAGES = [
-            'dashboard',
-            'plans',
-            'packs',
-            'recharge',
-            'recharge-history',
-            'withdraw',
-            'withdraw-pending',
-            'withdraw-history',
-            'team'
-        ];
+        const ALL_PAGES = ['dashboard', 'plans', 'packs', 'recharge', 'recharge-history', 'withdraw', 'withdraw-pending', 'withdraw-history', 'team'];
 
         function navigateTo(pageId) {
             ALL_PAGES.forEach(p => {
@@ -1212,25 +1099,18 @@
             if (target) target.classList.remove('hidden');
 
             const navMap = {
-                'dashboard': 'dashboard',
-                'plans': 'plans',
-                'packs': 'packs',
-                'recharge': 'recharge',
-                'recharge-history': 'recharge',
-                'withdraw': 'withdraw',
-                'withdraw-pending': 'withdraw',
-                'withdraw-history': 'withdraw',
+                'dashboard': 'dashboard', 'plans': 'plans', 'packs': 'packs',
+                'recharge': 'recharge', 'recharge-history': 'recharge',
+                'withdraw': 'withdraw', 'withdraw-pending': 'withdraw', 'withdraw-history': 'withdraw',
                 'team': 'team'
             };
             const activeBtn = document.getElementById(`nav-${navMap[pageId]}`);
             if (activeBtn) activeBtn.classList.add('nav-active');
 
-            if (pageId === 'recharge') {
-                openRechargeHomeView();
-            } else if (pageId === 'withdraw') {
-                updateWithdrawFeePreview();
-            }
+            if (pageId === 'recharge') openRechargeHomeView();
+            else if (pageId === 'withdraw') updateWithdrawFeePreview();
 
+            window.scrollTo(0, 0);
             updateUI();
         }
 
@@ -1247,13 +1127,12 @@
 
         function copyReferralLink() {
             if (!currentUser) return;
-            const link = getReferralLink();
-            navigator.clipboard?.writeText(link).catch(() => {});
+            navigator.clipboard?.writeText(getReferralLink()).catch(() => {});
             notify('Lien de parrainage copié ! Bonus 1 000 FCFA dès le 1er rechargement validé.');
         }
 
         function formatFCFA(num) {
-            return num.toLocaleString('fr-FR') + ' FCFA';
+            return (num || 0).toLocaleString('fr-FR') + ' FCFA';
         }
 
         function updateUI() {
@@ -1270,9 +1149,7 @@
             document.getElementById('withdraw-available').innerText = formatFCFA(currentUser.balance);
 
             const isLinked = Boolean(currentUser.wallet);
-            document.getElementById('dash-linked-status').innerText = isLinked
-                ? `${currentUser.wallet.username}`
-                : 'Non lié';
+            document.getElementById('dash-linked-status').innerText = isLinked ? currentUser.wallet.username : 'Non lié';
 
             const accBadge = document.getElementById('account-link-badge');
             const accCard = document.getElementById('linked-account-card');
@@ -1280,13 +1157,14 @@
                 accBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-teal-600 text-white';
                 accBadge.innerText = 'Compte lié actif';
                 accCard.innerHTML = `
-                    <div class="flex justify-between"><span class="text-teal-700">Nom lié :</span><strong class="text-teal-950">${currentUser.wallet.username}</strong></div>
-                    <div class="flex justify-between"><span class="text-teal-700">Numéro lié :</span><strong class="text-teal-950 font-mono">${currentUser.wallet.userNumber}</strong></div>
+                    <div class="flex justify-between"><span class="text-teal-700">Nom lié :</span><strong class="text-teal-950">${esc(currentUser.wallet.username)}</strong></div>
+                    <div class="flex justify-between"><span class="text-teal-700">Numéro lié :</span><strong class="text-teal-950 font-mono">${esc(currentUser.wallet.userNumber)}</strong></div>
                     <div class="flex justify-between"><span class="text-teal-700">Code PIN :</span><strong class="text-teal-700 font-mono">•••••• (Configuré)</strong></div>
                 `;
-                document.getElementById('wallet-username').value = currentUser.wallet.username;
-                document.getElementById('wallet-usernumber').value = currentUser.wallet.userNumber;
-                document.getElementById('wallet-pin').value = currentUser.wallet.pin;
+                const u = document.getElementById('wallet-username');
+                const n = document.getElementById('wallet-usernumber');
+                if (document.activeElement !== u && !u.value) u.value = currentUser.wallet.username;
+                if (document.activeElement !== n && !n.value) n.value = currentUser.wallet.userNumber;
             } else {
                 accBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-teal-100 text-teal-800 border border-teal-200';
                 accBadge.innerText = 'Non lié';
@@ -1322,7 +1200,7 @@
             container.innerHTML = packs.map(p => `
                 <div class="real-card rounded-2xl p-4 space-y-2">
                     <div class="flex justify-between items-center">
-                        <span class="text-xs font-extrabold text-slate-900">${p.name}</span>
+                        <span class="text-xs font-extrabold text-slate-900">${esc(p.name)}</span>
                         <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full ${p.daysLeft > 0 ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-700'}">
                             ${p.daysLeft > 0 ? p.daysLeft + 'j restants / 8j' : 'Terminé (8j)'}
                         </span>
@@ -1341,44 +1219,38 @@
             `).join('');
         }
 
-        function linkWalletAccount() {
+        // ---------- Portefeuille (PIN haché, jamais stocké en clair) ----------
+        async function linkWalletAccount() {
             if (!currentUser) return;
             const username = document.getElementById('wallet-username').value.trim();
             const userNumber = document.getElementById('wallet-usernumber').value.trim();
             const pin = document.getElementById('wallet-pin').value.trim();
 
-            if (!username) {
-                return notify('Veuillez saisir le nom d\'utilisateur du portefeuille.', 'error');
-            }
-            if (!userNumber) {
-                return notify('Veuillez saisir le numéro du portefeuille.', 'error');
-            }
-            if (!/^\d{6}$/.test(pin)) {
-                return notify('Le mot de passe du portefeuille doit contenir exactement 6 chiffres.', 'error');
-            }
+            if (!username) return notify('Veuillez saisir le nom d\'utilisateur du portefeuille.', 'error');
+            if (!userNumber) return notify('Veuillez saisir le numéro du portefeuille.', 'error');
+            if (!/^\d{6}$/.test(pin)) return notify('Le mot de passe du portefeuille doit contenir exactement 6 chiffres.', 'error');
 
-            currentUser.wallet = { username, userNumber, pin };
-            saveData();
-            notify('Compte du portefeuille lié avec succès !');
+            try {
+                const pinHash = await hashPin(pin);
+                currentUser.wallet = { username, userNumber, pinHash };
+                document.getElementById('wallet-pin').value = '';
+                saveData();
+                notify('Compte du portefeuille lié avec succès !');
+            } catch (err) {
+                notify('Sécurité indisponible : ouvrez le site en HTTPS ou sur localhost.', 'error');
+            }
         }
 
+        // ---------- Recharge : confirmation ----------
         function prepareRechargeConfirmation() {
             const amount = parseInt(document.getElementById('recharge-amount').value);
             const txid = document.getElementById('recharge-txid').value.trim().toUpperCase();
 
-            if (!amount || amount < 1000) {
-                return notify('Montant minimum : 1 000 FCFA.', 'error');
-            }
-            if (!txid) {
-                return notify('Veuillez renseigner l\'ID de transaction.', 'error');
-            }
+            if (!amount || amount < 1000) return notify('Montant minimum : 1 000 FCFA.', 'error');
+            if (!txid) return notify('Veuillez renseigner l\'ID de transaction.', 'error');
+            if (transactionsDB.some(t => t.txid === txid)) return notify('Cet ID de transaction a déjà été utilisé.', 'error');
 
-            pendingRechargeDraft = {
-                amount,
-                txid,
-                operator: selectedOperator,
-                number: copiedNumber
-            };
+            pendingRechargeDraft = { amount, txid, operator: selectedOperator, number: copiedNumber };
 
             document.getElementById('confirm-op').innerText = selectedOperator;
             document.getElementById('confirm-number').innerText = copiedNumber;
@@ -1407,19 +1279,16 @@
         }
 
         function confirmAndSubmitRecharge() {
-            if (!pendingRechargeDraft) {
-                return prepareRechargeConfirmation();
-            }
+            if (!pendingRechargeDraft) return prepareRechargeConfirmation();
 
-            const checked = document.getElementById('confirm-payment-checkbox').checked;
-            if (!checked) {
+            if (!document.getElementById('confirm-payment-checkbox').checked) {
                 return notify('Veuillez cocher la case pour confirmer votre paiement.', 'error');
             }
 
             const { amount, txid, operator, number } = pendingRechargeDraft;
 
             transactionsDB.unshift({
-                id: 'DEP-' + Date.now(),
+                id: newId('DEP'),
                 userPhone: currentUser.phone,
                 userName: currentUser.name,
                 category: 'recharge',
@@ -1428,7 +1297,7 @@
                 txid: txid,
                 paymentConfirmed: true,
                 status: 'En attente',
-                date: new Date().toLocaleDateString('fr-FR')
+                date: todayFR()
             });
 
             pendingRechargeDraft = null;
@@ -1439,6 +1308,7 @@
             navigateTo('recharge-history');
         }
 
+        // ---------- Retrait ----------
         function updateWithdrawFeePreview() {
             const amount = parseInt(document.getElementById('withdraw-amount')?.value) || 0;
             const fee = amount > 0 ? Math.round(amount * WITHDRAW_FEE_RATE) : 0;
@@ -1449,50 +1319,56 @@
             document.getElementById('withdraw-net-amount').innerText = formatFCFA(netAmount);
         }
 
-        function submitWithdraw(e) {
+        async function submitWithdraw(e) {
             e.preventDefault();
-            const phone = document.getElementById('withdraw-phone').value.trim();
+            const btn = e.target.querySelector('button[type=submit]');
+            const phone = onlyDigits(document.getElementById('withdraw-phone').value);
             const amount = parseInt(document.getElementById('withdraw-amount').value);
             const pin = document.getElementById('withdraw-pin').value.trim();
 
-            if (!amount || amount < 1000) {
-                return notify('Montant minimum de retrait : 1 000 FCFA.', 'error');
-            }
-            if (!currentUser.wallet) {
-                return notify('Veuillez d\'abord cliquer sur "Lier mon compte" dans l\'onglet Équipe.', 'error');
-            }
-            if (!/^\d{6}$/.test(pin) || pin !== currentUser.wallet.pin) {
-                return notify('Mot de passe du portefeuille (6 chiffres) incorrect.', 'error');
-            }
-            if (amount > currentUser.balance) {
-                return notify(`Solde insuffisant (${formatFCFA(amount)} requis).`, 'error');
-            }
+            if (phone.length < 8) return notify('Numéro de réception invalide.', 'error');
+            if (!amount || amount < 1000) return notify('Montant minimum de retrait : 1 000 FCFA.', 'error');
+            if (!currentUser.wallet) return notify('Veuillez d\'abord cliquer sur "Lier mon compte" dans l\'onglet Équipe.', 'error');
+            if (!/^\d{6}$/.test(pin)) return notify('Mot de passe du portefeuille : 6 chiffres.', 'error');
 
-            const fee = Math.round(amount * WITHDRAW_FEE_RATE);
-            const netAmount = Math.max(0, amount - fee);
+            btn.disabled = true;
+            try {
+                const hash = await hashPin(pin);
+                if (hash !== currentUser.wallet.pinHash) return notify('Mot de passe du portefeuille (6 chiffres) incorrect.', 'error');
+                if (amount > currentUser.balance) return notify(`Solde insuffisant (${formatFCFA(amount)} requis).`, 'error');
 
-            currentUser.balance -= amount;
-            transactionsDB.unshift({
-                id: 'RET-' + Date.now(),
-                userPhone: currentUser.phone,
-                userName: currentUser.name,
-                category: 'withdraw',
-                type: `Retrait (${phone}) • Net: ${netAmount.toLocaleString('fr-FR')} F (-6% frais)`,
-                amount: -amount,
-                fee: fee,
-                netAmount: netAmount,
-                status: 'En attente',
-                date: new Date().toLocaleDateString('fr-FR')
-            });
+                const fee = Math.round(amount * WITHDRAW_FEE_RATE);
+                const netAmount = Math.max(0, amount - fee);
 
-            document.getElementById('withdraw-amount').value = '';
-            document.getElementById('withdraw-pin').value = '';
-            updateWithdrawFeePreview();
-            saveData();
-            notify(`Retrait lancé : -6% (${formatFCFA(fee)}) déduits, net ${formatFCFA(netAmount)}.`);
-            navigateTo('withdraw-pending');
+                currentUser.balance -= amount;
+                transactionsDB.unshift({
+                    id: newId('RET'),
+                    userPhone: currentUser.phone,
+                    userName: currentUser.name,
+                    category: 'withdraw',
+                    type: `Retrait (${phone}) • Net: ${netAmount.toLocaleString('fr-FR')} F (-6% frais)`,
+                    amount: -amount,
+                    fee: fee,
+                    netAmount: netAmount,
+                    receivePhone: phone,
+                    status: 'En attente',
+                    date: todayFR()
+                });
+
+                document.getElementById('withdraw-amount').value = '';
+                document.getElementById('withdraw-pin').value = '';
+                updateWithdrawFeePreview();
+                saveData();
+                notify(`Retrait lancé : -6% (${formatFCFA(fee)}) déduits, net ${formatFCFA(netAmount)}.`);
+                navigateTo('withdraw-pending');
+            } catch (err) {
+                notify('Sécurité indisponible : ouvrez le site en HTTPS ou sur localhost.', 'error');
+            } finally {
+                btn.disabled = false;
+            }
         }
 
+        // ---------- Listes ----------
         function renderTxList(containerId, items, emptyText) {
             const container = document.getElementById(containerId);
             if (!items || items.length === 0) {
@@ -1509,32 +1385,30 @@
                 return `
                 <div class="real-card rounded-2xl p-3.5 flex justify-between items-center">
                     <div>
-                        <p class="text-xs font-bold text-slate-900">${tx.type}</p>
-                        <p class="text-[10px] text-slate-500 mt-0.5">${tx.date} ${tx.txid ? '• ID: ' + tx.txid : ''} ${tx.paymentConfirmed ? '• Paiement confirmé' : ''}</p>
+                        <p class="text-xs font-bold text-slate-900">${esc(tx.type)}</p>
+                        <p class="text-[10px] text-slate-500 mt-0.5">${esc(tx.date)} ${tx.txid ? '• ID: ' + esc(tx.txid) : ''} ${tx.paymentConfirmed ? '• Paiement confirmé' : ''}</p>
                     </div>
                     <div class="text-right">
                         <p class="text-xs font-extrabold ${pos ? 'text-emerald-700' : 'text-slate-900'}">
-                            ${pos ? '+' : ''}${tx.amount.toLocaleString('fr-FR')} F
+                            ${pos ? '+' : ''}${(tx.amount || 0).toLocaleString('fr-FR')} F
                         </p>
-                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${badgeClass}">${tx.status}</span>
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${badgeClass}">${esc(tx.status)}</span>
                     </div>
                 </div>`;
             }).join('');
         }
 
+        const isRecharge = t => t.category === 'recharge' || (t.type && t.type.startsWith('Recharge'));
+        const isWithdraw = t => t.category === 'withdraw' || (t.type && t.type.startsWith('Retrait'));
+
         function renderRechargeHistory() {
-            const recharges = transactionsDB.filter(t => t.userPhone === currentUser.phone && (t.category === 'recharge' || (t.type && t.type.startsWith('Recharge'))));
-            renderTxList('recharge-history-list', recharges, 'Aucune recharge dans votre historique.');
+            renderTxList('recharge-history-list', transactionsDB.filter(t => t.userPhone === currentUser.phone && isRecharge(t)), 'Aucune recharge dans votre historique.');
         }
-
         function renderWithdrawPending() {
-            const pendingWithdraws = transactionsDB.filter(t => t.userPhone === currentUser.phone && (t.category === 'withdraw' || (t.type && t.type.startsWith('Retrait'))) && t.status === 'En attente');
-            renderTxList('withdraw-pending-list', pendingWithdraws, 'Aucune demande de retrait en attente.');
+            renderTxList('withdraw-pending-list', transactionsDB.filter(t => t.userPhone === currentUser.phone && isWithdraw(t) && t.status === 'En attente'), 'Aucune demande de retrait en attente.');
         }
-
         function renderWithdrawHistory() {
-            const withdraws = transactionsDB.filter(t => t.userPhone === currentUser.phone && (t.category === 'withdraw' || (t.type && t.type.startsWith('Retrait'))));
-            renderTxList('withdraw-history-list', withdraws, 'Aucun retrait dans votre historique.');
+            renderTxList('withdraw-history-list', transactionsDB.filter(t => t.userPhone === currentUser.phone && isWithdraw(t)), 'Aucun retrait dans votre historique.');
         }
 
         function renderTeam() {
@@ -1550,8 +1424,8 @@
             container.innerHTML = team.map(m => `
                 <div class="flex justify-between items-center bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs">
                     <div>
-                        <p class="font-bold text-slate-900">${m.name}</p>
-                        <p class="text-[11px] font-mono text-slate-600">${m.phone} • ${m.date}</p>
+                        <p class="font-bold text-slate-900">${esc(m.name)}</p>
+                        <p class="text-[11px] font-mono text-slate-600">${esc(m.phone)} • ${esc(m.date)}</p>
                     </div>
                     <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${m.bonusCredited ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
                         ${m.bonusCredited ? '+1 000 F crédités' : 'En attente recharge'}
@@ -1560,6 +1434,7 @@
             `).join('');
         }
 
+        // ---------- Service client ----------
         function openCustomerServiceModal() {
             document.getElementById('cs-modal').classList.remove('hidden');
             renderSupportTickets();
@@ -1571,18 +1446,21 @@
 
         function submitSupportTicket(e) {
             e.preventDefault();
+            if (!currentUser) {
+                return notify('Connectez-vous pour envoyer un message, ou utilisez WhatsApp.', 'warning');
+            }
             const topic = document.getElementById('cs-topic').value;
             const message = document.getElementById('cs-message').value.trim();
             if (!message) return;
 
             supportTicketsDB.unshift({
-                id: 'SUP-' + Date.now(),
-                userPhone: currentUser ? currentUser.phone : 'Visiteur',
-                userName: currentUser ? currentUser.name : 'Visiteur',
+                id: newId('SUP'),
+                userPhone: currentUser.phone,
+                userName: currentUser.name,
                 topic,
                 message,
                 reply: 'Merci pour votre message. Notre équipe Service Client traite votre demande.',
-                date: new Date().toLocaleDateString('fr-FR')
+                date: todayFR()
             });
 
             document.getElementById('cs-message').value = '';
@@ -1593,8 +1471,7 @@
 
         function renderSupportTickets() {
             const container = document.getElementById('cs-tickets-list');
-            const userPhone = currentUser ? currentUser.phone : 'Visiteur';
-            const list = supportTicketsDB.filter(t => t.userPhone === userPhone);
+            const list = currentUser ? supportTicketsDB.filter(t => t.userPhone === currentUser.phone) : [];
 
             if (list.length === 0) {
                 container.innerHTML = `<p class="text-xs text-slate-400 text-center py-3 bg-slate-50 rounded-xl border border-slate-200">Aucun message envoyé pour le moment.</p>`;
@@ -1604,16 +1481,295 @@
             container.innerHTML = list.map(t => `
                 <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs space-y-1.5">
                     <div class="flex justify-between items-center">
-                        <span class="font-extrabold text-blue-700">${t.topic}</span>
-                        <span class="text-[10px] text-slate-400">${t.date}</span>
+                        <span class="font-extrabold text-blue-700">${esc(t.topic)}</span>
+                        <span class="text-[10px] text-slate-400">${esc(t.date)}</span>
                     </div>
-                    <p class="text-slate-800 font-medium">${t.message}</p>
+                    <p class="text-slate-800 font-medium">${esc(t.message)}</p>
                     <p class="text-[11px] text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-lg px-2.5 py-1.5">
-                        <strong>Support :</strong> ${t.reply}
+                        <strong>Support :</strong> ${esc(t.reply)}
                     </p>
                 </div>
             `).join('');
         }
+    </script>
+
+    <!-- ===================== FIREBASE (Auth + Realtime Database) ===================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut }
+            from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getDatabase, ref, set, get, onValue, query, orderByChild, equalTo }
+            from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBqs0z7GK6UmAAgfjXmlWA3dn9jOd7d6g0",
+            authDomain: "avenir-capital-h4.firebaseapp.com",
+            databaseURL: "https://avenir-capital-h4-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "avenir-capital-h4",
+            storageBucket: "avenir-capital-h4.firebasestorage.app",
+            messagingSenderId: "349708344991",
+            appId: "1:349708344991:web:9eddd458a38b72f3878caa"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+        window.fbReady = true;
+
+        const toEmail = phone => onlyDigits(phone) + '@avenir-capital.app';
+        const idTime = x => Number(String(x.id).split('-')[1]) || 0;
+
+        let unsubs = [];
+        let pushTimer = null;
+        let profileTimer = null;
+        let teamCache = [];
+        const payingBonus = new Set();
+
+        function stopListening() {
+            unsubs.forEach(u => u());
+            unsubs = [];
+            clearTimeout(profileTimer);
+        }
+
+        function cleanUser(u) {
+            const c = JSON.parse(JSON.stringify(u));
+            delete c.pass;   // aucun mot de passe dans la base
+            delete c.team;   // l'équipe vit dans /referrals
+            return c;
+        }
+
+        function authError(err) {
+            const m = {
+                'auth/email-already-in-use': 'Ce numéro est déjà inscrit.',
+                'auth/weak-password': 'Mot de passe : 6 caractères minimum.',
+                'auth/invalid-credential': 'Numéro ou mot de passe incorrect.',
+                'auth/invalid-login-credentials': 'Numéro ou mot de passe incorrect.',
+                'auth/user-not-found': 'Numéro ou mot de passe incorrect.',
+                'auth/wrong-password': 'Numéro ou mot de passe incorrect.',
+                'auth/too-many-requests': 'Trop de tentatives. Réessayez dans quelques minutes.',
+                'auth/network-request-failed': 'Pas de connexion internet.',
+                'auth/operation-not-allowed': 'E-mail/Mot de passe non activé dans Firebase.'
+            };
+            return m[err.code] || ('Erreur : ' + (err.code || err.message));
+        }
+
+        // ---------- ENVOI vers Firebase ----------
+        window.fbPush = () => {
+            clearTimeout(pushTimer);
+            pushTimer = setTimeout(pushNow, 250);
+        };
+
+        function pushNew(list, path, uid) {
+            list.filter(x => x.userPhone === currentUser.phone && !x.synced && !x.pushing).forEach(x => {
+                x.pushing = true;
+                const { synced, pushing, ...data } = x;
+                const payload = JSON.parse(JSON.stringify({ ...data, uid, createdAt: Date.now() }));
+                set(ref(db, `${path}/${x.id}`), payload)
+                    .then(() => { x.synced = true; })
+                    .catch(e => console.error('Envoi refusé', path, e))
+                    .finally(() => { x.pushing = false; });
+            });
+        }
+
+        function pushNow() {
+            const fu = auth.currentUser;
+            if (!fu || !currentUser) return;
+            set(ref(db, 'users/' + fu.uid), cleanUser(currentUser)).catch(e => console.error('Profil non enregistré', e));
+            pushNew(transactionsDB, 'transactions', fu.uid);
+            pushNew(supportTicketsDB, 'tickets', fu.uid);
+        }
+
+        // ---------- RÉCEPTION depuis Firebase ----------
+        function mergeRemote(local, snap) {
+            const remote = {};
+            snap.forEach(c => { remote[c.key] = { ...c.val(), id: c.key, synced: true }; });
+            const keep = local.filter(x => !remote[x.id] && !x.synced);
+            return [...Object.values(remote), ...keep].sort((a, b) => idTime(b) - idTime(a));
+        }
+
+        function listenAll(uid) {
+            stopListening();
+
+            // Si le profil n'apparaît pas (inscription interrompue), on déconnecte proprement
+            profileTimer = setTimeout(() => {
+                if (!currentUser) {
+                    notify('Profil introuvable. Réessayez ou contactez le support.', 'error');
+                    signOut(auth);
+                }
+            }, 10000);
+
+            // Profil membre
+            unsubs.push(onValue(ref(db, 'users/' + uid), snap => {
+                const v = snap.val();
+                if (!v) return;
+                clearTimeout(profileTimer);
+                currentUser = normalizeUser({ ...v, team: teamCache });
+                localStorage.setItem('avenir_v6_last_phone', currentUser.phone);
+                if (document.getElementById('main-app').classList.contains('hidden')) showMainApp();
+                else updateUI();
+                checkReferralSignal(uid);
+            }, err => console.error('Lecture profil refusée', err)));
+
+            // Transactions du membre (le statut est mis à jour par l'admin)
+            unsubs.push(onValue(query(ref(db, 'transactions'), orderByChild('uid'), equalTo(uid)), snap => {
+                transactionsDB = mergeRemote(transactionsDB, snap);
+                if (currentUser) { updateUI(); checkReferralSignal(uid); }
+            }, err => console.error('Lecture transactions refusée', err)));
+
+            // Tickets support
+            unsubs.push(onValue(query(ref(db, 'tickets'), orderByChild('uid'), equalTo(uid)), snap => {
+                supportTicketsDB = mergeRemote(supportTicketsDB, snap);
+                if (currentUser) renderSupportTickets();
+            }, err => console.error('Lecture tickets refusée', err)));
+
+            // Filleuls + paiement du bonus de parrainage
+            unsubs.push(onValue(ref(db, 'referrals/' + uid), snap => {
+                const team = [];
+                snap.forEach(c => { team.unshift({ ...c.val(), uid: c.key }); });
+                teamCache = team;
+                if (currentUser) {
+                    currentUser.team = team;
+                    updateUI();
+                    team.filter(m => m.recharged && !m.bonusCredited).forEach(m => payReferralBonus(uid, m));
+                }
+            }, err => console.error('Lecture filleuls refusée', err)));
+        }
+
+        // Le filleul signale à son parrain que sa 1re recharge est validée
+        function checkReferralSignal(uid) {
+            if (!currentUser || !currentUser.sponsorUid || currentUser.referralRewardPaid) return;
+            const validated = transactionsDB.some(t => isRecharge(t) && t.status === 'Validé');
+            if (!validated) return;
+            currentUser.referralRewardPaid = true; // évite les doubles envois
+            set(ref(db, `referrals/${currentUser.sponsorUid}/${uid}/recharged`), true)
+                .then(() => saveData())
+                .catch(e => { currentUser.referralRewardPaid = false; console.error(e); });
+        }
+
+        // Le parrain encaisse son bonus
+        function payReferralBonus(uid, m) {
+            if (payingBonus.has(m.uid)) return;
+            payingBonus.add(m.uid);
+            set(ref(db, `referrals/${uid}/${m.uid}/bonusCredited`), true).then(() => {
+                currentUser.balance += REFERRAL_BONUS;
+                currentUser.referralBonusTotal += REFERRAL_BONUS;
+                transactionsDB.unshift({
+                    id: newId('REF'),
+                    userPhone: currentUser.phone,
+                    userName: currentUser.name,
+                    category: 'bonus',
+                    type: `Bonus parrainage — ${m.name}`,
+                    amount: REFERRAL_BONUS,
+                    status: 'Validé',
+                    date: todayFR()
+                });
+                saveData();
+                notify(`Bonus parrainage : +${formatFCFA(REFERRAL_BONUS)} (${m.name})`);
+            }).catch(e => { payingBonus.delete(m.uid); console.error(e); });
+        }
+
+        // ---------- INSCRIPTION ----------
+        window.handleRegister = async function (e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type=submit]');
+            const name = document.getElementById('reg-name').value.trim();
+            const phone = onlyDigits(document.getElementById('reg-phone').value);
+            const refCode = document.getElementById('reg-ref').value.trim().toUpperCase();
+            const pass = document.getElementById('reg-pass').value;
+
+            if (name.length < 2) return notify('Veuillez saisir votre nom complet.', 'error');
+            if (phone.length < 8) return notify('Numéro de téléphone invalide.', 'error');
+            if (pass.length < 6) return notify('Mot de passe : 6 caractères minimum.', 'error');
+
+            btn.disabled = true;
+            try {
+                const cred = await createUserWithEmailAndPassword(auth, toEmail(phone), pass);
+                const uid = cred.user.uid;
+
+                // Code de parrainage unique (AVN + 6 derniers chiffres, suffixe si déjà pris)
+                const base = 'AVN-' + phone.slice(-6).padStart(6, '0');
+                let myCode = base;
+                for (let i = 0; i < 5; i++) {
+                    const taken = await get(ref(db, 'referralCodes/' + myCode));
+                    if (!taken.exists()) break;
+                    myCode = base + Math.random().toString(36).slice(2, 4).toUpperCase();
+                }
+
+                // Parrain éventuel
+                let sponsorUid = null, referredBy = null;
+                if (refCode && refCode !== myCode) {
+                    try {
+                        const s = await get(ref(db, 'referralCodes/' + refCode));
+                        if (s.exists()) { sponsorUid = s.val(); referredBy = refCode; }
+                        else notify('Code de parrainage introuvable : inscription sans parrain.', 'warning');
+                    } catch (_) {}
+                }
+
+                const newUser = normalizeUser({
+                    name, phone,
+                    registeredAt: todayFR(),
+                    balance: 0, revenueTotal: 0, referralBonusTotal: 0,
+                    referralRewardPaid: false,
+                    sponsorUid, referredBy,
+                    activePlans: [], wallet: null,
+                    referralCode: myCode
+                });
+
+                await set(ref(db, 'users/' + uid), cleanUser(newUser));
+                await set(ref(db, 'referralCodes/' + myCode), uid);
+                if (sponsorUid) {
+                    await set(ref(db, `referrals/${sponsorUid}/${uid}`), {
+                        name, phone, date: todayFR(), recharged: false, bonusCredited: false
+                    });
+                }
+
+                localStorage.setItem('avenir_v6_last_phone', phone);
+                notify('Compte créé avec succès.');
+                // l'affichage de l'appli est géré par onAuthStateChanged + listenAll
+            } catch (err) {
+                console.error(err);
+                notify(authError(err), 'error');
+            } finally {
+                btn.disabled = false;
+            }
+        };
+
+        // ---------- CONNEXION ----------
+        window.handleLogin = async function (e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type=submit]');
+            const phone = onlyDigits(document.getElementById('login-phone').value);
+            const pass = document.getElementById('login-pass').value;
+
+            btn.disabled = true;
+            try {
+                await signInWithEmailAndPassword(auth, toEmail(phone), pass);
+                localStorage.setItem('avenir_v6_last_phone', phone);
+                notify('Connexion réussie.');
+            } catch (err) {
+                console.error(err);
+                notify(authError(err), 'error');
+            } finally {
+                btn.disabled = false;
+            }
+        };
+
+        // ---------- DÉCONNEXION ----------
+        window.fbSignOut = () => {
+            stopListening();
+            signOut(auth).catch(() => {});
+        };
+
+        // ---------- SESSION (reste connecté après rechargement) ----------
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                listenAll(user.uid);
+            } else {
+                stopListening();
+                currentUser = null;
+                revealAuth();
+            }
+        });
     </script>
 </body>
 </html>
