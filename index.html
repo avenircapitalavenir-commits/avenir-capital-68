@@ -11,8 +11,8 @@
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f8fafc;
-            color: #0f172a;
+            background-color: #ffffff;
+            color: #0a0a0a;
             padding-bottom: 92px;
             user-select: none;
         }
@@ -20,36 +20,51 @@
 
         .real-card {
             background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 2px 10px rgba(10, 10, 10, 0.05);
         }
-        .brand-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); }
-        .recharge-dark-blue-card {
-            background: linear-gradient(160deg, #090d16 0%, #0f172a 65%, #172554 100%);
-            border: 1px solid #1e3a8a;
-            color: #f8fafc;
-            box-shadow: 0 8px 24px rgba(9, 13, 22, 0.22);
+        /* THÈME NOIR & JAUNE */
+        .brand-gradient {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1c1917 100%);
+            border: 1px solid #eab308;
+        }
+        .yellow-btn {
+            background: linear-gradient(135deg, #facc15 0%, #eab308 100%);
+            color: #0a0a0a;
+        }
+        .yellow-btn:hover {
+            background: linear-gradient(135deg, #fde047 0%, #facc15 100%);
+        }
+        .recharge-dark-card {
+            background: linear-gradient(160deg, #09090b 0%, #18181b 65%, #27272a 100%);
+            border: 1px solid #eab308;
+            color: #ffffff;
+            box-shadow: 0 8px 24px rgba(10, 10, 10, 0.25);
         }
         .recharge-method-btn {
-            background: linear-gradient(135deg, #0a1020 0%, #111d3a 100%);
-            border: 1px solid #1e3a8a;
+            background: linear-gradient(135deg, #111111 0%, #1f1f23 100%);
+            border: 1px solid #52525b;
             transition: all 0.2s ease;
         }
         .recharge-method-btn:hover {
-            border-color: #3b82f6;
-            background: linear-gradient(135deg, #0f172a 0%, #172554 100%);
+            border-color: #facc15;
+            background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
             transform: translateY(-1px);
         }
-        .wallet-teal-blue-card {
-            background: linear-gradient(155deg, #f0fdfa 0%, #ecfeff 55%, #eff6ff 100%);
-            border: 1px solid #5eead4;
-            box-shadow: 0 4px 16px rgba(13, 148, 136, 0.08);
+        .wallet-yellow-card {
+            background: linear-gradient(155deg, #ffffff 0%, #fefce8 60%, #fef9c3 100%);
+            border: 1px solid #eab308;
+            box-shadow: 0 4px 16px rgba(234, 179, 8, 0.12);
         }
-        .wallet-teal-blue-btn { background: linear-gradient(135deg, #0f766e 0%, #0284c7 100%); }
-        .nav-active { color: #1d4ed8; }
+        .wallet-yellow-btn {
+            background: linear-gradient(135deg, #0a0a0a 0%, #27272a 100%);
+            color: #facc15;
+            border: 1px solid #eab308;
+        }
+        .nav-active { color: #ca8a04; }
         .nav-active i { transform: translateY(-2px); transition: transform 0.2s ease; }
         ::-webkit-scrollbar { width: 0px; background: transparent; }
-        button:disabled { opacity: .6; pointer-events: none; }
+        button:disabled { opacity: .55; pointer-events: none; }
     </style>
 </head>
 <body class="antialiased">
@@ -60,45 +75,45 @@
     </div>
 
     <!-- ÉCRAN DE CHARGEMENT -->
-    <div id="splash" class="min-h-screen flex items-center justify-center">
+    <div id="splash" class="min-h-screen flex items-center justify-center bg-white">
         <div class="text-center">
             <div class="w-14 h-14 brand-gradient rounded-2xl mx-auto flex items-center justify-center mb-3">
-                <i class="fas fa-landmark text-white text-xl"></i>
+                <i class="fas fa-landmark text-yellow-400 text-xl"></i>
             </div>
-            <p class="text-xs font-bold text-slate-500">Chargement…</p>
+            <p class="text-xs font-bold text-neutral-600">Chargement…</p>
         </div>
     </div>
 
     <!-- ÉCRAN D'AUTHENTIFICATION (MEMBRES UNIQUEMENT) -->
-    <div id="auth-screen" class="hidden min-h-screen flex flex-col justify-center px-6 py-10 max-w-md mx-auto">
+    <div id="auth-screen" class="hidden min-h-screen flex flex-col justify-center px-6 py-10 max-w-md mx-auto bg-white">
         <div class="text-center mb-7">
             <div class="w-16 h-16 brand-gradient rounded-2xl mx-auto flex items-center justify-center shadow-md mb-4">
-                <i class="fas fa-landmark text-white text-2xl"></i>
+                <i class="fas fa-landmark text-yellow-400 text-2xl"></i>
             </div>
-            <h1 class="text-3xl font-extrabold tracking-tight text-slate-900">Avenir <span class="text-blue-700">Capital</span></h1>
-            <p class="text-slate-500 text-sm mt-1.5">Investissement (8j), parrainage 1 000 F, recharges & retraits</p>
+            <h1 class="text-3xl font-extrabold tracking-tight text-neutral-950">Avenir <span class="text-yellow-500">Capital</span></h1>
+            <p class="text-neutral-500 text-sm mt-1.5">Investissement (8j), parrainage 1 000 F, recharges & retraits</p>
         </div>
 
         <div class="real-card rounded-3xl p-6">
-            <div class="flex border-b border-slate-200 mb-6">
-                <button onclick="switchAuthTab('login')" id="tab-login" class="w-1/2 pb-3 text-xs font-bold border-b-2 border-blue-700 text-blue-700">Connexion</button>
-                <button onclick="switchAuthTab('register')" id="tab-register" class="w-1/2 pb-3 text-xs font-bold border-b-2 border-transparent text-slate-400">Inscription</button>
+            <div class="flex border-b border-neutral-200 mb-6">
+                <button onclick="switchAuthTab('login')" id="tab-login" class="w-1/2 pb-3 text-xs font-bold border-b-2 border-yellow-500 text-neutral-950">Connexion</button>
+                <button onclick="switchAuthTab('register')" id="tab-register" class="w-1/2 pb-3 text-xs font-bold border-b-2 border-transparent text-neutral-400">Inscription</button>
             </div>
 
             <!-- CONNEXION -->
             <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Numéro de téléphone</label>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Numéro de téléphone</label>
                     <div class="relative">
-                        <span class="absolute left-3.5 top-3 text-slate-500 text-sm font-semibold">+225</span>
-                        <input type="tel" id="login-phone" required placeholder="07 00 00 00 00" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 pl-14 pr-4 text-sm text-slate-900 focus:outline-none focus:border-blue-700">
+                        <span class="absolute left-3.5 top-3 text-neutral-600 text-sm font-semibold">+225</span>
+                        <input type="tel" id="login-phone" required placeholder="07 00 00 00 00" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 pl-14 pr-4 text-sm text-neutral-950 focus:outline-none focus:border-yellow-500">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Mot de passe</label>
-                    <input type="password" id="login-pass" required placeholder="••••••••" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-4 text-sm text-slate-900 focus:outline-none focus:border-blue-700">
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Mot de passe</label>
+                    <input type="password" id="login-pass" required placeholder="••••••••" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-4 text-sm text-neutral-950 focus:outline-none focus:border-yellow-500">
                 </div>
-                <button type="submit" class="w-full brand-gradient text-white font-bold py-3 rounded-xl shadow-md hover:opacity-95 transition mt-2">
+                <button type="submit" class="w-full yellow-btn font-extrabold py-3 rounded-xl shadow-md transition mt-2">
                     Se connecter
                 </button>
             </form>
@@ -106,60 +121,60 @@
             <!-- INSCRIPTION MEMBRE -->
             <form id="register-form" onsubmit="handleRegister(event)" class="space-y-4 hidden">
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Nom complet</label>
-                    <input type="text" id="reg-name" required placeholder="Kouassi Jean" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-4 text-sm text-slate-900 focus:outline-none focus:border-blue-700">
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Nom complet</label>
+                    <input type="text" id="reg-name" required placeholder="Kouassi Jean" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-4 text-sm text-neutral-950 focus:outline-none focus:border-yellow-500">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Numéro de téléphone</label>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Numéro de téléphone</label>
                     <div class="relative">
-                        <span class="absolute left-3.5 top-3 text-slate-500 text-sm font-semibold">+225</span>
-                        <input type="tel" id="reg-phone" required placeholder="07 00 00 00 00" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 pl-14 pr-4 text-sm text-slate-900 focus:outline-none focus:border-blue-700">
+                        <span class="absolute left-3.5 top-3 text-neutral-600 text-sm font-semibold">+225</span>
+                        <input type="tel" id="reg-phone" required placeholder="07 00 00 00 00" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 pl-14 pr-4 text-sm text-neutral-950 focus:outline-none focus:border-yellow-500">
                     </div>
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Code de parrainage (optionnel)</label>
-                    <input type="text" id="reg-ref" placeholder="Ex: AVN-123456" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-4 text-sm uppercase text-slate-900 focus:outline-none focus:border-blue-700">
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Code de parrainage (optionnel)</label>
+                    <input type="text" id="reg-ref" placeholder="Ex: AVN-123456" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-4 text-sm uppercase text-neutral-950 focus:outline-none focus:border-yellow-500">
                 </div>
                 <div>
-                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Mot de passe</label>
-                    <input type="password" id="reg-pass" required placeholder="Minimum 6 caractères" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-4 text-sm text-slate-900 focus:outline-none focus:border-blue-700">
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Mot de passe</label>
+                    <input type="password" id="reg-pass" required placeholder="Minimum 6 caractères" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-4 text-sm text-neutral-950 focus:outline-none focus:border-yellow-500">
                 </div>
-                <button type="submit" class="w-full brand-gradient text-white font-bold py-3 rounded-xl shadow-md hover:opacity-95 transition mt-2">
+                <button type="submit" class="w-full yellow-btn font-extrabold py-3 rounded-xl shadow-md transition mt-2">
                     Créer mon compte
                 </button>
             </form>
 
-            <div class="mt-5 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
-                <span class="text-slate-500 font-medium">Besoin d'aide ?</span>
-                <button type="button" onclick="openCustomerServiceModal()" class="text-blue-700 font-extrabold hover:underline flex items-center gap-1.5">
-                    <i class="fas fa-headset"></i> Service Client
+            <div class="mt-5 pt-4 border-t border-neutral-200 flex items-center justify-between text-xs">
+                <span class="text-neutral-500 font-medium">Besoin d'aide ?</span>
+                <button type="button" onclick="openCustomerServiceModal()" class="text-neutral-950 font-extrabold hover:underline flex items-center gap-1.5">
+                    <i class="fas fa-headset text-yellow-500"></i> Service Client
                 </button>
             </div>
         </div>
     </div>
 
     <!-- APPLICATION PRINCIPALE -->
-    <div id="main-app" class="hidden max-w-md mx-auto min-h-screen relative">
+    <div id="main-app" class="hidden max-w-md mx-auto min-h-screen relative bg-white">
 
         <!-- EN-TÊTE -->
-        <header class="px-4 pt-4 pb-3 flex justify-between items-center sticky top-0 bg-[#f8fafc]/95 backdrop-blur-md z-30 border-b border-slate-200">
+        <header class="px-4 pt-4 pb-3 flex justify-between items-center sticky top-0 bg-white/95 backdrop-blur-md z-30 border-b border-neutral-200">
             <div class="flex items-center gap-2.5">
                 <div class="w-9 h-9 brand-gradient rounded-xl flex items-center justify-center">
-                    <i class="fas fa-landmark text-white text-sm"></i>
+                    <i class="fas fa-landmark text-yellow-400 text-sm"></i>
                 </div>
                 <div>
-                    <h1 class="text-base font-extrabold text-slate-900 leading-none">Avenir <span class="text-blue-700">Capital</span></h1>
-                    <span class="text-[11px] text-slate-500 font-medium" id="header-user-name">Bienvenue</span>
+                    <h1 class="text-base font-extrabold text-neutral-950 leading-none">Avenir <span class="text-yellow-500">Capital</span></h1>
+                    <span class="text-[11px] text-neutral-500 font-medium" id="header-user-name">Bienvenue</span>
                 </div>
             </div>
 
             <div class="flex items-center gap-1.5">
-                <button onclick="openCustomerServiceModal()" title="Service Client" class="px-2.5 py-2 rounded-xl bg-blue-700 hover:bg-blue-800 text-white text-[11px] font-bold flex items-center gap-1 shadow-sm transition">
+                <button onclick="openCustomerServiceModal()" title="Service Client" class="px-2.5 py-2 rounded-xl bg-neutral-950 hover:bg-neutral-800 text-yellow-400 border border-yellow-500/40 text-[11px] font-bold flex items-center gap-1 shadow-sm transition">
                     <i class="fas fa-headset text-xs"></i>
                     <span>Service Client</span>
                 </button>
 
-                <button onclick="logoutAndReconnect()" id="header-auth-btn" title="Se déconnecter" class="w-8 h-8 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-rose-600 hover:bg-rose-50">
+                <button onclick="logoutAndReconnect()" id="header-auth-btn" title="Se déconnecter" class="w-8 h-8 rounded-xl bg-white border border-neutral-300 flex items-center justify-center text-neutral-900 hover:bg-yellow-50">
                     <i class="fas fa-right-from-bracket text-xs"></i>
                 </button>
             </div>
@@ -173,108 +188,109 @@
                 <div class="rounded-3xl p-6 brand-gradient text-white shadow-md">
                     <div class="flex justify-between items-start">
                         <div>
-                            <p class="text-xs font-medium text-blue-100 uppercase tracking-wider">Solde Disponible</p>
-                            <h2 class="text-3xl font-extrabold mt-1" id="dash-balance">0 <span class="text-base font-bold text-blue-200">FCFA</span></h2>
+                            <p class="text-xs font-medium text-yellow-300 uppercase tracking-wider">Solde Disponible</p>
+                            <h2 class="text-3xl font-extrabold mt-1 text-white" id="dash-balance">0 <span class="text-base font-bold text-yellow-400">FCFA</span></h2>
                         </div>
-                        <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-200 border border-emerald-400/30">
+                        <span class="px-2.5 py-1 rounded-full text-[11px] font-bold bg-yellow-400/15 text-yellow-300 border border-yellow-400/40">
                             ● Tableau de Bord
                         </span>
                     </div>
 
                     <div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-white/15 text-xs">
                         <div>
-                            <p class="text-blue-200 text-[10px]">Revenus plans</p>
-                            <p class="font-extrabold text-emerald-300 mt-0.5" id="dash-revenue">+0 F</p>
+                            <p class="text-neutral-300 text-[10px]">Revenus plans</p>
+                            <!-- REVENUS EN ROUGE -->
+                            <p class="font-extrabold text-red-500 mt-0.5" id="dash-revenue">+0 F</p>
                         </div>
                         <div>
-                            <p class="text-blue-200 text-[10px]">Bonus parrain</p>
-                            <p class="font-extrabold text-amber-300 mt-0.5" id="dash-ref-bonus">+0 F</p>
+                            <p class="text-neutral-300 text-[10px]">Bonus parrain</p>
+                            <p class="font-extrabold text-yellow-400 mt-0.5" id="dash-ref-bonus">+0 F</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-blue-200 text-[10px]">Compte lié</p>
+                            <p class="text-neutral-300 text-[10px]">Compte lié</p>
                             <p class="font-bold text-white mt-0.5 truncate" id="dash-linked-status">Non lié</p>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-3 mt-5">
-                        <button onclick="navigateTo('recharge')" class="bg-white text-blue-900 hover:bg-blue-50 font-extrabold py-2.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 transition">
+                        <button onclick="navigateTo('recharge')" class="yellow-btn font-extrabold py-2.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 transition shadow-sm">
                             <i class="fas fa-plus-circle"></i> Recharger
                         </button>
-                        <button onclick="navigateTo('withdraw')" class="bg-blue-950/70 hover:bg-blue-950 text-white border border-white/20 font-bold py-2.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 transition">
-                            <i class="fas fa-arrow-up-right-from-square"></i> Retirer
+                        <button onclick="navigateTo('withdraw')" class="bg-white/10 hover:bg-white/20 text-white border border-yellow-400/40 font-bold py-2.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 transition">
+                            <i class="fas fa-arrow-up-right-from-square text-yellow-400"></i> Retirer
                         </button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
-                    <button onclick="openCustomerServiceModal()" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-blue-400 transition">
-                        <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0">
+                    <button onclick="openCustomerServiceModal()" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-yellow-500 transition">
+                        <div class="w-9 h-9 rounded-xl bg-neutral-950 text-yellow-400 flex items-center justify-center shrink-0">
                             <i class="fas fa-headset"></i>
                         </div>
                         <div>
-                            <p class="text-xs font-extrabold text-slate-900">Service Client</p>
-                            <p class="text-[10px] text-slate-500">Assistance & tickets</p>
+                            <p class="text-xs font-extrabold text-neutral-950">Service Client</p>
+                            <p class="text-[10px] text-neutral-500">Assistance & tickets</p>
                         </div>
                     </button>
 
-                    <button onclick="logoutAndReconnect()" id="dash-session-btn" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-rose-300 transition">
-                        <div class="w-9 h-9 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center shrink-0">
+                    <button onclick="logoutAndReconnect()" id="dash-session-btn" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-yellow-500 transition">
+                        <div class="w-9 h-9 rounded-xl bg-yellow-100 text-neutral-950 flex items-center justify-center shrink-0">
                             <i class="fas fa-right-from-bracket"></i>
                         </div>
                         <div>
-                            <p class="text-xs font-extrabold text-slate-900" id="dash-session-label">Se déconnecter</p>
-                            <p class="text-[10px] text-slate-500" id="dash-session-sub">Changer / reconnecter</p>
+                            <p class="text-xs font-extrabold text-neutral-950" id="dash-session-label">Se déconnecter</p>
+                            <p class="text-[10px] text-neutral-500" id="dash-session-sub">Changer / reconnecter</p>
                         </div>
                     </button>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
-                    <button onclick="navigateTo('plans')" class="real-card rounded-2xl p-4 text-left hover:border-blue-400 transition">
-                        <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center mb-2">
+                    <button onclick="navigateTo('plans')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
+                        <div class="w-9 h-9 rounded-xl bg-yellow-100 text-neutral-950 flex items-center justify-center mb-2">
                             <i class="fas fa-chart-line"></i>
                         </div>
-                        <p class="text-sm font-extrabold text-slate-900">Investissement</p>
-                        <p class="text-[11px] text-slate-500 mt-0.5">9 plans (cycle 8 jours)</p>
+                        <p class="text-sm font-extrabold text-neutral-950">Investissement</p>
+                        <p class="text-[11px] text-neutral-500 mt-0.5">9 plans (cycle 8 jours)</p>
                     </button>
 
-                    <button onclick="navigateTo('packs')" class="real-card rounded-2xl p-4 text-left hover:border-blue-400 transition">
-                        <div class="w-9 h-9 rounded-xl bg-indigo-50 text-indigo-700 flex items-center justify-center mb-2">
+                    <button onclick="navigateTo('packs')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
+                        <div class="w-9 h-9 rounded-xl bg-neutral-950 text-yellow-400 flex items-center justify-center mb-2">
                             <i class="fas fa-box-open"></i>
                         </div>
-                        <p class="text-sm font-extrabold text-slate-900">Plans Actifs</p>
-                        <p class="text-[11px] text-slate-500 mt-0.5">Mes packs & revenus auto</p>
+                        <p class="text-sm font-extrabold text-neutral-950">Plans Actifs</p>
+                        <p class="text-[11px] text-neutral-500 mt-0.5">Réclamer mes revenus (8j)</p>
                     </button>
 
-                    <button onclick="navigateTo('recharge-history')" class="real-card rounded-2xl p-4 text-left hover:border-blue-400 transition">
-                        <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center mb-2">
+                    <button onclick="navigateTo('recharge-history')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
+                        <div class="w-9 h-9 rounded-xl bg-yellow-100 text-neutral-950 flex items-center justify-center mb-2">
                             <i class="fas fa-receipt"></i>
                         </div>
-                        <p class="text-sm font-extrabold text-slate-900">Hist. Recharges</p>
-                        <p class="text-[11px] text-slate-500 mt-0.5">Suivi de mes dépôts</p>
+                        <p class="text-sm font-extrabold text-neutral-950">Hist. Recharges</p>
+                        <p class="text-[11px] text-neutral-500 mt-0.5">Suivi de mes dépôts</p>
                     </button>
 
-                    <button onclick="navigateTo('withdraw-history')" class="real-card rounded-2xl p-4 text-left hover:border-blue-400 transition">
-                        <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center mb-2">
+                    <button onclick="navigateTo('withdraw-history')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
+                        <div class="w-9 h-9 rounded-xl bg-neutral-950 text-yellow-400 flex items-center justify-center mb-2">
                             <i class="fas fa-clock-rotate-left"></i>
                         </div>
-                        <p class="text-sm font-extrabold text-slate-900">Hist. Retraits</p>
-                        <p class="text-[11px] text-slate-500 mt-0.5">Suivi de mes retraits</p>
+                        <p class="text-sm font-extrabold text-neutral-950">Hist. Retraits</p>
+                        <p class="text-[11px] text-neutral-500 mt-0.5">Suivi de mes retraits</p>
                     </button>
 
-                    <button onclick="navigateTo('withdraw-pending')" class="real-card rounded-2xl p-4 text-left hover:border-blue-400 transition">
-                        <div class="w-9 h-9 rounded-xl bg-rose-50 text-rose-700 flex items-center justify-center mb-2">
+                    <button onclick="navigateTo('withdraw-pending')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
+                        <div class="w-9 h-9 rounded-xl bg-yellow-100 text-neutral-950 flex items-center justify-center mb-2">
                             <i class="fas fa-hourglass-half"></i>
                         </div>
-                        <p class="text-sm font-extrabold text-slate-900">Retraits en attente</p>
-                        <p class="text-[11px] text-slate-500 mt-0.5">Demandes en cours</p>
+                        <p class="text-sm font-extrabold text-neutral-950">Retraits en attente</p>
+                        <p class="text-[11px] text-neutral-500 mt-0.5">Demandes en cours</p>
                     </button>
 
-                    <button onclick="navigateTo('team')" class="real-card rounded-2xl p-4 text-left hover:border-blue-400 transition">
-                        <div class="w-9 h-9 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center mb-2">
+                    <button onclick="navigateTo('team')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
+                        <div class="w-9 h-9 rounded-xl bg-neutral-950 text-yellow-400 flex items-center justify-center mb-2">
                             <i class="fas fa-users"></i>
                         </div>
-                        <p class="text-sm font-extrabold text-slate-900">Mon Équipe</p>
-                        <p class="text-[11px] text-slate-500 mt-0.5">Lien & bonus 1 000 F</p>
+                        <p class="text-sm font-extrabold text-neutral-950">Mon Équipe</p>
+                        <p class="text-[11px] text-neutral-500 mt-0.5">Lien & bonus 1 000 F</p>
                     </button>
                 </div>
             </section>
@@ -283,32 +299,33 @@
             <section id="page-plans" class="hidden space-y-4">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-xl font-extrabold text-slate-900">Plans d'Investissement</h2>
-                        <p class="text-xs text-slate-500 mt-1">9 plans disponibles • Durée uniforme : 8 jours.</p>
+                        <h2 class="text-xl font-extrabold text-neutral-950">Plans d'Investissement</h2>
+                        <p class="text-xs text-neutral-500 mt-1">9 plans disponibles • Durée uniforme : 8 jours.</p>
                     </div>
-                    <span class="text-[11px] font-bold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">Crédit auto</span>
+                    <span class="text-[11px] font-extrabold text-neutral-950 bg-yellow-300 px-2.5 py-1 rounded-full">Réclamation 8j</span>
                 </div>
                 <div id="plans-list" class="space-y-2.5"></div>
             </section>
 
-            <!-- PAGE 3 : PLANS ACTIFS -->
+            <!-- PAGE 3 : PLANS ACTIFS (RÉCLAMATION JOURNALIÈRE) -->
             <section id="page-packs" class="hidden space-y-4">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-xl font-extrabold text-slate-900">Mes Plans Actifs</h2>
-                        <p class="text-xs text-slate-500 mt-1">Revenus journaliers crédités automatiquement.</p>
+                        <h2 class="text-xl font-extrabold text-neutral-950">Mes Plans Actifs</h2>
+                        <p class="text-xs text-neutral-500 mt-1">Réclamez vos revenus journaliers pendant les 8 jours du plan.</p>
                     </div>
-                    <button id="btn-sim-day" onclick="simulateNextDay()" class="hidden px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 text-[11px] font-bold">
+                    <button id="btn-sim-day" onclick="simulateNextDay()" class="hidden px-3 py-1.5 rounded-xl bg-yellow-100 hover:bg-yellow-200 text-neutral-950 border border-yellow-400 text-[11px] font-bold">
                         +1 Jour (Test)
                     </button>
                 </div>
 
                 <div class="real-card rounded-2xl p-4 flex justify-between items-center">
                     <div>
-                        <p class="text-xs text-slate-500">Total des revenus perçus</p>
-                        <p class="text-xl font-extrabold text-emerald-700" id="packs-revenue-total">0 FCFA</p>
+                        <p class="text-xs text-neutral-500">Total des revenus réclamés</p>
+                        <!-- REVENUS EN ROUGE -->
+                        <p class="text-xl font-extrabold text-red-600" id="packs-revenue-total">0 FCFA</p>
                     </div>
-                    <span id="packs-count-badge" class="text-xs font-bold px-3 py-1 rounded-full bg-blue-50 text-blue-700">0 plan</span>
+                    <span id="packs-count-badge" class="text-xs font-extrabold px-3 py-1 rounded-full bg-neutral-950 text-yellow-400">0 plan</span>
                 </div>
 
                 <div id="my-purchased-packs-list" class="space-y-2.5"></div>
@@ -317,142 +334,142 @@
             <!-- PAGE 4 : RECHARGE -->
             <section id="page-recharge" class="hidden space-y-4">
                 <div class="flex justify-between items-center">
-                    <button type="button" onclick="handleRechargeBackButton()" class="text-xs font-extrabold text-blue-800 hover:underline flex items-center gap-1">
+                    <button type="button" onclick="handleRechargeBackButton()" class="text-xs font-extrabold text-neutral-950 hover:underline flex items-center gap-1">
                         <i class="fas fa-chevron-left text-[10px]"></i>
                         <span id="recharge-back-label">Retour</span>
                     </button>
 
-                    <button onclick="navigateTo('recharge-history')" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-blue-200 text-[11px] font-bold">
+                    <button onclick="navigateTo('recharge-history')" class="px-3 py-1.5 rounded-xl bg-neutral-950 hover:bg-neutral-800 text-yellow-400 text-[11px] font-bold">
                         Historique →
                     </button>
                 </div>
 
-                <div id="recharge-home-view" class="recharge-dark-blue-card rounded-3xl p-5 space-y-4">
+                <div id="recharge-home-view" class="recharge-dark-card rounded-3xl p-5 space-y-4">
                     <div>
                         <h2 class="text-xl font-extrabold text-white tracking-tight">Choisir le mode de paiement</h2>
-                        <p class="text-xs text-blue-200 mt-1">
-                            Montant à recharger : <strong id="home-recharge-amount-display" class="text-sky-300 font-extrabold">4 000 F</strong>
+                        <p class="text-xs text-neutral-300 mt-1">
+                            Montant à recharger : <strong id="home-recharge-amount-display" class="text-yellow-400 font-extrabold">4 000 F</strong>
                         </p>
                     </div>
 
                     <div>
-                        <label class="block text-[11px] font-bold text-blue-200 uppercase mb-1.5">Montant à recharger (FCFA)</label>
-                        <input type="number" id="home-recharge-amount" min="1000" value="4000" oninput="syncRechargeAmountFromHome()" placeholder="Ex: 4000" class="w-full bg-[#070b14] border border-blue-800 rounded-xl py-2.5 px-4 text-sm font-extrabold text-white focus:outline-none focus:border-blue-400">
+                        <label class="block text-[11px] font-bold text-yellow-300 uppercase mb-1.5">Montant à recharger (FCFA)</label>
+                        <input type="number" id="home-recharge-amount" min="1000" value="4000" oninput="syncRechargeAmountFromHome()" placeholder="Ex: 4000" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl py-2.5 px-4 text-sm font-extrabold text-white focus:outline-none focus:border-yellow-400">
                     </div>
 
                     <div class="space-y-2.5 pt-1">
                         <button type="button" onclick="selectPaymentMethodAndOpenStep1('Wave', '0509302107')" class="w-full recharge-method-btn rounded-2xl px-4 py-3.5 flex items-center justify-between text-left">
                             <span class="text-sm font-extrabold text-white">Wave</span>
-                            <i class="fas fa-chevron-right text-xs text-blue-300"></i>
+                            <i class="fas fa-chevron-right text-xs text-yellow-400"></i>
                         </button>
 
                         <button type="button" onclick="selectPaymentMethodAndOpenStep1('MTN Money', '0545576710')" class="w-full recharge-method-btn rounded-2xl px-4 py-3.5 flex items-center justify-between text-left">
                             <span class="text-sm font-extrabold text-white">MTN Money</span>
-                            <i class="fas fa-chevron-right text-xs text-blue-300"></i>
+                            <i class="fas fa-chevron-right text-xs text-yellow-400"></i>
                         </button>
 
                         <button type="button" onclick="selectPaymentMethodAndOpenStep1('Moov Money', '0104217547')" class="w-full recharge-method-btn rounded-2xl px-4 py-3.5 flex items-center justify-between text-left">
                             <span class="text-sm font-extrabold text-white">Moov Money</span>
-                            <i class="fas fa-chevron-right text-xs text-blue-300"></i>
+                            <i class="fas fa-chevron-right text-xs text-yellow-400"></i>
                         </button>
                     </div>
 
-                    <a href="https://pay.jeko.africa/pl/4f580acc-5df9-440e-b168-6beb65823bea" target="_blank" rel="noopener noreferrer" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold py-3 px-4 rounded-xl text-xs shadow-md flex items-center justify-center gap-2 transition">
+                    <a href="https://pay.jeko.africa/pl/4f580acc-5df9-440e-b168-6beb65823bea" target="_blank" rel="noopener noreferrer" class="w-full yellow-btn font-extrabold py-3 px-4 rounded-xl text-xs shadow-md flex items-center justify-center gap-2 transition">
                         <i class="fas fa-link"></i>
                         <span>Payer pour Avenir (Lien Jeko)</span>
                     </a>
                 </div>
 
-                <div id="recharge-step-1" class="recharge-dark-blue-card rounded-2xl p-4 space-y-4 hidden">
-                    <div class="flex items-center justify-between border-b border-blue-900/70 pb-2.5">
-                        <span class="text-xs font-extrabold text-blue-200">Étape 1/2 : Paiement & ID transaction</span>
-                        <button type="button" onclick="openRechargeHomeView()" class="text-[11px] font-bold text-sky-300 hover:underline">
+                <div id="recharge-step-1" class="recharge-dark-card rounded-2xl p-4 space-y-4 hidden">
+                    <div class="flex items-center justify-between border-b border-neutral-800 pb-2.5">
+                        <span class="text-xs font-extrabold text-yellow-300">Étape 1/2 : Paiement & ID transaction</span>
+                        <button type="button" onclick="openRechargeHomeView()" class="text-[11px] font-bold text-yellow-400 hover:underline">
                             Changer mode
                         </button>
                     </div>
 
-                    <div class="flex flex-wrap items-center justify-between gap-2 bg-[#070b14]/90 border border-blue-800/70 rounded-xl p-3">
-                        <div class="text-xs font-bold text-blue-100">Payer pour Avenir via Jeko :</div>
-                        <a href="https://pay.jeko.africa/pl/4f580acc-5df9-440e-b168-6beb65823bea" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold inline-flex items-center gap-1.5">
+                    <div class="flex flex-wrap items-center justify-between gap-2 bg-neutral-950 border border-neutral-800 rounded-xl p-3">
+                        <div class="text-xs font-bold text-neutral-200">Payer pour Avenir via Jeko :</div>
+                        <a href="https://pay.jeko.africa/pl/4f580acc-5df9-440e-b168-6beb65823bea" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg yellow-btn text-xs font-extrabold inline-flex items-center gap-1.5">
                             <span>Lien Paiement Jeko</span>
                             <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
                         </a>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-blue-200 uppercase mb-2">Numéros Mobile Money (Cliquer pour copier)</label>
+                        <label class="block text-xs font-bold text-yellow-300 uppercase mb-2">Numéros Mobile Money (Cliquer pour copier)</label>
                         <div id="recharge-numbers-list" class="space-y-2"></div>
                     </div>
 
-                    <div class="bg-[#050811] border border-blue-900/80 text-white rounded-xl p-3 flex items-center justify-between text-xs">
+                    <div class="bg-neutral-950 border border-neutral-800 text-white rounded-xl p-3 flex items-center justify-between text-xs">
                         <div>
-                            <span class="text-slate-400">Opérateur :</span>
-                            <strong id="selected-op-label" class="text-blue-300 ml-1">Wave</strong>
+                            <span class="text-neutral-400">Opérateur :</span>
+                            <strong id="selected-op-label" class="text-yellow-400 ml-1">Wave</strong>
                         </div>
                         <div>
-                            <span class="text-slate-400">Numéro copié :</span>
-                            <strong id="copied-number-display" class="font-mono text-sky-300 ml-1">0509302107</strong>
+                            <span class="text-neutral-400">Numéro copié :</span>
+                            <strong id="copied-number-display" class="font-mono text-yellow-300 ml-1">0509302107</strong>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-blue-200 uppercase mb-1.5">Montant (FCFA)</label>
-                        <input type="number" id="recharge-amount" min="1000" value="4000" oninput="syncRechargeAmountFromStep1()" placeholder="Ex: 10000" class="w-full bg-[#070b14] border border-blue-800 rounded-xl py-2.5 px-4 text-sm font-bold text-white placeholder-slate-500 focus:outline-none focus:border-blue-400">
+                        <label class="block text-xs font-bold text-yellow-300 uppercase mb-1.5">Montant (FCFA)</label>
+                        <input type="number" id="recharge-amount" min="1000" value="4000" oninput="syncRechargeAmountFromStep1()" placeholder="Ex: 10000" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl py-2.5 px-4 text-sm font-bold text-white placeholder-neutral-500 focus:outline-none focus:border-yellow-400">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-blue-200 uppercase mb-1.5">ID de transaction</label>
-                        <input type="text" id="recharge-txid" placeholder="Ex: TX-984321" class="w-full bg-[#070b14] border border-blue-800 rounded-xl py-2.5 px-4 text-sm uppercase font-mono text-white placeholder-slate-500 focus:outline-none focus:border-blue-400">
+                        <label class="block text-xs font-bold text-yellow-300 uppercase mb-1.5">ID de transaction</label>
+                        <input type="text" id="recharge-txid" placeholder="Ex: TX-984321" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl py-2.5 px-4 text-sm uppercase font-mono text-white placeholder-neutral-500 focus:outline-none focus:border-yellow-400">
                     </div>
 
-                    <button type="button" onclick="prepareRechargeConfirmation()" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-3 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                    <button type="button" onclick="prepareRechargeConfirmation()" class="w-full yellow-btn font-extrabold py-3 rounded-xl shadow-md transition flex items-center justify-center gap-2">
                         <span>Continuer vers la confirmation</span>
                         <i class="fas fa-arrow-right text-xs"></i>
                     </button>
                 </div>
 
-                <div id="recharge-step-2" class="recharge-dark-blue-card rounded-2xl p-4 space-y-4 hidden border-2 border-blue-500">
-                    <div class="flex items-center justify-between border-b border-blue-900/70 pb-3">
+                <div id="recharge-step-2" class="recharge-dark-card rounded-2xl p-4 space-y-4 hidden border-2 border-yellow-400">
+                    <div class="flex items-center justify-between border-b border-neutral-800 pb-3">
                         <div>
-                            <span class="text-[10px] font-extrabold uppercase text-blue-200 bg-blue-900/80 border border-blue-700 px-2 py-0.5 rounded-full">Vérification finale</span>
+                            <span class="text-[10px] font-extrabold uppercase text-neutral-950 bg-yellow-400 px-2 py-0.5 rounded-full">Vérification finale</span>
                             <h3 class="text-sm font-extrabold text-white mt-1">Confirmer votre paiement</h3>
                         </div>
-                        <button type="button" onclick="backToRechargeStep1()" class="text-xs font-bold text-blue-300 hover:text-white underline">
+                        <button type="button" onclick="backToRechargeStep1()" class="text-xs font-bold text-yellow-400 hover:text-white underline">
                             Modifier
                         </button>
                     </div>
 
-                    <div class="bg-[#060913] border border-blue-900/80 rounded-xl p-3.5 space-y-2 text-xs">
+                    <div class="bg-neutral-950 border border-neutral-800 rounded-xl p-3.5 space-y-2 text-xs">
                         <div class="flex justify-between">
-                            <span class="text-slate-400">Opérateur :</span>
+                            <span class="text-neutral-400">Opérateur :</span>
                             <strong id="confirm-op" class="text-white">Wave</strong>
                         </div>
                         <div class="flex justify-between">
-                            <span class="text-slate-400">Numéro destinataire :</span>
-                            <strong id="confirm-number" class="font-mono text-sky-300">0509302107</strong>
+                            <span class="text-neutral-400">Numéro destinataire :</span>
+                            <strong id="confirm-number" class="font-mono text-yellow-400">0509302107</strong>
                         </div>
                         <div class="flex justify-between">
-                            <span class="text-slate-400">Montant à créditer :</span>
-                            <strong id="confirm-amount" class="text-blue-200 font-extrabold text-sm">0 FCFA</strong>
+                            <span class="text-neutral-400">Montant à créditer :</span>
+                            <strong id="confirm-amount" class="text-yellow-300 font-extrabold text-sm">0 FCFA</strong>
                         </div>
                         <div class="flex justify-between">
-                            <span class="text-slate-400">ID de transaction :</span>
-                            <strong id="confirm-txid" class="font-mono text-blue-300">-</strong>
+                            <span class="text-neutral-400">ID de transaction :</span>
+                            <strong id="confirm-txid" class="font-mono text-yellow-400">-</strong>
                         </div>
                     </div>
 
-                    <label class="flex items-start gap-2.5 bg-[#091226] border border-blue-700/80 rounded-xl p-3 cursor-pointer">
-                        <input type="checkbox" id="confirm-payment-checkbox" class="mt-0.5 w-4 h-4 accent-blue-500 rounded">
-                        <span class="text-[11px] font-bold text-blue-100 leading-snug">
+                    <label class="flex items-start gap-2.5 bg-neutral-950 border border-yellow-500/50 rounded-xl p-3 cursor-pointer">
+                        <input type="checkbox" id="confirm-payment-checkbox" class="mt-0.5 w-4 h-4 accent-yellow-400 rounded">
+                        <span class="text-[11px] font-bold text-neutral-100 leading-snug">
                             Je confirme avoir effectué le paiement avec l'ID de transaction ci-dessus et je souhaite soumettre ma recharge pour validation.
                         </span>
                     </label>
 
                     <div class="grid grid-cols-2 gap-2.5">
-                        <button type="button" onclick="backToRechargeStep1()" class="py-2.5 px-3 rounded-xl border border-blue-800 bg-[#070b14] text-blue-200 font-bold text-xs hover:bg-blue-950">
+                        <button type="button" onclick="backToRechargeStep1()" class="py-2.5 px-3 rounded-xl border border-neutral-700 bg-neutral-950 text-neutral-200 font-bold text-xs hover:bg-neutral-900">
                             Retour
                         </button>
-                        <button type="button" onclick="confirmAndSubmitRecharge()" class="py-2.5 px-3 rounded-xl bg-blue-500 hover:bg-blue-400 text-slate-950 font-extrabold text-xs shadow-md flex items-center justify-center gap-1.5">
+                        <button type="button" onclick="confirmAndSubmitRecharge()" class="py-2.5 px-3 rounded-xl yellow-btn font-extrabold text-xs shadow-md flex items-center justify-center gap-1.5">
                             <i class="fas fa-check-circle"></i>
                             <span>Confirmer le paiement</span>
                         </button>
@@ -464,10 +481,10 @@
             <section id="page-recharge-history" class="hidden space-y-4">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-xl font-extrabold text-slate-900">Historique des Recharges</h2>
-                        <p class="text-xs text-slate-500 mt-1">Toutes vos demandes de rechargement.</p>
+                        <h2 class="text-xl font-extrabold text-neutral-950">Historique des Recharges</h2>
+                        <p class="text-xs text-neutral-500 mt-1">Toutes vos demandes de rechargement.</p>
                     </div>
-                    <button onclick="navigateTo('recharge')" class="px-3 py-1.5 rounded-xl bg-blue-50 text-blue-700 text-[11px] font-bold">
+                    <button onclick="navigateTo('recharge')" class="px-3 py-1.5 rounded-xl bg-neutral-950 text-yellow-400 text-[11px] font-bold">
                         + Recharger
                     </button>
                 </div>
@@ -478,55 +495,55 @@
             <section id="page-withdraw" class="hidden space-y-4">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-xl font-extrabold text-slate-900">Demande de Retrait</h2>
-                        <p class="text-xs text-slate-500 mt-1">Frais de retrait : <strong>-6 % déduits</strong> sur le montant retiré.</p>
+                        <h2 class="text-xl font-extrabold text-neutral-950">Demande de Retrait</h2>
+                        <p class="text-xs text-neutral-500 mt-1">Frais de retrait : <strong>-6 % déduits</strong> sur le montant retiré.</p>
                     </div>
                     <div class="flex gap-1.5">
-                        <button onclick="navigateTo('withdraw-pending')" class="px-2.5 py-1.5 rounded-xl bg-amber-50 text-amber-800 text-[11px] font-bold">En attente</button>
-                        <button onclick="navigateTo('withdraw-history')" class="px-2.5 py-1.5 rounded-xl bg-slate-100 text-slate-800 text-[11px] font-bold">Historique</button>
+                        <button onclick="navigateTo('withdraw-pending')" class="px-2.5 py-1.5 rounded-xl bg-yellow-100 text-neutral-950 text-[11px] font-bold">En attente</button>
+                        <button onclick="navigateTo('withdraw-history')" class="px-2.5 py-1.5 rounded-xl bg-neutral-950 text-yellow-400 text-[11px] font-bold">Historique</button>
                     </div>
                 </div>
 
                 <div class="real-card rounded-2xl p-4 flex justify-between items-center">
                     <div>
-                        <p class="text-xs text-slate-500">Solde disponible</p>
-                        <p class="text-xl font-extrabold text-slate-900" id="withdraw-available">0 FCFA</p>
+                        <p class="text-xs text-neutral-500">Solde disponible</p>
+                        <p class="text-xl font-extrabold text-neutral-950" id="withdraw-available">0 FCFA</p>
                     </div>
-                    <span class="text-xs font-bold px-3 py-1 rounded-full bg-rose-50 text-rose-700 border border-rose-200">-6% déduits</span>
+                    <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-neutral-950 text-yellow-400 border border-yellow-500/40">-6% déduits</span>
                 </div>
 
                 <form onsubmit="submitWithdraw(event)" class="real-card rounded-2xl p-4 space-y-4">
                     <div>
-                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Numéro de réception</label>
-                        <input type="tel" id="withdraw-phone" required placeholder="07 00 00 00 00" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-4 text-sm text-slate-900 focus:outline-none focus:border-blue-700">
+                        <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Numéro de réception</label>
+                        <input type="tel" id="withdraw-phone" required placeholder="07 00 00 00 00" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-4 text-sm text-neutral-950 focus:outline-none focus:border-yellow-500">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Montant du retrait (FCFA)</label>
-                        <input type="number" id="withdraw-amount" required min="1000" oninput="updateWithdrawFeePreview()" placeholder="Ex: 5000" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-4 text-sm font-bold text-slate-900 focus:outline-none focus:border-blue-700">
+                        <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Montant du retrait (FCFA)</label>
+                        <input type="number" id="withdraw-amount" required min="1000" oninput="updateWithdrawFeePreview()" placeholder="Ex: 5000" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-4 text-sm font-bold text-neutral-950 focus:outline-none focus:border-yellow-500">
                     </div>
 
-                    <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 space-y-1.5 text-xs">
+                    <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-3 space-y-1.5 text-xs">
                         <div class="flex justify-between">
-                            <span class="text-slate-500">Montant demandé :</span>
-                            <strong id="withdraw-gross-amount" class="text-slate-900">0 FCFA</strong>
+                            <span class="text-neutral-500">Montant demandé :</span>
+                            <strong id="withdraw-gross-amount" class="text-neutral-950">0 FCFA</strong>
                         </div>
                         <div class="flex justify-between">
-                            <span class="text-slate-500">Frais déduits (-6%) :</span>
-                            <strong id="withdraw-fee-amount" class="text-rose-600">-0 FCFA</strong>
+                            <span class="text-neutral-500">Frais déduits (-6%) :</span>
+                            <strong id="withdraw-fee-amount" class="text-neutral-800">-0 FCFA</strong>
                         </div>
-                        <div class="flex justify-between pt-1 border-t border-slate-200">
-                            <span class="text-slate-700 font-bold">Montant net reçu (réduit de 6%) :</span>
-                            <strong id="withdraw-net-amount" class="text-emerald-700 font-extrabold">0 FCFA</strong>
+                        <div class="flex justify-between pt-1 border-t border-neutral-200">
+                            <span class="text-neutral-800 font-bold">Montant net reçu (réduit de 6%) :</span>
+                            <strong id="withdraw-net-amount" class="text-yellow-600 font-extrabold">0 FCFA</strong>
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Mot de passe du portefeuille (6 chiffres)</label>
-                        <input type="password" id="withdraw-pin" required maxlength="6" pattern="\d{6}" inputmode="numeric" placeholder="••••••" class="w-full bg-slate-50 border border-slate-300 rounded-xl py-2.5 px-4 text-sm font-mono tracking-widest text-slate-900 focus:outline-none focus:border-blue-700">
+                        <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Mot de passe du portefeuille (6 chiffres)</label>
+                        <input type="password" id="withdraw-pin" required maxlength="6" pattern="\d{6}" inputmode="numeric" placeholder="••••••" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-4 text-sm font-mono tracking-widest text-neutral-950 focus:outline-none focus:border-yellow-500">
                     </div>
 
-                    <button type="submit" class="w-full brand-gradient text-white font-bold py-3 rounded-xl shadow-md hover:opacity-95 transition">
+                    <button type="submit" class="w-full yellow-btn font-extrabold py-3 rounded-xl shadow-md transition">
                         Lancer le retrait (-6% déduits)
                     </button>
                 </form>
@@ -536,10 +553,10 @@
             <section id="page-withdraw-pending" class="hidden space-y-4">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-xl font-extrabold text-slate-900">Retraits en Attente</h2>
-                        <p class="text-xs text-slate-500 mt-1">Demandes en cours de traitement.</p>
+                        <h2 class="text-xl font-extrabold text-neutral-950">Retraits en Attente</h2>
+                        <p class="text-xs text-neutral-500 mt-1">Demandes en cours de traitement.</p>
                     </div>
-                    <button onclick="navigateTo('withdraw')" class="px-3 py-1.5 rounded-xl bg-blue-50 text-blue-700 text-[11px] font-bold">
+                    <button onclick="navigateTo('withdraw')" class="px-3 py-1.5 rounded-xl bg-neutral-950 text-yellow-400 text-[11px] font-bold">
                         + Nouveau retrait
                     </button>
                 </div>
@@ -550,10 +567,10 @@
             <section id="page-withdraw-history" class="hidden space-y-4">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-xl font-extrabold text-slate-900">Historique des Retraits</h2>
-                        <p class="text-xs text-slate-500 mt-1">Ensemble de vos retraits (validés, rejetés, en attente).</p>
+                        <h2 class="text-xl font-extrabold text-neutral-950">Historique des Retraits</h2>
+                        <p class="text-xs text-neutral-500 mt-1">Ensemble de vos retraits (validés, rejetés, en attente).</p>
                     </div>
-                    <button onclick="navigateTo('withdraw-pending')" class="px-3 py-1.5 rounded-xl bg-amber-50 text-amber-800 text-[11px] font-bold">
+                    <button onclick="navigateTo('withdraw-pending')" class="px-3 py-1.5 rounded-xl bg-yellow-100 text-neutral-950 text-[11px] font-bold">
                         Voir en attente
                     </button>
                 </div>
@@ -563,75 +580,75 @@
             <!-- PAGE 9 : ÉQUIPE -->
             <section id="page-team" class="hidden space-y-4">
                 <div>
-                    <h2 class="text-xl font-extrabold text-slate-900">Mon Équipe & Parrainage</h2>
-                    <p class="text-xs text-slate-500 mt-1">Partagez votre lien : <strong>1 000 FCFA</strong> crédités automatiquement dès le 1er rechargement validé de votre filleul.</p>
+                    <h2 class="text-xl font-extrabold text-neutral-950">Mon Équipe & Parrainage</h2>
+                    <p class="text-xs text-neutral-500 mt-1">Partagez votre lien : <strong>1 000 FCFA</strong> crédités automatiquement dès le 1er rechargement validé de votre filleul.</p>
                 </div>
 
                 <div class="real-card rounded-2xl p-4 space-y-3">
                     <div class="flex items-center justify-between">
-                        <h3 class="text-sm font-extrabold text-slate-900">Lien de Parrainage</h3>
-                        <span class="text-[11px] font-extrabold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full">+1 000 F / filleul</span>
+                        <h3 class="text-sm font-extrabold text-neutral-950">Lien de Parrainage</h3>
+                        <span class="text-[11px] font-extrabold text-neutral-950 bg-yellow-300 px-2.5 py-0.5 rounded-full">+1 000 F / filleul</span>
                     </div>
 
-                    <div class="bg-slate-900 text-white rounded-xl p-3.5 space-y-2">
+                    <div class="bg-neutral-950 text-white rounded-xl p-3.5 space-y-2 border border-yellow-500/40">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-[10px] uppercase text-slate-400">Mon Code</p>
-                                <p id="referral-code-display" class="text-sm font-extrabold font-mono">AVN-000000</p>
+                                <p class="text-[10px] uppercase text-neutral-400">Mon Code</p>
+                                <p id="referral-code-display" class="text-sm font-extrabold font-mono text-yellow-400">AVN-000000</p>
                             </div>
-                            <button onclick="copyReferralCode()" class="px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-white text-xs font-bold">
+                            <button onclick="copyReferralCode()" class="px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold">
                                 Copier code
                             </button>
                         </div>
-                        <div class="pt-2 border-t border-slate-800 flex items-center justify-between gap-2">
-                            <p id="referral-link-display" class="text-[11px] font-mono text-blue-300 truncate"></p>
-                            <button onclick="copyReferralLink()" class="px-3 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shrink-0">
+                        <div class="pt-2 border-t border-neutral-800 flex items-center justify-between gap-2">
+                            <p id="referral-link-display" class="text-[11px] font-mono text-yellow-300 truncate"></p>
+                            <button onclick="copyReferralLink()" class="px-3 py-1.5 rounded-lg yellow-btn text-xs font-extrabold shrink-0">
                                 Copier lien
                             </button>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-2 gap-2 text-xs">
-                        <div class="bg-slate-50 border border-slate-200 rounded-xl p-2.5">
-                            <p class="text-[10px] text-slate-500">Filleuls inscrits</p>
-                            <p id="team-count-badge" class="text-base font-extrabold text-slate-900 mt-0.5">0</p>
+                        <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-2.5">
+                            <p class="text-[10px] text-neutral-500">Filleuls inscrits</p>
+                            <p id="team-count-badge" class="text-base font-extrabold text-neutral-950 mt-0.5">0</p>
                         </div>
-                        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-2.5">
-                            <p class="text-[10px] text-emerald-700">Bonus parrainage gagné</p>
-                            <p id="team-bonus-total" class="text-base font-extrabold text-emerald-800 mt-0.5">0 FCFA</p>
+                        <div class="bg-yellow-50 border border-yellow-300 rounded-xl p-2.5">
+                            <p class="text-[10px] text-neutral-700">Bonus parrainage gagné</p>
+                            <p id="team-bonus-total" class="text-base font-extrabold text-neutral-950 mt-0.5">0 FCFA</p>
                         </div>
                     </div>
 
-                    <div class="text-[11px] text-slate-600 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2">
+                    <div class="text-[11px] text-neutral-700 bg-neutral-50 border border-neutral-200 rounded-xl px-3 py-2">
                         Mon parrain : <strong id="referrer-name-display">Aucun</strong>
                     </div>
                 </div>
 
                 <div class="real-card rounded-2xl p-4 space-y-3">
-                    <h3 class="text-sm font-extrabold text-slate-900">Membres de mon équipe (Filleuls)</h3>
+                    <h3 class="text-sm font-extrabold text-neutral-950">Membres de mon équipe (Filleuls)</h3>
                     <div id="team-members-list" class="space-y-2"></div>
                 </div>
 
-                <div class="wallet-teal-blue-card rounded-2xl p-4 space-y-3">
+                <div class="wallet-yellow-card rounded-2xl p-4 space-y-3">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-xl wallet-teal-blue-btn text-white flex items-center justify-center shadow-xs">
+                            <div class="w-8 h-8 rounded-xl wallet-yellow-btn flex items-center justify-center shadow-xs">
                                 <i class="fas fa-wallet text-xs"></i>
                             </div>
-                            <h3 class="text-sm font-extrabold text-teal-950">Portefeuille — Compte Lié</h3>
+                            <h3 class="text-sm font-extrabold text-neutral-950">Portefeuille — Compte Lié</h3>
                         </div>
-                        <span id="account-link-badge" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-teal-100 text-teal-800 border border-teal-200">Non lié</span>
+                        <span id="account-link-badge" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white text-neutral-900 border border-yellow-500">Non lié</span>
                     </div>
 
-                    <div id="linked-account-card" class="bg-white/85 border border-teal-200 rounded-xl p-3 text-xs space-y-1">
-                        <p class="text-teal-800/75">Aucun compte de portefeuille lié pour le moment.</p>
+                    <div id="linked-account-card" class="bg-white/90 border border-yellow-400 rounded-xl p-3 text-xs space-y-1">
+                        <p class="text-neutral-700">Aucun compte de portefeuille lié pour le moment.</p>
                     </div>
 
                     <div id="wallet-link-form" class="space-y-2.5 pt-1">
-                        <input type="text" id="wallet-username" placeholder="Nom d'utilisateur (ex: JeanKouassi)" class="w-full bg-white/90 border border-teal-300 rounded-xl py-2 px-3 text-xs text-slate-900 focus:outline-none focus:border-teal-600">
-                        <input type="tel" id="wallet-usernumber" placeholder="Numéro du portefeuille (ex: 07 00 00 00 00)" class="w-full bg-white/90 border border-teal-300 rounded-xl py-2 px-3 text-xs text-slate-900 focus:outline-none focus:border-teal-600">
-                        <input type="password" id="wallet-pin" maxlength="6" minlength="6" pattern="\d{6}" inputmode="numeric" placeholder="Mot de passe du portefeuille 6 chiffres (ex: 123456)" class="w-full bg-white/90 border border-teal-300 rounded-xl py-2 px-3 text-xs font-mono tracking-widest text-slate-900 focus:outline-none focus:border-teal-600">
-                        <button type="button" id="btn-lier-mon-compte" onclick="linkWalletAccount()" class="w-full wallet-teal-blue-btn text-white font-extrabold py-2.5 rounded-xl text-xs shadow-sm hover:opacity-95 transition flex items-center justify-center gap-2">
+                        <input type="text" id="wallet-username" placeholder="Nom d'utilisateur (ex: JeanKouassi)" class="w-full bg-white border border-yellow-500 rounded-xl py-2 px-3 text-xs text-neutral-950 focus:outline-none focus:border-neutral-950">
+                        <input type="tel" id="wallet-usernumber" placeholder="Numéro du portefeuille (ex: 07 00 00 00 00)" class="w-full bg-white border border-yellow-500 rounded-xl py-2 px-3 text-xs text-neutral-950 focus:outline-none focus:border-neutral-950">
+                        <input type="password" id="wallet-pin" maxlength="6" minlength="6" pattern="\d{6}" inputmode="numeric" placeholder="Mot de passe du portefeuille 6 chiffres (ex: 123456)" class="w-full bg-white border border-yellow-500 rounded-xl py-2 px-3 text-xs font-mono tracking-widest text-neutral-950 focus:outline-none focus:border-neutral-950">
+                        <button type="button" id="btn-lier-mon-compte" onclick="linkWalletAccount()" class="w-full wallet-yellow-btn font-extrabold py-2.5 rounded-xl text-xs shadow-sm hover:opacity-95 transition flex items-center justify-center gap-2">
                             <i class="fas fa-link"></i>
                             <span>Lier mon compte</span>
                         </button>
@@ -642,28 +659,28 @@
         </main>
 
         <!-- BARRE DE NAVIGATION INFÉRIEURE -->
-        <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-slate-200 px-1 py-2 flex justify-around items-center z-40">
-            <button onclick="navigateTo('dashboard')" id="nav-dashboard" class="flex flex-col items-center gap-1 text-slate-400 nav-active w-1/6">
+        <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-neutral-200 px-1 py-2 flex justify-around items-center z-40">
+            <button onclick="navigateTo('dashboard')" id="nav-dashboard" class="flex flex-col items-center gap-1 text-neutral-400 nav-active w-1/6">
                 <i class="fas fa-wallet text-sm"></i>
                 <span class="text-[9px] font-bold">Solde</span>
             </button>
-            <button onclick="navigateTo('plans')" id="nav-plans" class="flex flex-col items-center gap-1 text-slate-400 w-1/6">
+            <button onclick="navigateTo('plans')" id="nav-plans" class="flex flex-col items-center gap-1 text-neutral-400 w-1/6">
                 <i class="fas fa-chart-line text-sm"></i>
                 <span class="text-[9px] font-bold">Plans</span>
             </button>
-            <button onclick="navigateTo('packs')" id="nav-packs" class="flex flex-col items-center gap-1 text-slate-400 w-1/6">
+            <button onclick="navigateTo('packs')" id="nav-packs" class="flex flex-col items-center gap-1 text-neutral-400 w-1/6">
                 <i class="fas fa-box-open text-sm"></i>
                 <span class="text-[9px] font-bold">Actifs</span>
             </button>
-            <button onclick="navigateTo('recharge')" id="nav-recharge" class="flex flex-col items-center gap-1 text-slate-400 w-1/6">
+            <button onclick="navigateTo('recharge')" id="nav-recharge" class="flex flex-col items-center gap-1 text-neutral-400 w-1/6">
                 <i class="fas fa-plus-circle text-sm"></i>
                 <span class="text-[9px] font-bold">Recharge</span>
             </button>
-            <button onclick="navigateTo('withdraw')" id="nav-withdraw" class="flex flex-col items-center gap-1 text-slate-400 w-1/6">
+            <button onclick="navigateTo('withdraw')" id="nav-withdraw" class="flex flex-col items-center gap-1 text-neutral-400 w-1/6">
                 <i class="fas fa-arrow-up-right-from-square text-sm"></i>
                 <span class="text-[9px] font-bold">Retrait</span>
             </button>
-            <button onclick="navigateTo('team')" id="nav-team" class="flex flex-col items-center gap-1 text-slate-400 w-1/6">
+            <button onclick="navigateTo('team')" id="nav-team" class="flex flex-col items-center gap-1 text-neutral-400 w-1/6">
                 <i class="fas fa-users text-sm"></i>
                 <span class="text-[9px] font-bold">Équipe</span>
             </button>
@@ -671,16 +688,16 @@
     </div>
 
     <!-- MODAL SERVICE CLIENT -->
-    <div id="cs-modal" class="fixed inset-0 bg-slate-900/60 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white border border-slate-200 rounded-3xl w-full max-w-md max-h-[88vh] flex flex-col overflow-hidden shadow-xl">
-            <div class="p-4 border-b border-slate-200 flex justify-between items-center brand-gradient text-white">
+    <div id="cs-modal" class="fixed inset-0 bg-neutral-950/70 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white border border-neutral-200 rounded-3xl w-full max-w-md max-h-[88vh] flex flex-col overflow-hidden shadow-xl">
+            <div class="p-4 border-b border-neutral-200 flex justify-between items-center brand-gradient text-white">
                 <div class="flex items-center gap-2.5">
-                    <div class="w-8 h-8 rounded-xl bg-white/15 flex items-center justify-center">
-                        <i class="fas fa-headset text-sm"></i>
+                    <div class="w-8 h-8 rounded-xl bg-yellow-400/15 flex items-center justify-center">
+                        <i class="fas fa-headset text-sm text-yellow-400"></i>
                     </div>
                     <div>
                         <h3 class="font-extrabold text-sm leading-none">Service Client Avenir Capital</h3>
-                        <span class="text-[10px] text-blue-200">Disponible 7j/7 • Réponse rapide</span>
+                        <span class="text-[10px] text-yellow-300">Disponible 7j/7 • Réponse rapide</span>
                     </div>
                 </div>
                 <button onclick="closeCustomerServiceModal()" class="w-8 h-8 rounded-full bg-white/15 text-white flex items-center justify-center hover:bg-white/25">
@@ -689,28 +706,28 @@
             </div>
 
             <div class="p-4 overflow-y-auto space-y-4">
-                <a href="https://wa.me/2250509302107?text=Bonjour%20Service%20Client%20Avenir%20Capital%2C%20j%27ai%20besoin%20d%27aide." target="_blank" rel="noopener noreferrer" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl py-3 px-4 text-xs font-extrabold flex items-center justify-center gap-2 shadow-sm transition">
+                <a href="https://wa.me/2250509302107?text=Bonjour%20Service%20Client%20Avenir%20Capital%2C%20j%27ai%20besoin%20d%27aide." target="_blank" rel="noopener noreferrer" class="w-full yellow-btn rounded-xl py-3 px-4 text-xs font-extrabold flex items-center justify-center gap-2 shadow-sm transition">
                     <i class="fab fa-whatsapp text-base"></i>
                     <span>Contacter le Service Client sur WhatsApp</span>
                 </a>
 
-                <form onsubmit="submitSupportTicket(event)" class="bg-slate-50 border border-slate-200 rounded-2xl p-3.5 space-y-2.5">
-                    <p class="text-xs font-extrabold text-slate-900">Envoyer un message au support</p>
-                    <select id="cs-topic" class="w-full bg-white border border-slate-300 rounded-xl py-2 px-3 text-xs font-bold text-slate-800 focus:outline-none focus:border-blue-700">
+                <form onsubmit="submitSupportTicket(event)" class="bg-neutral-50 border border-neutral-200 rounded-2xl p-3.5 space-y-2.5">
+                    <p class="text-xs font-extrabold text-neutral-950">Envoyer un message au support</p>
+                    <select id="cs-topic" class="w-full bg-white border border-neutral-300 rounded-xl py-2 px-3 text-xs font-bold text-neutral-900 focus:outline-none focus:border-yellow-500">
                         <option value="Recharge / Confirmation paiement">Recharge / Confirmation paiement</option>
                         <option value="Retrait en attente">Retrait en attente</option>
                         <option value="Plans d'investissement (8 jours)">Plans d'investissement (8 jours)</option>
                         <option value="Parrainage / Bonus 1 000 FCFA">Parrainage / Bonus 1 000 FCFA</option>
                         <option value="Autre question">Autre question</option>
                     </select>
-                    <textarea id="cs-message" rows="3" required placeholder="Décrivez votre demande (ex: ID de transaction, question)..." class="w-full bg-white border border-slate-300 rounded-xl py-2 px-3 text-xs text-slate-900 focus:outline-none focus:border-blue-700"></textarea>
-                    <button type="submit" class="w-full brand-gradient text-white font-bold py-2.5 rounded-xl text-xs hover:opacity-95 transition">
+                    <textarea id="cs-message" rows="3" required placeholder="Décrivez votre demande (ex: ID de transaction, question)..." class="w-full bg-white border border-neutral-300 rounded-xl py-2 px-3 text-xs text-neutral-950 focus:outline-none focus:border-yellow-500"></textarea>
+                    <button type="submit" class="w-full bg-neutral-950 text-yellow-400 font-extrabold py-2.5 rounded-xl text-xs hover:bg-neutral-800 transition">
                         Envoyer au Service Client
                     </button>
                 </form>
 
                 <div class="space-y-2">
-                    <h4 class="text-xs font-extrabold text-slate-700 uppercase">Mes demandes récentes</h4>
+                    <h4 class="text-xs font-extrabold text-neutral-700 uppercase">Mes demandes récentes</h4>
                     <div id="cs-tickets-list" class="space-y-2"></div>
                 </div>
             </div>
@@ -787,15 +804,11 @@
             const lastPhone = localStorage.getItem('avenir_v6_last_phone');
             if (lastPhone) document.getElementById('login-phone').value = lastPhone;
 
-            // Crédit journalier automatique
+            // Rafraîchit l'affichage des boutons de réclamation toutes les 30s
             setInterval(() => {
                 if (!currentUser) return;
-                const credited = processAutoDailyCredits(currentUser, true);
-                if (credited > 0) {
-                    saveData();
-                    notify(`Crédit journalier automatique : +${formatFCFA(credited)}`);
-                }
-            }, 15000);
+                renderMyPurchasedPacks();
+            }, 30000);
 
             // Si Firebase ne répond pas (hors-ligne), on affiche quand même l'écran de connexion
             setTimeout(() => {
@@ -821,6 +834,7 @@
                 referredBy: user.referredBy || null,
                 activePlans: (user.activePlans || []).map(p => ({
                     ...p,
+                    totalDays: p.totalDays || 8,
                     lastCreditAt: p.lastCreditAt || Date.now(),
                     earnedSoFar: p.earnedSoFar || 0
                 })),
@@ -830,55 +844,64 @@
             };
         }
 
-        function processAutoDailyCredits(user, showToast, forceDays = 0) {
-            if (!user || !user.activePlans || user.activePlans.length === 0) return 0;
+        // Calcule combien de jours de revenus sont disponibles à réclamer pour un plan actif
+        function getClaimableDays(plan) {
+            if (!plan || plan.daysLeft <= 0) return 0;
             const now = Date.now();
-            let totalCredited = 0;
+            const elapsedDays = Math.floor((now - (plan.lastCreditAt || now)) / DAY_MS);
+            return Math.min(Math.max(0, elapsedDays), plan.daysLeft);
+        }
 
-            user.activePlans.forEach(plan => {
-                if (plan.daysLeft <= 0) return;
+        // Réclamation manuelle par le membre pendant les 8 jours du plan
+        function claimPlanRevenue(planId) {
+            if (!currentUser) return;
+            const plan = (currentUser.activePlans || []).find(p => p.id === planId);
+            if (!plan) return;
 
-                let daysToCredit = forceDays;
-                if (!daysToCredit) {
-                    const elapsedDays = Math.floor((now - (plan.lastCreditAt || now)) / DAY_MS);
-                    daysToCredit = Math.min(elapsedDays, plan.daysLeft);
-                } else {
-                    daysToCredit = Math.min(forceDays, plan.daysLeft);
-                }
+            if (plan.daysLeft <= 0) {
+                return notify('Les 8 jours de ce plan sont déjà tous réclamés.', 'warning');
+            }
 
-                if (daysToCredit > 0) {
-                    const gain = daysToCredit * plan.daily;
-                    plan.daysLeft -= daysToCredit;
-                    plan.earnedSoFar = (plan.earnedSoFar || 0) + gain;
-                    // on avance de N jours pleins (et non "now") pour ne perdre aucune fraction de jour
-                    plan.lastCreditAt = forceDays ? now : (plan.lastCreditAt || now) + daysToCredit * DAY_MS;
-                    totalCredited += gain;
-                }
+            const daysToClaim = getClaimableDays(plan);
+            if (daysToClaim <= 0) {
+                return notify('Revenu du jour pas encore disponible. Revenez après 24h.', 'warning');
+            }
+
+            const gain = daysToClaim * plan.daily;
+            plan.daysLeft -= daysToClaim;
+            plan.earnedSoFar = (plan.earnedSoFar || 0) + gain;
+            plan.lastCreditAt = (plan.lastCreditAt || Date.now()) + daysToClaim * DAY_MS;
+
+            currentUser.balance += gain;
+            currentUser.revenueTotal = (currentUser.revenueTotal || 0) + gain;
+
+            transactionsDB.unshift({
+                id: newId('CLM'),
+                userPhone: currentUser.phone,
+                userName: currentUser.name,
+                category: 'revenue',
+                type: `Revenu réclamé (${plan.name} • ${daysToClaim}j)`,
+                amount: gain,
+                status: 'Validé',
+                date: todayFR()
             });
 
-            if (totalCredited > 0) {
-                user.balance += totalCredited;
-                user.revenueTotal += totalCredited;
-                transactionsDB.unshift({
-                    id: newId('AUTO'),
-                    userPhone: user.phone,
-                    userName: user.name,
-                    category: 'revenue',
-                    type: 'Crédit journalier automatique (8j)',
-                    amount: totalCredited,
-                    status: 'Validé',
-                    date: todayFR()
-                });
-            }
-            return totalCredited;
+            saveData();
+            notify(`Revenu réclamé : +${formatFCFA(gain)} (${plan.daysLeft}j restants).`, 'success');
         }
 
         function simulateNextDay() {
-            if (!TEST_MODE || !currentUser) return;
-            const gain = processAutoDailyCredits(currentUser, true, 1);
-            if (gain > 0) {
+            if (!TEST_MODE || !currentUser || !currentUser.activePlans) return;
+            let updated = false;
+            currentUser.activePlans.forEach(plan => {
+                if (plan.daysLeft > 0) {
+                    plan.lastCreditAt = (plan.lastCreditAt || Date.now()) - DAY_MS;
+                    updated = true;
+                }
+            });
+            if (updated) {
                 saveData();
-                notify(`+1 jour crédité : +${formatFCFA(gain)}`);
+                notify('+24h simulées : vous pouvez maintenant cliquer sur Réclamer.');
             } else {
                 notify('Aucun plan actif avec jours restants.', 'warning');
             }
@@ -888,12 +911,12 @@
         function renderRechargeNumbers() {
             const container = document.getElementById('recharge-numbers-list');
             container.innerHTML = RECHARGE_NUMBERS.map(item => `
-                <div class="flex items-center justify-between bg-[#070b14]/85 border border-blue-900/70 rounded-xl px-3.5 py-2.5">
+                <div class="flex items-center justify-between bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2.5">
                     <div>
-                        <p class="text-[11px] text-blue-200 font-semibold">${item.label}</p>
+                        <p class="text-[11px] text-yellow-300 font-semibold">${item.label}</p>
                         <p class="text-sm font-extrabold text-white font-mono">${item.phone}</p>
                     </div>
-                    <button type="button" onclick="copyRechargeNumber('${item.op}', '${item.phone}')" class="px-3 py-1 rounded-lg bg-blue-900 hover:bg-blue-800 text-blue-100 border border-blue-700 text-xs font-bold">
+                    <button type="button" onclick="copyRechargeNumber('${item.op}', '${item.phone}')" class="px-3 py-1 rounded-lg yellow-btn text-xs font-extrabold">
                         Copier
                     </button>
                 </div>
@@ -956,24 +979,26 @@
             container.innerHTML = INVESTMENT_PLANS_9.map(p => `
                 <div class="real-card rounded-2xl p-3.5 space-y-2">
                     <div class="flex justify-between items-center">
-                        <span class="text-xs font-extrabold text-slate-900">${p.name}</span>
-                        <span class="text-xs font-extrabold text-blue-700">${formatFCFA(p.price)}</span>
+                        <span class="text-xs font-extrabold text-neutral-950">${p.name}</span>
+                        <span class="text-xs font-extrabold text-yellow-600">${formatFCFA(p.price)}</span>
                     </div>
-                    <div class="grid grid-cols-3 gap-2 text-[11px] bg-slate-50 border border-slate-200 rounded-xl p-2 text-center">
+                    <div class="grid grid-cols-3 gap-2 text-[11px] bg-neutral-50 border border-neutral-200 rounded-xl p-2 text-center">
                         <div>
-                            <p class="text-slate-400">Revenu / j</p>
-                            <p class="font-bold text-emerald-700">+${p.daily.toLocaleString('fr-FR')} F</p>
+                            <p class="text-neutral-500">Revenu / j</p>
+                            <!-- REVENU EN ROUGE -->
+                            <p class="font-extrabold text-red-600">+${p.daily.toLocaleString('fr-FR')} F</p>
                         </div>
                         <div>
-                            <p class="text-slate-400">Bénéfice (8j)</p>
-                            <p class="font-bold text-slate-900">+${p.profit.toLocaleString('fr-FR')} F</p>
+                            <p class="text-neutral-500">Bénéfice (8j)</p>
+                            <!-- REVENU EN ROUGE -->
+                            <p class="font-extrabold text-red-600">+${p.profit.toLocaleString('fr-FR')} F</p>
                         </div>
                         <div>
-                            <p class="text-slate-400">Total (8j)</p>
-                            <p class="font-bold text-blue-700">${p.total.toLocaleString('fr-FR')} F</p>
+                            <p class="text-neutral-500">Total (8j)</p>
+                            <p class="font-extrabold text-neutral-950">${p.total.toLocaleString('fr-FR')} F</p>
                         </div>
                     </div>
-                    <button onclick="subscribePlan('${p.id}')" class="w-full brand-gradient text-white font-bold py-2 rounded-xl text-xs hover:opacity-95 transition">
+                    <button onclick="subscribePlan('${p.id}')" class="w-full yellow-btn font-extrabold py-2 rounded-xl text-xs transition shadow-xs">
                         Investir sur ce plan (8 jours)
                     </button>
                 </div>
@@ -996,6 +1021,7 @@
                 name: plan.name,
                 price: plan.price,
                 daily: plan.daily,
+                totalDays: plan.days,
                 daysLeft: plan.days,
                 earnedSoFar: 0,
                 lastCreditAt: Date.now()
@@ -1013,7 +1039,7 @@
             });
 
             saveData();
-            notify(`${plan.name} activé !`);
+            notify(`${plan.name} activé ! Réclamez vos revenus chaque jour pendant 8 jours.`);
             navigateTo('packs');
         }
 
@@ -1028,9 +1054,9 @@
             const content = document.getElementById('toast-content');
 
             const styles = {
-                success: 'bg-emerald-50 border-emerald-300 text-emerald-900',
-                error: 'bg-rose-50 border-rose-300 text-rose-900',
-                warning: 'bg-amber-50 border-amber-300 text-amber-900'
+                success: 'bg-neutral-950 border-yellow-400 text-yellow-300',
+                error: 'bg-neutral-950 border-red-500 text-red-400',
+                warning: 'bg-yellow-50 border-yellow-500 text-neutral-950'
             };
 
             content.className = `px-4 py-3 rounded-xl shadow-lg border flex items-center gap-2.5 text-xs font-bold ${styles[type]}`;
@@ -1045,8 +1071,8 @@
             document.getElementById('login-form').classList.toggle('hidden', tab !== 'login');
             document.getElementById('register-form').classList.toggle('hidden', tab !== 'register');
 
-            const activeCls = 'w-1/2 pb-3 text-xs font-bold border-b-2 border-blue-700 text-blue-700';
-            const inactiveCls = 'w-1/2 pb-3 text-xs font-bold border-b-2 border-transparent text-slate-400';
+            const activeCls = 'w-1/2 pb-3 text-xs font-bold border-b-2 border-yellow-500 text-neutral-950';
+            const inactiveCls = 'w-1/2 pb-3 text-xs font-bold border-b-2 border-transparent text-neutral-400';
 
             document.getElementById('tab-login').className = tab === 'login' ? activeCls : inactiveCls;
             document.getElementById('tab-register').className = tab === 'register' ? activeCls : inactiveCls;
@@ -1142,7 +1168,7 @@
             const refBonus = currentUser.referralBonusTotal || 0;
 
             document.getElementById('header-user-name').innerText = currentUser.name;
-            document.getElementById('dash-balance').innerHTML = `${currentUser.balance.toLocaleString('fr-FR')} <span class="text-base font-bold text-blue-200">FCFA</span>`;
+            document.getElementById('dash-balance').innerHTML = `${currentUser.balance.toLocaleString('fr-FR')} <span class="text-base font-bold text-yellow-400">FCFA</span>`;
             document.getElementById('dash-revenue').innerText = '+' + formatFCFA(rev);
             document.getElementById('dash-ref-bonus').innerText = '+' + formatFCFA(refBonus);
             document.getElementById('packs-revenue-total').innerText = formatFCFA(rev);
@@ -1154,21 +1180,21 @@
             const accBadge = document.getElementById('account-link-badge');
             const accCard = document.getElementById('linked-account-card');
             if (isLinked) {
-                accBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-teal-600 text-white';
+                accBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-neutral-950 text-yellow-400';
                 accBadge.innerText = 'Compte lié actif';
                 accCard.innerHTML = `
-                    <div class="flex justify-between"><span class="text-teal-700">Nom lié :</span><strong class="text-teal-950">${esc(currentUser.wallet.username)}</strong></div>
-                    <div class="flex justify-between"><span class="text-teal-700">Numéro lié :</span><strong class="text-teal-950 font-mono">${esc(currentUser.wallet.userNumber)}</strong></div>
-                    <div class="flex justify-between"><span class="text-teal-700">Code PIN :</span><strong class="text-teal-700 font-mono">•••••• (Configuré)</strong></div>
+                    <div class="flex justify-between"><span class="text-neutral-600">Nom lié :</span><strong class="text-neutral-950">${esc(currentUser.wallet.username)}</strong></div>
+                    <div class="flex justify-between"><span class="text-neutral-600">Numéro lié :</span><strong class="text-neutral-950 font-mono">${esc(currentUser.wallet.userNumber)}</strong></div>
+                    <div class="flex justify-between"><span class="text-neutral-600">Code PIN :</span><strong class="text-yellow-600 font-mono">•••••• (Configuré)</strong></div>
                 `;
                 const u = document.getElementById('wallet-username');
                 const n = document.getElementById('wallet-usernumber');
                 if (document.activeElement !== u && !u.value) u.value = currentUser.wallet.username;
                 if (document.activeElement !== n && !n.value) n.value = currentUser.wallet.userNumber;
             } else {
-                accBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-teal-100 text-teal-800 border border-teal-200';
+                accBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white text-neutral-900 border border-yellow-500';
                 accBadge.innerText = 'Non lié';
-                accCard.innerHTML = `<p class="text-teal-800/75">Aucun compte de portefeuille lié pour le moment.</p>`;
+                accCard.innerHTML = `<p class="text-neutral-700">Aucun compte de portefeuille lié pour le moment.</p>`;
             }
 
             document.getElementById('referral-code-display').innerText = currentUser.referralCode;
@@ -1191,32 +1217,65 @@
             if (packs.length === 0) {
                 container.innerHTML = `
                     <div class="real-card rounded-2xl p-5 text-center space-y-2">
-                        <p class="text-xs font-bold text-slate-700">Aucun plan d'investissement actif.</p>
-                        <button onclick="navigateTo('plans')" class="px-4 py-2 rounded-xl brand-gradient text-white text-xs font-bold">Choisir un plan</button>
+                        <p class="text-xs font-bold text-neutral-700">Aucun plan d'investissement actif.</p>
+                        <button onclick="navigateTo('plans')" class="px-4 py-2 rounded-xl yellow-btn text-xs font-extrabold">Choisir un plan</button>
                     </div>`;
                 return;
             }
 
-            container.innerHTML = packs.map(p => `
-                <div class="real-card rounded-2xl p-4 space-y-2">
+            container.innerHTML = packs.map(p => {
+                const totalDays = p.totalDays || 8;
+                const claimableDays = getClaimableDays(p);
+                const claimableAmount = claimableDays * p.daily;
+                const isFinished = p.daysLeft <= 0;
+
+                let actionButtonHtml = '';
+                if (isFinished) {
+                    actionButtonHtml = `
+                        <button type="button" disabled class="w-full bg-neutral-200 text-neutral-500 font-bold py-2.5 rounded-xl text-xs">
+                            Plan terminé (${totalDays}/${totalDays} jours réclamés)
+                        </button>`;
+                } else if (claimableDays > 0) {
+                    actionButtonHtml = `
+                        <button type="button" onclick="claimPlanRevenue('${esc(p.id)}')" class="w-full yellow-btn font-extrabold py-2.5 rounded-xl text-xs shadow-sm transition flex items-center justify-center gap-2">
+                            <i class="fas fa-hand-holding-dollar"></i>
+                            <span>Réclamer mon revenu (+${claimableAmount.toLocaleString('fr-FR')} FCFA • ${claimableDays}j)</span>
+                        </button>`;
+                } else {
+                    const nextAt = (p.lastCreditAt || Date.now()) + DAY_MS;
+                    const msLeft = Math.max(0, nextAt - Date.now());
+                    const hrs = Math.floor(msLeft / 3600000);
+                    const mins = Math.floor((msLeft % 3600000) / 60000);
+                    actionButtonHtml = `
+                        <button type="button" disabled class="w-full bg-neutral-100 border border-neutral-300 text-neutral-600 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                            <i class="fas fa-clock text-yellow-600"></i>
+                            <span>Prochaine réclamation dans ${hrs}h ${mins}min</span>
+                        </button>`;
+                }
+
+                return `
+                <div class="real-card rounded-2xl p-4 space-y-2.5">
                     <div class="flex justify-between items-center">
-                        <span class="text-xs font-extrabold text-slate-900">${esc(p.name)}</span>
-                        <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full ${p.daysLeft > 0 ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-700'}">
-                            ${p.daysLeft > 0 ? p.daysLeft + 'j restants / 8j' : 'Terminé (8j)'}
+                        <span class="text-xs font-extrabold text-neutral-950">${esc(p.name)}</span>
+                        <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full ${!isFinished ? 'bg-yellow-200 text-neutral-950' : 'bg-neutral-200 text-neutral-600'}">
+                            ${!isFinished ? p.daysLeft + 'j restants / ' + totalDays + 'j' : 'Terminé (' + totalDays + 'j)'}
                         </span>
                     </div>
-                    <div class="grid grid-cols-2 gap-2 text-xs bg-slate-50 border border-slate-200 rounded-xl p-2.5">
+                    <div class="grid grid-cols-2 gap-2 text-xs bg-neutral-50 border border-neutral-200 rounded-xl p-2.5">
                         <div>
-                            <p class="text-[10px] text-slate-500">Revenu auto / jour</p>
-                            <p class="font-bold text-emerald-700">+${p.daily.toLocaleString('fr-FR')} FCFA</p>
+                            <p class="text-[10px] text-neutral-500">Revenu / jour</p>
+                            <!-- REVENU EN ROUGE -->
+                            <p class="font-extrabold text-red-600">+${p.daily.toLocaleString('fr-FR')} FCFA</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-[10px] text-slate-500">Déjà crédité</p>
-                            <p class="font-extrabold text-blue-700">+${(p.earnedSoFar || 0).toLocaleString('fr-FR')} FCFA</p>
+                            <p class="text-[10px] text-neutral-500">Revenus réclamés</p>
+                            <!-- REVENU EN ROUGE -->
+                            <p class="font-extrabold text-red-600">+${(p.earnedSoFar || 0).toLocaleString('fr-FR')} FCFA</p>
                         </div>
                     </div>
+                    ${actionButtonHtml}
                 </div>
-            `).join('');
+            `}).join('');
         }
 
         // ---------- Portefeuille (PIN haché, jamais stocké en clair) ----------
@@ -1372,24 +1431,27 @@
         function renderTxList(containerId, items, emptyText) {
             const container = document.getElementById(containerId);
             if (!items || items.length === 0) {
-                container.innerHTML = `<div class="real-card rounded-2xl p-5 text-center text-xs text-slate-400">${emptyText}</div>`;
+                container.innerHTML = `<div class="real-card rounded-2xl p-5 text-center text-xs text-neutral-400">${emptyText}</div>`;
                 return;
             }
 
             container.innerHTML = items.map(tx => {
                 const pos = tx.amount > 0;
+                const isRev = tx.category === 'revenue';
                 const badgeClass = tx.status === 'Validé'
-                    ? 'bg-emerald-100 text-emerald-800'
-                    : (tx.status === 'Rejeté' ? 'bg-rose-100 text-rose-800' : 'bg-amber-100 text-amber-800');
+                    ? 'bg-neutral-950 text-yellow-400'
+                    : (tx.status === 'Rejeté' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-neutral-900');
+
+                const amountColor = isRev ? 'text-red-600' : (pos ? 'text-yellow-600' : 'text-neutral-950');
 
                 return `
                 <div class="real-card rounded-2xl p-3.5 flex justify-between items-center">
                     <div>
-                        <p class="text-xs font-bold text-slate-900">${esc(tx.type)}</p>
-                        <p class="text-[10px] text-slate-500 mt-0.5">${esc(tx.date)} ${tx.txid ? '• ID: ' + esc(tx.txid) : ''} ${tx.paymentConfirmed ? '• Paiement confirmé' : ''}</p>
+                        <p class="text-xs font-bold text-neutral-950">${esc(tx.type)}</p>
+                        <p class="text-[10px] text-neutral-500 mt-0.5">${esc(tx.date)} ${tx.txid ? '• ID: ' + esc(tx.txid) : ''} ${tx.paymentConfirmed ? '• Paiement confirmé' : ''}</p>
                     </div>
                     <div class="text-right">
-                        <p class="text-xs font-extrabold ${pos ? 'text-emerald-700' : 'text-slate-900'}">
+                        <p class="text-xs font-extrabold ${amountColor}">
                             ${pos ? '+' : ''}${(tx.amount || 0).toLocaleString('fr-FR')} F
                         </p>
                         <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${badgeClass}">${esc(tx.status)}</span>
@@ -1417,17 +1479,17 @@
             const container = document.getElementById('team-members-list');
 
             if (team.length === 0) {
-                container.innerHTML = `<p class="text-xs text-slate-400 text-center py-3">Aucun filleul inscrit via votre lien pour le moment.</p>`;
+                container.innerHTML = `<p class="text-xs text-neutral-400 text-center py-3">Aucun filleul inscrit via votre lien pour le moment.</p>`;
                 return;
             }
 
             container.innerHTML = team.map(m => `
-                <div class="flex justify-between items-center bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-xs">
+                <div class="flex justify-between items-center bg-neutral-50 border border-neutral-200 rounded-xl px-3.5 py-2.5 text-xs">
                     <div>
-                        <p class="font-bold text-slate-900">${esc(m.name)}</p>
-                        <p class="text-[11px] font-mono text-slate-600">${esc(m.phone)} • ${esc(m.date)}</p>
+                        <p class="font-bold text-neutral-950">${esc(m.name)}</p>
+                        <p class="text-[11px] font-mono text-neutral-600">${esc(m.phone)} • ${esc(m.date)}</p>
                     </div>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${m.bonusCredited ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${m.bonusCredited ? 'bg-neutral-950 text-yellow-400' : 'bg-yellow-100 text-neutral-900'}">
                         ${m.bonusCredited ? '+1 000 F crédités' : 'En attente recharge'}
                     </span>
                 </div>
@@ -1474,18 +1536,18 @@
             const list = currentUser ? supportTicketsDB.filter(t => t.userPhone === currentUser.phone) : [];
 
             if (list.length === 0) {
-                container.innerHTML = `<p class="text-xs text-slate-400 text-center py-3 bg-slate-50 rounded-xl border border-slate-200">Aucun message envoyé pour le moment.</p>`;
+                container.innerHTML = `<p class="text-xs text-neutral-400 text-center py-3 bg-neutral-50 rounded-xl border border-neutral-200">Aucun message envoyé pour le moment.</p>`;
                 return;
             }
 
             container.innerHTML = list.map(t => `
-                <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs space-y-1.5">
+                <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-3 text-xs space-y-1.5">
                     <div class="flex justify-between items-center">
-                        <span class="font-extrabold text-blue-700">${esc(t.topic)}</span>
-                        <span class="text-[10px] text-slate-400">${esc(t.date)}</span>
+                        <span class="font-extrabold text-neutral-950">${esc(t.topic)}</span>
+                        <span class="text-[10px] text-neutral-400">${esc(t.date)}</span>
                     </div>
-                    <p class="text-slate-800 font-medium">${esc(t.message)}</p>
-                    <p class="text-[11px] text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-lg px-2.5 py-1.5">
+                    <p class="text-neutral-800 font-medium">${esc(t.message)}</p>
+                    <p class="text-[11px] text-neutral-950 bg-yellow-100 border border-yellow-300 rounded-lg px-2.5 py-1.5">
                         <strong>Support :</strong> ${esc(t.reply)}
                     </p>
                 </div>
@@ -1590,7 +1652,6 @@
         function listenAll(uid) {
             stopListening();
 
-            // Si le profil n'apparaît pas (inscription interrompue), on déconnecte proprement
             profileTimer = setTimeout(() => {
                 if (!currentUser) {
                     notify('Profil introuvable. Réessayez ou contactez le support.', 'error');
@@ -1598,7 +1659,6 @@
                 }
             }, 10000);
 
-            // Profil membre
             unsubs.push(onValue(ref(db, 'users/' + uid), snap => {
                 const v = snap.val();
                 if (!v) return;
@@ -1610,19 +1670,16 @@
                 checkReferralSignal(uid);
             }, err => console.error('Lecture profil refusée', err)));
 
-            // Transactions du membre (le statut est mis à jour par l'admin)
             unsubs.push(onValue(query(ref(db, 'transactions'), orderByChild('uid'), equalTo(uid)), snap => {
                 transactionsDB = mergeRemote(transactionsDB, snap);
                 if (currentUser) { updateUI(); checkReferralSignal(uid); }
             }, err => console.error('Lecture transactions refusée', err)));
 
-            // Tickets support
             unsubs.push(onValue(query(ref(db, 'tickets'), orderByChild('uid'), equalTo(uid)), snap => {
                 supportTicketsDB = mergeRemote(supportTicketsDB, snap);
                 if (currentUser) renderSupportTickets();
             }, err => console.error('Lecture tickets refusée', err)));
 
-            // Filleuls + paiement du bonus de parrainage
             unsubs.push(onValue(ref(db, 'referrals/' + uid), snap => {
                 const team = [];
                 snap.forEach(c => { team.unshift({ ...c.val(), uid: c.key }); });
@@ -1635,18 +1692,16 @@
             }, err => console.error('Lecture filleuls refusée', err)));
         }
 
-        // Le filleul signale à son parrain que sa 1re recharge est validée
         function checkReferralSignal(uid) {
             if (!currentUser || !currentUser.sponsorUid || currentUser.referralRewardPaid) return;
             const validated = transactionsDB.some(t => isRecharge(t) && t.status === 'Validé');
             if (!validated) return;
-            currentUser.referralRewardPaid = true; // évite les doubles envois
+            currentUser.referralRewardPaid = true;
             set(ref(db, `referrals/${currentUser.sponsorUid}/${uid}/recharged`), true)
                 .then(() => saveData())
                 .catch(e => { currentUser.referralRewardPaid = false; console.error(e); });
         }
 
-        // Le parrain encaisse son bonus
         function payReferralBonus(uid, m) {
             if (payingBonus.has(m.uid)) return;
             payingBonus.add(m.uid);
@@ -1686,7 +1741,6 @@
                 const cred = await createUserWithEmailAndPassword(auth, toEmail(phone), pass);
                 const uid = cred.user.uid;
 
-                // Code de parrainage unique (AVN + 6 derniers chiffres, suffixe si déjà pris)
                 const base = 'AVN-' + phone.slice(-6).padStart(6, '0');
                 let myCode = base;
                 for (let i = 0; i < 5; i++) {
@@ -1695,7 +1749,6 @@
                     myCode = base + Math.random().toString(36).slice(2, 4).toUpperCase();
                 }
 
-                // Parrain éventuel
                 let sponsorUid = null, referredBy = null;
                 if (refCode && refCode !== myCode) {
                     try {
@@ -1725,7 +1778,6 @@
 
                 localStorage.setItem('avenir_v6_last_phone', phone);
                 notify('Compte créé avec succès.');
-                // l'affichage de l'appli est géré par onAuthStateChanged + listenAll
             } catch (err) {
                 console.error(err);
                 notify(authError(err), 'error');
@@ -1760,7 +1812,7 @@
             signOut(auth).catch(() => {});
         };
 
-        // ---------- SESSION (reste connecté après rechargement) ----------
+        // ---------- SESSION ----------
         onAuthStateChanged(auth, user => {
             if (user) {
                 listenAll(user.uid);
