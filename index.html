@@ -91,7 +91,7 @@
                 <i class="fas fa-landmark text-yellow-400 text-2xl"></i>
             </div>
             <h1 class="text-3xl font-extrabold tracking-tight text-neutral-950">Avenir <span class="text-yellow-500">Capital</span></h1>
-            <p class="text-neutral-500 text-sm mt-1.5">Investissement (8j), parrainage 1 000 F, recharges & retraits</p>
+            <p class="text-neutral-500 text-sm mt-1.5">Investissement (8j), parrainage 500 F, recharges & retraits</p>
         </div>
 
         <div class="real-card rounded-3xl p-6">
@@ -290,7 +290,7 @@
                             <i class="fas fa-users"></i>
                         </div>
                         <p class="text-sm font-extrabold text-neutral-950">Mon Équipe</p>
-                        <p class="text-[11px] text-neutral-500 mt-0.5">Lien & bonus 1 000 F</p>
+                        <p class="text-[11px] text-neutral-500 mt-0.5">Lien & bonus 500 F</p>
                     </button>
                 </div>
             </section>
@@ -581,13 +581,13 @@
             <section id="page-team" class="hidden space-y-4">
                 <div>
                     <h2 class="text-xl font-extrabold text-neutral-950">Mon Équipe & Parrainage</h2>
-                    <p class="text-xs text-neutral-500 mt-1">Partagez votre lien : <strong>1 000 FCFA</strong> crédités automatiquement dès le 1er rechargement validé de votre filleul.</p>
+                    <p class="text-xs text-neutral-500 mt-1">Partagez votre lien : <strong>500 FCFA</strong> crédités automatiquement uniquement après le 1er rechargement validé de votre filleul.</p>
                 </div>
 
                 <div class="real-card rounded-2xl p-4 space-y-3">
                     <div class="flex items-center justify-between">
                         <h3 class="text-sm font-extrabold text-neutral-950">Lien de Parrainage</h3>
-                        <span class="text-[11px] font-extrabold text-neutral-950 bg-yellow-300 px-2.5 py-0.5 rounded-full">+1 000 F / filleul</span>
+                        <span class="text-[11px] font-extrabold text-neutral-950 bg-yellow-300 px-2.5 py-0.5 rounded-full">+500 F / filleul rechargé</span>
                     </div>
 
                     <div class="bg-neutral-950 text-white rounded-xl p-3.5 space-y-2 border border-yellow-500/40">
@@ -717,7 +717,7 @@
                         <option value="Recharge / Confirmation paiement">Recharge / Confirmation paiement</option>
                         <option value="Retrait en attente">Retrait en attente</option>
                         <option value="Plans d'investissement (8 jours)">Plans d'investissement (8 jours)</option>
-                        <option value="Parrainage / Bonus 1 000 FCFA">Parrainage / Bonus 1 000 FCFA</option>
+                        <option value="Parrainage / Bonus 500 FCFA">Parrainage / Bonus 500 FCFA</option>
                         <option value="Autre question">Autre question</option>
                     </select>
                     <textarea id="cs-message" rows="3" required placeholder="Décrivez votre demande (ex: ID de transaction, question)..." class="w-full bg-white border border-neutral-300 rounded-xl py-2 px-3 text-xs text-neutral-950 focus:outline-none focus:border-yellow-500"></textarea>
@@ -738,7 +738,7 @@
     <script>
         const DAY_MS = 24 * 60 * 60 * 1000;
         const WITHDRAW_FEE_RATE = 0.06;
-        const REFERRAL_BONUS = 1000;
+        const REFERRAL_BONUS = 500;
         const REFERRAL_BASE_URL = 'https://avenircapitalavenir-commits.github.io/avenir-capital-68/';
         const TEST_MODE = false; // true = affiche le bouton "+24h" (à laisser false en production)
 
@@ -1165,7 +1165,7 @@
         function copyReferralLink() {
             if (!currentUser) return;
             navigator.clipboard?.writeText(getReferralLink()).catch(() => {});
-            notify('Lien de parrainage copié ! Bonus 1 000 FCFA dès le 1er rechargement validé.');
+            notify('Lien de parrainage copié ! Bonus 500 FCFA dès le 1er rechargement validé du filleul.');
         }
 
         function formatFCFA(num) {
@@ -1502,7 +1502,7 @@
                         <p class="text-[11px] font-mono text-neutral-600">${esc(m.phone)} • ${esc(m.date)}</p>
                     </div>
                     <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${m.bonusCredited ? 'bg-neutral-950 text-yellow-400' : 'bg-yellow-100 text-neutral-900'}">
-                        ${m.bonusCredited ? '+1 000 F crédités' : 'En attente recharge'}
+                        ${m.bonusCredited ? '+500 F crédités' : 'En attente recharge'}
                     </span>
                 </div>
             `).join('');
@@ -1699,15 +1699,17 @@
                 if (currentUser) {
                     currentUser.team = team;
                     updateUI();
-                    team.filter(m => m.recharged && !m.bonusCredited).forEach(m => payReferralBonus(uid, m));
+                    // Le bonus de 500 FCFA n'est versé QUE si m.recharged === true
+                    team.filter(m => m.recharged === true && !m.bonusCredited).forEach(m => payReferralBonus(uid, m));
                 }
             }, err => console.error('Lecture filleuls refusée', err)));
         }
 
+        // Vérifie que le filleul a bien une recharge VALIDÉE avant d'autoriser le bonus de 500 FCFA au parrain
         function checkReferralSignal(uid) {
             if (!currentUser || !currentUser.sponsorUid || currentUser.referralRewardPaid) return;
-            const validated = transactionsDB.some(t => isRecharge(t) && t.status === 'Validé');
-            if (!validated) return;
+            const hasValidatedRecharge = transactionsDB.some(t => isRecharge(t) && t.status === 'Validé' && Number(t.amount) > 0);
+            if (!hasValidatedRecharge) return;
             currentUser.referralRewardPaid = true;
             set(ref(db, `referrals/${currentUser.sponsorUid}/${uid}/recharged`), true)
                 .then(() => saveData())
@@ -1715,6 +1717,7 @@
         }
 
         function payReferralBonus(uid, m) {
+            if (!m || m.recharged !== true || m.bonusCredited) return;
             if (payingBonus.has(m.uid)) return;
             payingBonus.add(m.uid);
             set(ref(db, `referrals/${uid}/${m.uid}/bonusCredited`), true).then(() => {
@@ -1725,7 +1728,7 @@
                     userPhone: currentUser.phone,
                     userName: currentUser.name,
                     category: 'bonus',
-                    type: `Bonus parrainage — ${m.name}`,
+                    type: `Bonus parrainage (500 F) — ${m.name}`,
                     amount: REFERRAL_BONUS,
                     status: 'Validé',
                     date: todayFR()
@@ -1783,6 +1786,7 @@
                 await set(ref(db, 'users/' + uid), cleanUser(newUser));
                 await set(ref(db, 'referralCodes/' + myCode), uid);
                 if (sponsorUid) {
+                    // Aucun bonus versé à l'inscription : recharged = false tant que le filleul n'a pas rechargé
                     await set(ref(db, `referrals/${sponsorUid}/${uid}`), {
                         name, phone, date: todayFR(), recharged: false, bonusCredited: false
                     });
