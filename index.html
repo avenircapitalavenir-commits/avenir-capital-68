@@ -145,10 +145,10 @@
             </form>
 
             <div class="mt-5 pt-4 border-t border-neutral-200 flex items-center justify-between text-xs">
-                <span class="text-neutral-500 font-medium">Service avenir capital 24h/24</span>
-                <button type="button" onclick="openCustomerServiceModal()" class="text-neutral-950 font-extrabold hover:underline flex items-center gap-1.5">
-                    <i class="fas fa-headset text-yellow-500"></i> Service Client
-                </button>
+                <span class="text-neutral-500 font-medium">Service avenir capital 24h/24 • 0100725497</span>
+                <a href="https://wa.me/message/ABZ2BRFJPVIOE1" target="_blank" rel="noopener noreferrer" onclick="openWhatsAppCustomerService(event)" class="text-neutral-950 font-extrabold hover:underline flex items-center gap-1.5">
+                    <i class="fab fa-whatsapp text-green-600 text-sm"></i> Service Client
+                </a>
             </div>
         </div>
     </div>
@@ -169,10 +169,10 @@
             </div>
 
             <div class="flex items-center gap-1.5">
-                <button onclick="openCustomerServiceModal()" title="Service Client" class="px-2.5 py-2 rounded-xl bg-neutral-950 hover:bg-neutral-800 text-yellow-400 border border-yellow-500/40 text-[11px] font-bold flex items-center gap-1 shadow-sm transition">
-                    <i class="fas fa-headset text-xs"></i>
+                <a href="https://wa.me/message/ABZ2BRFJPVIOE1" target="_blank" rel="noopener noreferrer" onclick="openWhatsAppCustomerService(event)" title="Service avenir capital 24h/24 (0100725497)" class="px-2.5 py-2 rounded-xl bg-neutral-950 hover:bg-neutral-800 text-yellow-400 border border-yellow-500/40 text-[11px] font-bold flex items-center gap-1 shadow-sm transition">
+                    <i class="fab fa-whatsapp text-green-400 text-xs"></i>
                     <span>Service Client</span>
-                </button>
+                </a>
 
                 <button onclick="logoutAndReconnect()" id="header-auth-btn" title="Se déconnecter" class="w-8 h-8 rounded-xl bg-white border border-neutral-300 flex items-center justify-center text-neutral-900 hover:bg-yellow-50">
                     <i class="fas fa-right-from-bracket text-xs"></i>
@@ -222,15 +222,15 @@
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
-                    <button onclick="openCustomerServiceModal()" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-yellow-500 transition">
-                        <div class="w-9 h-9 rounded-xl bg-neutral-950 text-yellow-400 flex items-center justify-center shrink-0">
-                            <i class="fas fa-headset"></i>
+                    <a href="https://wa.me/message/ABZ2BRFJPVIOE1" target="_blank" rel="noopener noreferrer" onclick="openWhatsAppCustomerService(event)" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-yellow-500 transition">
+                        <div class="w-9 h-9 rounded-xl bg-neutral-950 text-green-400 flex items-center justify-center shrink-0">
+                            <i class="fab fa-whatsapp text-lg"></i>
                         </div>
                         <div>
                             <p class="text-xs font-extrabold text-neutral-950">Service Client</p>
-                            <p class="text-[10px] text-neutral-500">WhatsApp & tickets 24h/24</p>
+                            <p class="text-[10px] text-neutral-500">WhatsApp 24h/24 • 0100725497</p>
                         </div>
-                    </button>
+                    </a>
 
                     <button onclick="logoutAndReconnect()" id="dash-session-btn" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-yellow-500 transition">
                         <div class="w-9 h-9 rounded-xl bg-yellow-100 text-neutral-950 flex items-center justify-center shrink-0">
@@ -313,9 +313,6 @@
                         <h2 class="text-xl font-extrabold text-neutral-950">Mes Plans Actifs</h2>
                         <p class="text-xs text-neutral-500 mt-1">Réclamation disponible toutes les 24h exactes pendant 8 jours.</p>
                     </div>
-                    <button id="btn-sim-day" onclick="simulateNextDay()" class="hidden px-3 py-1.5 rounded-xl bg-yellow-100 hover:bg-yellow-200 text-neutral-950 border border-yellow-400 text-[11px] font-bold">
-                        +24h (Test)
-                    </button>
                 </div>
 
                 <div class="real-card rounded-2xl p-4 flex justify-between items-center">
@@ -323,1530 +320,714 @@
                         <p class="text-xs text-neutral-500">Total des revenus réclamés</p>
                         <p class="text-xl font-extrabold text-red-600" id="packs-revenue-total">0 FCFA</p>
                     </div>
-                    <span id="packs-count-badge" class="text-xs font-extrabold px-3 py-1 rounded-full bg-neutral-950 text-yellow-400">0 plan</span>
+                    <span id="packs-count-badge" class="text-xs font-extrabold text-neutral-950 bg-yellow-300 px-2.5 py-1 rounded-full">0 actif</span>
                 </div>
 
-                <div id="my-purchased-packs-list" class="space-y-2.5"></div>
+                <div id="active-packs-list" class="space-y-3"></div>
             </section>
 
-            <!-- PAGE 4 : RECHARGE -->
+            <!-- PAGE 4 : MON ÉQUIPE -->
+            <section id="page-team" class="hidden space-y-4">
+                <div>
+                    <h2 class="text-xl font-extrabold text-neutral-950">Mon Équipe & Parrainage</h2>
+                    <p class="text-xs text-neutral-500 mt-1">Gagnez <strong>500 FCFA</strong> par filleul inscrit via votre lien.</p>
+                </div>
+
+                <div class="real-card rounded-2xl p-4 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-neutral-600">Votre code parrain</span>
+                        <span class="text-xs font-extrabold text-neutral-950 bg-yellow-300 px-2.5 py-1 rounded-lg" id="ref-code-badge">AVN-000000</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <input type="text" id="ref-link-input" readonly class="w-full bg-neutral-100 border border-neutral-300 rounded-xl px-3 py-2 text-xs text-neutral-800">
+                        <button onclick="copyReferralLink()" class="yellow-btn font-extrabold px-3.5 py-2 rounded-xl text-xs shrink-0">
+                            Copier
+                        </button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="real-card rounded-2xl p-4">
+                        <p class="text-xs text-neutral-500">Filleuls directs</p>
+                        <p class="text-2xl font-extrabold text-neutral-950 mt-1" id="team-count">0</p>
+                    </div>
+                    <div class="real-card rounded-2xl p-4">
+                        <p class="text-xs text-neutral-500">Bonus parrainage</p>
+                        <p class="text-2xl font-extrabold text-yellow-600 mt-1" id="team-bonus">0 F</p>
+                    </div>
+                </div>
+
+                <div class="real-card rounded-2xl p-4">
+                    <h3 class="text-xs font-bold text-neutral-700 uppercase mb-3">Membres invités</h3>
+                    <div id="team-members-list" class="space-y-2 text-xs text-neutral-500">
+                        Aucun filleul pour le moment.
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE 5 : RECHARGE -->
             <section id="page-recharge" class="hidden space-y-4">
-                <div class="flex justify-between items-center">
-                    <button type="button" onclick="handleRechargeBackButton()" class="text-xs font-extrabold text-neutral-950 hover:underline flex items-center gap-1">
-                        <i class="fas fa-chevron-left text-[10px]"></i>
-                        <span id="recharge-back-label">Retour</span>
-                    </button>
-
-                    <button onclick="navigateTo('recharge-history')" class="px-3 py-1.5 rounded-xl bg-neutral-950 hover:bg-neutral-800 text-yellow-400 text-[11px] font-bold">
-                        Historique →
-                    </button>
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-extrabold text-neutral-950">Recharger le Solde</h2>
+                    <button onclick="navigateTo('recharge-history')" class="text-xs font-bold text-neutral-950 underline">Historique</button>
                 </div>
 
-                <div id="recharge-home-view" class="recharge-dark-card rounded-3xl p-5 space-y-4">
+                <div class="recharge-dark-card rounded-3xl p-5 space-y-4">
                     <div>
-                        <h2 class="text-xl font-extrabold text-white tracking-tight">Choisir le mode de paiement</h2>
-                        <p class="text-xs text-neutral-300 mt-1">
-                            Montant à recharger : <strong id="home-recharge-amount-display" class="text-yellow-400 font-extrabold">4 000 F</strong>
-                        </p>
+                        <label class="block text-xs font-bold text-yellow-300 uppercase mb-1.5">Montant à recharger (FCFA)</label>
+                        <input type="number" id="recharge-amount" min="1000" step="100" placeholder="Ex: 5000" class="w-full bg-neutral-900 border border-neutral-700 rounded-xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-yellow-400">
                     </div>
 
-                    <div>
-                        <label class="block text-[11px] font-bold text-yellow-300 uppercase mb-1.5">Montant à recharger (FCFA)</label>
-                        <input type="number" id="home-recharge-amount" min="1000" value="4000" oninput="syncRechargeAmountFromHome()" placeholder="Ex: 4000" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl py-2.5 px-4 text-sm font-extrabold text-white focus:outline-none focus:border-yellow-400">
-                    </div>
-
-                    <div class="space-y-2.5 pt-1">
-                        <button type="button" onclick="selectPaymentMethodAndOpenStep1('Wave', '0509302107')" class="w-full recharge-method-btn rounded-2xl px-4 py-3.5 flex items-center justify-between text-left">
-                            <span class="text-sm font-extrabold text-white">Wave</span>
-                            <i class="fas fa-chevron-right text-xs text-yellow-400"></i>
-                        </button>
-
-                        <button type="button" onclick="selectPaymentMethodAndOpenStep1('MTN Money', '0545576710')" class="w-full recharge-method-btn rounded-2xl px-4 py-3.5 flex items-center justify-between text-left">
-                            <span class="text-sm font-extrabold text-white">MTN Money</span>
-                            <i class="fas fa-chevron-right text-xs text-yellow-400"></i>
-                        </button>
-
-                        <button type="button" onclick="selectPaymentMethodAndOpenStep1('Moov Money', '0104217547')" class="w-full recharge-method-btn rounded-2xl px-4 py-3.5 flex items-center justify-between text-left">
-                            <span class="text-sm font-extrabold text-white">Moov Money</span>
-                            <i class="fas fa-chevron-right text-xs text-yellow-400"></i>
-                        </button>
-                    </div>
-
-                    <a href="https://pay.jeko.africa/pl/4f580acc-5df9-440e-b168-6beb65823bea" target="_blank" rel="noopener noreferrer" class="w-full yellow-btn font-extrabold py-3 px-4 rounded-xl text-xs shadow-md flex items-center justify-center gap-2 transition">
-                        <i class="fas fa-link"></i>
-                        <span>Payer pour Avenir (Lien Jeko)</span>
-                    </a>
-                </div>
-
-                <div id="recharge-step-1" class="recharge-dark-card rounded-2xl p-4 space-y-4 hidden">
-                    <div class="flex items-center justify-between border-b border-neutral-800 pb-2.5">
-                        <span class="text-xs font-extrabold text-yellow-300">Étape 1/2 : Paiement & ID transaction</span>
-                        <button type="button" onclick="openRechargeHomeView()" class="text-[11px] font-bold text-yellow-400 hover:underline">
-                            Changer mode
-                        </button>
-                    </div>
-
-                    <div class="flex flex-wrap items-center justify-between gap-2 bg-neutral-950 border border-neutral-800 rounded-xl p-3">
-                        <div class="text-xs font-bold text-neutral-200">Payer pour Avenir via Jeko :</div>
-                        <a href="https://pay.jeko.africa/pl/4f580acc-5df9-440e-b168-6beb65823bea" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg yellow-btn text-xs font-extrabold inline-flex items-center gap-1.5">
-                            <span>Lien Paiement Jeko</span>
-                            <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
-                        </a>
+                    <div class="grid grid-cols-3 gap-2">
+                        <button type="button" onclick="setRechargeAmount(2000)" class="py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-xs font-bold text-yellow-300 border border-neutral-700">2 000 F</button>
+                        <button type="button" onclick="setRechargeAmount(5000)" class="py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-xs font-bold text-yellow-300 border border-neutral-700">5 000 F</button>
+                        <button type="button" onclick="setRechargeAmount(10000)" class="py-2 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-xs font-bold text-yellow-300 border border-neutral-700">10 000 F</button>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-yellow-300 uppercase mb-2">Numéros Mobile Money (Cliquer pour copier)</label>
-                        <div id="recharge-numbers-list" class="space-y-2"></div>
-                    </div>
-
-                    <div class="bg-neutral-950 border border-neutral-800 text-white rounded-xl p-3 flex items-center justify-between text-xs">
-                        <div>
-                            <span class="text-neutral-400">Opérateur :</span>
-                            <strong id="selected-op-label" class="text-yellow-400 ml-1">Wave</strong>
+                        <p class="text-xs font-bold text-neutral-300 uppercase mb-2">Choisir un moyen de paiement</p>
+                        <div class="grid grid-cols-2 gap-2.5">
+                            <button type="button" onclick="submitRecharge('Wave')" class="recharge-method-btn rounded-xl p-3 text-left">
+                                <p class="text-xs font-extrabold text-yellow-400">Wave</p>
+                                <p class="text-[10px] text-neutral-400">Mobile Money</p>
+                            </button>
+                            <button type="button" onclick="submitRecharge('Orange Money')" class="recharge-method-btn rounded-xl p-3 text-left">
+                                <p class="text-xs font-extrabold text-yellow-400">Orange Money</p>
+                                <p class="text-[10px] text-neutral-400">Mobile Money</p>
+                            </button>
+                            <button type="button" onclick="submitRecharge('MTN MoMo')" class="recharge-method-btn rounded-xl p-3 text-left">
+                                <p class="text-xs font-extrabold text-yellow-400">MTN MoMo</p>
+                                <p class="text-[10px] text-neutral-400">Mobile Money</p>
+                            </button>
+                            <button type="button" onclick="submitRecharge('Moov Money')" class="recharge-method-btn rounded-xl p-3 text-left">
+                                <p class="text-xs font-extrabold text-yellow-400">Moov Money</p>
+                                <p class="text-[10px] text-neutral-400">Mobile Money</p>
+                            </button>
                         </div>
-                        <div>
-                            <span class="text-neutral-400">Numéro copié :</span>
-                            <strong id="copied-number-display" class="font-mono text-yellow-300 ml-1">0509302107</strong>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-yellow-300 uppercase mb-1.5">Montant (FCFA)</label>
-                        <input type="number" id="recharge-amount" min="1000" value="4000" oninput="syncRechargeAmountFromStep1()" placeholder="Ex: 10000" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl py-2.5 px-4 text-sm font-bold text-white placeholder-neutral-500 focus:outline-none focus:border-yellow-400">
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-yellow-300 uppercase mb-1.5">ID de transaction</label>
-                        <input type="text" id="recharge-txid" placeholder="Ex: TX-984321" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl py-2.5 px-4 text-sm uppercase font-mono text-white placeholder-neutral-500 focus:outline-none focus:border-yellow-400">
-                    </div>
-
-                    <button type="button" onclick="prepareRechargeConfirmation()" class="w-full yellow-btn font-extrabold py-3 rounded-xl shadow-md transition flex items-center justify-center gap-2">
-                        <span>Continuer vers la confirmation</span>
-                        <i class="fas fa-arrow-right text-xs"></i>
-                    </button>
-                </div>
-
-                <div id="recharge-step-2" class="recharge-dark-card rounded-2xl p-4 space-y-4 hidden border-2 border-yellow-400">
-                    <div class="flex items-center justify-between border-b border-neutral-800 pb-3">
-                        <div>
-                            <span class="text-[10px] font-extrabold uppercase text-neutral-950 bg-yellow-400 px-2 py-0.5 rounded-full">Vérification finale</span>
-                            <h3 class="text-sm font-extrabold text-white mt-1">Confirmer votre paiement</h3>
-                        </div>
-                        <button type="button" onclick="backToRechargeStep1()" class="text-xs font-bold text-yellow-400 hover:text-white underline">
-                            Modifier
-                        </button>
-                    </div>
-
-                    <div class="bg-neutral-950 border border-neutral-800 rounded-xl p-3.5 space-y-2 text-xs">
-                        <div class="flex justify-between">
-                            <span class="text-neutral-400">Opérateur :</span>
-                            <strong id="confirm-op" class="text-white">Wave</strong>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-neutral-400">Numéro destinataire :</span>
-                            <strong id="confirm-number" class="font-mono text-yellow-400">0509302107</strong>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-neutral-400">Montant à créditer :</span>
-                            <strong id="confirm-amount" class="text-yellow-300 font-extrabold text-sm">0 FCFA</strong>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-neutral-400">ID de transaction :</span>
-                            <strong id="confirm-txid" class="font-mono text-yellow-400">-</strong>
-                        </div>
-                    </div>
-
-                    <label class="flex items-start gap-2.5 bg-neutral-950 border border-yellow-500/50 rounded-xl p-3 cursor-pointer">
-                        <input type="checkbox" id="confirm-payment-checkbox" class="mt-0.5 w-4 h-4 accent-yellow-400 rounded">
-                        <span class="text-[11px] font-bold text-neutral-100 leading-snug">
-                            Je confirme avoir effectué le paiement avec l'ID de transaction ci-dessus et je souhaite soumettre ma recharge pour validation.
-                        </span>
-                    </label>
-
-                    <div class="grid grid-cols-2 gap-2.5">
-                        <button type="button" onclick="backToRechargeStep1()" class="py-2.5 px-3 rounded-xl border border-neutral-700 bg-neutral-950 text-neutral-200 font-bold text-xs hover:bg-neutral-900">
-                            Retour
-                        </button>
-                        <button type="button" onclick="confirmAndSubmitRecharge()" class="py-2.5 px-3 rounded-xl yellow-btn font-extrabold text-xs shadow-md flex items-center justify-center gap-1.5">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Confirmer le paiement</span>
-                        </button>
                     </div>
                 </div>
             </section>
 
-            <!-- PAGE 5 : HISTORIQUE DES RECHARGES -->
-            <section id="page-recharge-history" class="hidden space-y-4">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h2 class="text-xl font-extrabold text-neutral-950">Historique des Recharges</h2>
-                        <p class="text-xs text-neutral-500 mt-1">Toutes vos demandes de rechargement.</p>
-                    </div>
-                    <button onclick="navigateTo('recharge')" class="px-3 py-1.5 rounded-xl bg-neutral-950 text-yellow-400 text-[11px] font-bold">
-                        + Recharger
-                    </button>
-                </div>
-                <div id="recharge-history-list" class="space-y-2.5"></div>
-            </section>
-
-            <!-- PAGE 6 : DEMANDE DE RETRAIT -->
+            <!-- PAGE 6 : RETRAIT & COMPTE LIÉ -->
             <section id="page-withdraw" class="hidden space-y-4">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h2 class="text-xl font-extrabold text-neutral-950">Demande de Retrait</h2>
-                        <p class="text-xs text-neutral-500 mt-1">Frais de retrait : <strong>-6 % déduits</strong> sur le montant retiré.</p>
-                    </div>
-                    <div class="flex gap-1.5">
-                        <button onclick="navigateTo('withdraw-pending')" class="px-2.5 py-1.5 rounded-xl bg-yellow-100 text-neutral-950 text-[11px] font-bold">En attente</button>
-                        <button onclick="navigateTo('withdraw-history')" class="px-2.5 py-1.5 rounded-xl bg-neutral-950 text-yellow-400 text-[11px] font-bold">Historique</button>
-                    </div>
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-extrabold text-neutral-950">Retirer mes Gains</h2>
+                    <button onclick="navigateTo('withdraw-history')" class="text-xs font-bold text-neutral-950 underline">Historique</button>
                 </div>
 
-                <div class="real-card rounded-2xl p-4 flex justify-between items-center">
-                    <div>
-                        <p class="text-xs text-neutral-500">Solde disponible</p>
-                        <p class="text-xl font-extrabold text-neutral-950" id="withdraw-available">0 FCFA</p>
+                <div class="wallet-yellow-card rounded-2xl p-4 space-y-3">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xs font-extrabold text-neutral-950 uppercase">Compte de retrait lié</h3>
+                        <span id="linked-account-badge" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-neutral-200 text-neutral-700">Non lié</span>
                     </div>
-                    <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-neutral-950 text-yellow-400 border border-yellow-500/40">-6% déduits</span>
+
+                    <form onsubmit="saveLinkedAccount(event)" class="space-y-2.5">
+                        <div class="grid grid-cols-2 gap-2">
+                            <select id="link-operator" class="bg-white border border-neutral-300 rounded-xl py-2 px-3 text-xs font-bold text-neutral-900">
+                                <option value="Wave">Wave</option>
+                                <option value="Orange Money">Orange Money</option>
+                                <option value="MTN MoMo">MTN MoMo</option>
+                                <option value="Moov Money">Moov Money</option>
+                            </select>
+                            <input type="tel" id="link-phone" required placeholder="07 00 00 00 00" class="bg-white border border-neutral-300 rounded-xl py-2 px-3 text-xs text-neutral-900">
+                        </div>
+                        <input type="text" id="link-holder" required placeholder="Nom complet du titulaire" class="w-full bg-white border border-neutral-300 rounded-xl py-2 px-3 text-xs text-neutral-900">
+                        <button type="submit" class="w-full wallet-yellow-btn font-bold py-2 rounded-xl text-xs">
+                            Enregistrer le compte lié
+                        </button>
+                    </form>
                 </div>
 
-                <form onsubmit="submitWithdraw(event)" class="real-card rounded-2xl p-4 space-y-4">
+                <form onsubmit="submitWithdraw(event)" class="real-card rounded-2xl p-4 space-y-3">
+                    <div class="flex justify-between text-xs">
+                        <span class="text-neutral-500">Solde disponible :</span>
+                        <span class="font-extrabold text-neutral-950" id="withdraw-avail-balance">0 FCFA</span>
+                    </div>
                     <div>
-                        <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Numéro de réception</label>
-                        <input type="tel" id="withdraw-phone" required placeholder="07 00 00 00 00" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-4 text-sm text-neutral-950 focus:outline-none focus:border-yellow-500">
+                        <label class="block text-xs font-bold text-neutral-700 uppercase mb-1">Montant du retrait (FCFA)</label>
+                        <input type="number" id="withdraw-amount" min="1000" step="100" required placeholder="Ex: 5000" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-3.5 text-sm text-neutral-950">
                     </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Montant du retrait (FCFA)</label>
-                        <input type="number" id="withdraw-amount" required min="1000" oninput="updateWithdrawFeePreview()" placeholder="Ex: 5000" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-4 text-sm font-bold text-neutral-950 focus:outline-none focus:border-yellow-500">
-                    </div>
-
-                    <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-3 space-y-1.5 text-xs">
-                        <div class="flex justify-between">
-                            <span class="text-neutral-500">Montant demandé :</span>
-                            <strong id="withdraw-gross-amount" class="text-neutral-950">0 FCFA</strong>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-neutral-500">Frais déduits (-6%) :</span>
-                            <strong id="withdraw-fee-amount" class="text-neutral-800">-0 FCFA</strong>
-                        </div>
-                        <div class="flex justify-between pt-1 border-t border-neutral-200">
-                            <span class="text-neutral-800 font-bold">Montant net reçu (réduit de 6%) :</span>
-                            <strong id="withdraw-net-amount" class="text-yellow-600 font-extrabold">0 FCFA</strong>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Mot de passe du portefeuille (6 chiffres)</label>
-                        <input type="password" id="withdraw-pin" required maxlength="6" pattern="\d{6}" inputmode="numeric" placeholder="••••••" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-4 text-sm font-mono tracking-widest text-neutral-950 focus:outline-none focus:border-yellow-500">
-                    </div>
-
-                    <button type="submit" class="w-full yellow-btn font-extrabold py-3 rounded-xl shadow-md transition">
-                        Lancer le retrait (-6% déduits)
+                    <button type="submit" class="w-full yellow-btn font-extrabold py-3 rounded-xl text-sm shadow">
+                        Demander le retrait
                     </button>
                 </form>
             </section>
 
-            <!-- PAGE 7 : RETRAITS EN ATTENTE -->
-            <section id="page-withdraw-pending" class="hidden space-y-4">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h2 class="text-xl font-extrabold text-neutral-950">Retraits en Attente</h2>
-                        <p class="text-xs text-neutral-500 mt-1">Demandes en cours de traitement.</p>
-                    </div>
-                    <button onclick="navigateTo('withdraw')" class="px-3 py-1.5 rounded-xl bg-neutral-950 text-yellow-400 text-[11px] font-bold">
-                        + Nouveau retrait
-                    </button>
+            <!-- PAGE 7 : HISTORIQUE DES RECHARGES -->
+            <section id="page-recharge-history" class="hidden space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-extrabold text-neutral-950">Historique des Recharges</h2>
+                    <button onclick="navigateTo('recharge')" class="text-xs font-bold text-neutral-950 underline">+ Recharger</button>
                 </div>
-                <div id="withdraw-pending-list" class="space-y-2.5"></div>
+                <div id="recharge-history-list" class="space-y-2.5"></div>
             </section>
 
             <!-- PAGE 8 : HISTORIQUE DES RETRAITS -->
             <section id="page-withdraw-history" class="hidden space-y-4">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <h2 class="text-xl font-extrabold text-neutral-950">Historique des Retraits</h2>
-                        <p class="text-xs text-neutral-500 mt-1">Ensemble de vos retraits (validés, rejetés, en attente).</p>
-                    </div>
-                    <button onclick="navigateTo('withdraw-pending')" class="px-3 py-1.5 rounded-xl bg-yellow-100 text-neutral-950 text-[11px] font-bold">
-                        Voir en attente
-                    </button>
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-extrabold text-neutral-950">Historique des Retraits</h2>
+                    <button onclick="navigateTo('withdraw')" class="text-xs font-bold text-neutral-950 underline">+ Retirer</button>
                 </div>
                 <div id="withdraw-history-list" class="space-y-2.5"></div>
             </section>
 
-            <!-- PAGE 9 : ÉQUIPE -->
-            <section id="page-team" class="hidden space-y-4">
-                <div>
-                    <h2 class="text-xl font-extrabold text-neutral-950">Mon Équipe & Parrainage</h2>
-                    <p class="text-xs text-neutral-500 mt-1">Partagez votre lien : <strong>500 FCFA</strong> crédités automatiquement uniquement après le 1er rechargement validé de votre filleul.</p>
+            <!-- PAGE 9 : RETRAITS EN ATTENTE -->
+            <section id="page-withdraw-pending" class="hidden space-y-4">
+                <div class="flex items-center justify-between">
+                    <h2 class="text-xl font-extrabold text-neutral-950">Retraits en Attente</h2>
+                    <button onclick="navigateTo('withdraw-history')" class="text-xs font-bold text-neutral-950 underline">Tout voir</button>
                 </div>
-
-                <div class="real-card rounded-2xl p-4 space-y-3">
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-sm font-extrabold text-neutral-950">Lien de Parrainage</h3>
-                        <span class="text-[11px] font-extrabold text-neutral-950 bg-yellow-300 px-2.5 py-0.5 rounded-full">+500 F / filleul rechargé</span>
-                    </div>
-
-                    <div class="bg-neutral-950 text-white rounded-xl p-3.5 space-y-2 border border-yellow-500/40">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-[10px] uppercase text-neutral-400">Mon Code</p>
-                                <p id="referral-code-display" class="text-sm font-extrabold font-mono text-yellow-400">AVN-000000</p>
-                            </div>
-                            <button onclick="copyReferralCode()" class="px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold">
-                                Copier code
-                            </button>
-                        </div>
-                        <div class="pt-2 border-t border-neutral-800 flex items-center justify-between gap-2">
-                            <p id="referral-link-display" class="text-[11px] font-mono text-yellow-300 truncate"></p>
-                            <button onclick="copyReferralLink()" class="px-3 py-1.5 rounded-lg yellow-btn text-xs font-extrabold shrink-0">
-                                Copier lien
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-2 text-xs">
-                        <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-2.5">
-                            <p class="text-[10px] text-neutral-500">Filleuls inscrits</p>
-                            <p id="team-count-badge" class="text-base font-extrabold text-neutral-950 mt-0.5">0</p>
-                        </div>
-                        <div class="bg-yellow-50 border border-yellow-300 rounded-xl p-2.5">
-                            <p class="text-[10px] text-neutral-700">Bonus parrainage gagné</p>
-                            <p id="team-bonus-total" class="text-base font-extrabold text-neutral-950 mt-0.5">0 FCFA</p>
-                        </div>
-                    </div>
-
-                    <div class="text-[11px] text-neutral-700 bg-neutral-50 border border-neutral-200 rounded-xl px-3 py-2">
-                        Mon parrain : <strong id="referrer-name-display">Aucun</strong>
-                    </div>
-                </div>
-
-                <div class="real-card rounded-2xl p-4 space-y-3">
-                    <h3 class="text-sm font-extrabold text-neutral-950">Membres de mon équipe (Filleuls)</h3>
-                    <div id="team-members-list" class="space-y-2"></div>
-                </div>
-
-                <div class="wallet-yellow-card rounded-2xl p-4 space-y-3">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <div class="w-8 h-8 rounded-xl wallet-yellow-btn flex items-center justify-center shadow-xs">
-                                <i class="fas fa-wallet text-xs"></i>
-                            </div>
-                            <h3 class="text-sm font-extrabold text-neutral-950">Portefeuille — Compte Lié</h3>
-                        </div>
-                        <span id="account-link-badge" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white text-neutral-900 border border-yellow-500">Non lié</span>
-                    </div>
-
-                    <div id="linked-account-card" class="bg-white/90 border border-yellow-400 rounded-xl p-3 text-xs space-y-1">
-                        <p class="text-neutral-700">Aucun compte de portefeuille lié pour le moment.</p>
-                    </div>
-
-                    <div id="wallet-link-form" class="space-y-2.5 pt-1">
-                        <input type="text" id="wallet-username" placeholder="Nom d'utilisateur (ex: JeanKouassi)" class="w-full bg-white border border-yellow-500 rounded-xl py-2 px-3 text-xs text-neutral-950 focus:outline-none focus:border-neutral-950">
-                        <input type="tel" id="wallet-usernumber" placeholder="Numéro du portefeuille (ex: 07 00 00 00 00)" class="w-full bg-white border border-yellow-500 rounded-xl py-2 px-3 text-xs text-neutral-950 focus:outline-none focus:border-neutral-950">
-                        <input type="password" id="wallet-pin" maxlength="6" minlength="6" pattern="\d{6}" inputmode="numeric" placeholder="Mot de passe du portefeuille 6 chiffres (ex: 123456)" class="w-full bg-white border border-yellow-500 rounded-xl py-2 px-3 text-xs font-mono tracking-widest text-neutral-950 focus:outline-none focus:border-neutral-950">
-                        <button type="button" id="btn-lier-mon-compte" onclick="linkWalletAccount()" class="w-full wallet-yellow-btn font-extrabold py-2.5 rounded-xl text-xs shadow-sm hover:opacity-95 transition flex items-center justify-center gap-2">
-                            <i class="fas fa-link"></i>
-                            <span>Lier mon compte</span>
-                        </button>
-                    </div>
-                </div>
+                <div id="withdraw-pending-list" class="space-y-2.5"></div>
             </section>
 
         </main>
 
         <!-- BARRE DE NAVIGATION INFÉRIEURE -->
-        <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-neutral-200 px-1 py-2 flex justify-around items-center z-40">
-            <button onclick="navigateTo('dashboard')" id="nav-dashboard" class="flex flex-col items-center gap-1 text-neutral-400 nav-active w-1/6">
-                <i class="fas fa-wallet text-sm"></i>
-                <span class="text-[9px] font-bold">Solde</span>
+        <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white/95 backdrop-blur-md border-t border-neutral-200 px-2 py-2 flex justify-around items-center z-30">
+            <button onclick="navigateTo('dashboard')" id="nav-dashboard" class="nav-active flex flex-col items-center gap-1 py-1 px-2 text-[11px] font-bold">
+                <i class="fas fa-wallet text-base"></i>
+                <span>Accueil</span>
             </button>
-            <button onclick="navigateTo('plans')" id="nav-plans" class="flex flex-col items-center gap-1 text-neutral-400 w-1/6">
-                <i class="fas fa-chart-line text-sm"></i>
-                <span class="text-[9px] font-bold">Plans</span>
+            <button onclick="navigateTo('plans')" id="nav-plans" class="text-neutral-400 flex flex-col items-center gap-1 py-1 px-2 text-[11px] font-bold">
+                <i class="fas fa-chart-line text-base"></i>
+                <span>Investir</span>
             </button>
-            <button onclick="navigateTo('packs')" id="nav-packs" class="flex flex-col items-center gap-1 text-neutral-400 w-1/6">
-                <i class="fas fa-box-open text-sm"></i>
-                <span class="text-[9px] font-bold">Actifs</span>
+            <button onclick="navigateTo('packs')" id="nav-packs" class="text-neutral-400 flex flex-col items-center gap-1 py-1 px-2 text-[11px] font-bold">
+                <i class="fas fa-box-open text-base"></i>
+                <span>Actifs</span>
             </button>
-            <button onclick="navigateTo('recharge')" id="nav-recharge" class="flex flex-col items-center gap-1 text-neutral-400 w-1/6">
-                <i class="fas fa-plus-circle text-sm"></i>
-                <span class="text-[9px] font-bold">Recharge</span>
+            <button onclick="navigateTo('team')" id="nav-team" class="text-neutral-400 flex flex-col items-center gap-1 py-1 px-2 text-[11px] font-bold">
+                <i class="fas fa-users text-base"></i>
+                <span>Équipe</span>
             </button>
-            <button onclick="navigateTo('withdraw')" id="nav-withdraw" class="flex flex-col items-center gap-1 text-neutral-400 w-1/6">
-                <i class="fas fa-arrow-up-right-from-square text-sm"></i>
-                <span class="text-[9px] font-bold">Retrait</span>
-            </button>
-            <button onclick="navigateTo('team')" id="nav-team" class="flex flex-col items-center gap-1 text-neutral-400 w-1/6">
-                <i class="fas fa-users text-sm"></i>
-                <span class="text-[9px] font-bold">Équipe</span>
-            </button>
+            <a href="https://wa.me/message/ABZ2BRFJPVIOE1" target="_blank" rel="noopener noreferrer" onclick="openWhatsAppCustomerService(event)" id="nav-support" class="text-neutral-400 hover:text-neutral-900 flex flex-col items-center gap-1 py-1 px-2 text-[11px] font-bold">
+                <i class="fab fa-whatsapp text-green-600 text-base"></i>
+                <span>Service</span>
+            </a>
         </nav>
     </div>
 
-    <!-- MODAL SERVICE CLIENT -->
-    <div id="cs-modal" class="fixed inset-0 bg-neutral-950/70 z-50 hidden flex items-center justify-center p-4">
-        <div class="bg-white border border-neutral-200 rounded-3xl w-full max-w-md max-h-[88vh] flex flex-col overflow-hidden shadow-xl">
-            <div class="p-4 border-b border-neutral-200 flex justify-between items-center brand-gradient text-white">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-8 h-8 rounded-xl bg-yellow-400/15 flex items-center justify-center">
-                        <i class="fas fa-headset text-sm text-yellow-400"></i>
-                    </div>
-                    <div>
-                        <h3 class="font-extrabold text-sm leading-none">service avenir capital 24h/24</h3>
-                        <span class="text-[10px] text-yellow-300">Compte professionnel WhatsApp • 24h/24</span>
-                    </div>
-                </div>
-                <button onclick="closeCustomerServiceModal()" class="w-8 h-8 rounded-full bg-white/15 text-white flex items-center justify-center hover:bg-white/25">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-
-            <div class="p-4 overflow-y-auto space-y-4">
-                <!-- Carte WhatsApp officielle -->
-                <div class="bg-neutral-950 text-white border border-yellow-500/50 rounded-2xl p-3.5 space-y-3">
-                    <div class="flex items-center gap-3">
-                        <div class="w-11 h-11 rounded-2xl bg-green-500/20 border border-green-400/40 flex items-center justify-center shrink-0">
-                            <i class="fab fa-whatsapp text-green-400 text-2xl"></i>
-                        </div>
-                        <div class="min-w-0">
-                            <p class="text-xs font-extrabold text-white truncate">service avenir capital 24h/24</p>
-                            <p class="text-[10px] text-yellow-300">Compte professionnel WhatsApp</p>
-                            <p class="text-[10px] text-neutral-300 mt-0.5">Assistance recharges, retraits, plans & parrainage</p>
-                        </div>
-                    </div>
-
-                    <!-- Optionnel : décommentez et placez votre image QR code WhatsApp (ex: qr-whatsapp.png) dans le même dossier -->
-                    <!--
-                    <div class="bg-white rounded-xl p-2.5 text-center space-y-1">
-                        <img src="qr-whatsapp.png" alt="QR Code service avenir capital 24h/24" class="w-36 h-36 mx-auto object-contain rounded-lg">
-                        <p class="text-[10px] font-bold text-neutral-700">Scannez le QR code WhatsApp</p>
-                    </div>
-                    -->
-
-                    <a id="cs-whatsapp-link" href="https://wa.me/2250509302107?text=Bonjour%20service%20avenir%20capital%2024h%2F24%2C%20j%27ai%20besoin%20d%27aide." target="_blank" rel="noopener noreferrer" class="w-full yellow-btn rounded-xl py-3 px-4 text-xs font-extrabold flex items-center justify-center gap-2 shadow-sm transition">
-                        <i class="fab fa-whatsapp text-base"></i>
-                        <span>Démarrer une discussion WhatsApp</span>
-                    </a>
-                </div>
-
-                <form onsubmit="submitSupportTicket(event)" class="bg-neutral-50 border border-neutral-200 rounded-2xl p-3.5 space-y-2.5">
-                    <p class="text-xs font-extrabold text-neutral-950">Envoyer un message au support</p>
-                    <select id="cs-topic" class="w-full bg-white border border-neutral-300 rounded-xl py-2 px-3 text-xs font-bold text-neutral-900 focus:outline-none focus:border-yellow-500">
-                        <option value="Recharge / Confirmation paiement">Recharge / Confirmation paiement</option>
-                        <option value="Retrait en attente">Retrait en attente</option>
-                        <option value="Plans d'investissement (8 jours)">Plans d'investissement (8 jours)</option>
-                        <option value="Parrainage / Bonus 500 FCFA">Parrainage / Bonus 500 FCFA</option>
-                        <option value="Autre question">Autre question</option>
-                    </select>
-                    <textarea id="cs-message" rows="3" required placeholder="Décrivez votre demande (ex: ID de transaction, montant, question)..." class="w-full bg-white border border-neutral-300 rounded-xl py-2 px-3 text-xs text-neutral-950 focus:outline-none focus:border-yellow-500"></textarea>
-                    <button type="submit" class="w-full bg-neutral-950 text-yellow-400 font-extrabold py-2.5 rounded-xl text-xs hover:bg-neutral-800 transition">
-                        Envoyer au Service Client
-                    </button>
-                </form>
-
-                <div class="space-y-2">
-                    <h4 class="text-xs font-extrabold text-neutral-700 uppercase">Mes demandes récentes</h4>
-                    <div id="cs-tickets-list" class="space-y-2"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===================== LOGIQUE DE L'APPLICATION ===================== -->
     <script>
-        const DAY_MS = 24 * 60 * 60 * 1000;
-        const WITHDRAW_FEE_RATE = 0.06;
-        const REFERRAL_BONUS = 500;
-        const REFERRAL_BASE_URL = 'https://avenircapitalavenir-commits.github.io/avenir-capital-68/';
-        const CS_WHATSAPP_NUMBER = '2250509302107'; // Modifiez ici le numéro WhatsApp du service client si besoin
-        const TEST_MODE = false; // true = affiche le bouton "+24h" (à laisser false en production)
-
-        const INVESTMENT_PLANS_9 = [
-            { id: 'plan-1', name: '🌱 Plan 1 — Découverte', price: 3000, daily: 120, days: 8 },
-            { id: 'plan-2', name: '🚀 Plan 2 — Starter', price: 5000, daily: 220, days: 8 },
-            { id: 'plan-3', name: '⚡ Plan 3 — Essentiel', price: 10000, daily: 460, days: 8 },
-            { id: 'plan-4', name: '💼 Plan 4 — Croissance', price: 20000, daily: 950, days: 8 },
-            { id: 'plan-5', name: '📈 Plan 5 — Pro', price: 50000, daily: 2500, days: 8 },
-            { id: 'plan-6', name: '💎 Plan 6 — Premium', price: 100000, daily: 5200, days: 8 },
-            { id: 'plan-7', name: '👑 Plan 7 — VIP', price: 250000, daily: 13500, days: 8 },
-            { id: 'plan-8', name: '🏆 Plan 8 — Prestige', price: 500000, daily: 28000, days: 8 },
-            { id: 'plan-9', name: '🔴 Plan 9 — Élite Suprême', price: 1000000, daily: 58000, days: 8 }
-        ].map(p => ({
-            ...p,
-            profit: p.daily * p.days,
-            total: p.price + (p.daily * p.days)
-        }));
-
-        const RECHARGE_NUMBERS = [
-            { op: 'Moov Money', label: 'Moov money', phone: '0104217547' },
-            { op: 'Wave', label: 'Wave', phone: '0509302107' },
-            { op: 'MTN Money', label: 'MTN money', phone: '0545576710' }
-        ];
-
-        let selectedOperator = 'Wave';
-        let copiedNumber = '0509302107';
-        let pendingRechargeDraft = null;
-        let rechargeSubView = 'home';
-        let currentUser = null;
-        let transactionsDB = [];
-        let supportTicketsDB = [];
-
-        // ---------- Utilitaires ----------
-        const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-        const newId = prefix => `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
-        const todayFR = () => new Date().toLocaleDateString('fr-FR');
-        const onlyDigits = s => (s || '').replace(/\D/g, '');
-
-        async function hashPin(pin) {
-            if (!window.crypto || !crypto.subtle) throw new Error('crypto-indisponible');
-            const data = new TextEncoder().encode(currentUser.phone + ':' + pin);
-            const buf = await crypto.subtle.digest('SHA-256', data);
-            return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
-        }
-
-        function refreshCustomerServiceWhatsAppLink() {
-            const linkEl = document.getElementById('cs-whatsapp-link');
-            if (!linkEl) return;
-            const userInfo = currentUser ? ` (Membre: ${currentUser.name} / ${currentUser.phone})` : '';
-            const text = encodeURIComponent(`Bonjour service avenir capital 24h/24, j'ai besoin d'aide${userInfo}.`);
-            linkEl.href = `https://wa.me/${onlyDigits(CS_WHATSAPP_NUMBER)}?text=${text}`;
-        }
-
-        // ---------- Démarrage ----------
-        window.onload = () => {
-            renderRechargeNumbers();
-            renderPlans();
-            syncRechargeAmountFromHome();
-            updateWithdrawFeePreview();
-            refreshCustomerServiceWhatsAppLink();
-
-            if (TEST_MODE) document.getElementById('btn-sim-day').classList.remove('hidden');
-
-            const params = new URLSearchParams(window.location.search);
-            const urlRef = params.get('ref');
-            if (urlRef) {
-                document.getElementById('reg-ref').value = urlRef.toUpperCase();
-                switchAuthTab('register');
-            }
-
-            const lastPhone = localStorage.getItem('avenir_v6_last_phone');
-            if (lastPhone) document.getElementById('login-phone').value = lastPhone;
-
-            setInterval(() => {
-                if (!currentUser) return;
-                if (!document.getElementById('page-packs').classList.contains('hidden')) {
-                    renderMyPurchasedPacks();
-                }
-            }, 1000);
-
-            setTimeout(() => {
-                if (!currentUser && !window.fbReady) revealAuth();
-            }, 6000);
+        // CONFIGURATION SERVICE CLIENT WHATSAPP 24H/24
+        const CUSTOMER_SERVICE = {
+            name: 'Service avenir capital 24h/24',
+            phone: '0100725497',
+            internationalPhone: '+2250100725497',
+            whatsappUrl: 'https://wa.me/message/ABZ2BRFJPVIOE1'
         };
 
-        function revealAuth() {
-            document.getElementById('splash').classList.add('hidden');
-            document.getElementById('main-app').classList.add('hidden');
-            document.getElementById('auth-screen').classList.remove('hidden');
+        function openWhatsAppCustomerService(event) {
+            if (event) event.preventDefault();
+            window.open(CUSTOMER_SERVICE.whatsappUrl, '_blank', 'noopener,noreferrer');
+            showToast(`Ouverture de ${CUSTOMER_SERVICE.name} (${CUSTOMER_SERVICE.phone})…`, 'info');
         }
 
-        function normalizeUser(user) {
-            return {
-                ...user,
-                registeredAt: user.registeredAt || todayFR(),
-                balance: user.balance || 0,
-                revenueTotal: user.revenueTotal || 0,
-                referralBonusTotal: user.referralBonusTotal || 0,
-                referralRewardPaid: Boolean(user.referralRewardPaid),
-                sponsorUid: user.sponsorUid || null,
-                referredBy: user.referredBy || null,
-                activePlans: (user.activePlans || []).map(p => ({
-                    ...p,
-                    totalDays: p.totalDays || 8,
-                    lastCreditAt: p.lastCreditAt || p.purchasedAt || Date.now(),
-                    earnedSoFar: p.earnedSoFar || 0
-                })),
-                wallet: user.wallet || null,
-                referralCode: user.referralCode || ('AVN-' + String(user.phone || '000000').slice(-6).padStart(6, '0')),
-                team: user.team || []
-            };
+        // 9 PLANS D'INVESTISSEMENT (CYCLE 8 JOURS, RÉCLAMATION TOUTES LES 24H)
+        const INVESTMENT_PLANS = [
+            { id: 1, name: 'Plan Starter', price: 2000, daily: 350, days: 8 },
+            { id: 2, name: 'Plan Bronze', price: 5000, daily: 900, days: 8 },
+            { id: 3, name: 'Plan Silver', price: 10000, daily: 1850, days: 8 },
+            { id: 4, name: 'Plan Gold', price: 20000, daily: 3800, days: 8 },
+            { id: 5, name: 'Plan Platinum', price: 35000, daily: 6800, days: 8 },
+            { id: 6, name: 'Plan Diamond', price: 50000, daily: 10000, days: 8 },
+            { id: 7, name: 'Plan VIP 1', price: 100000, daily: 21000, days: 8 },
+            { id: 8, name: 'Plan VIP 2', price: 200000, daily: 44000, days: 8 },
+            { id: 9, name: 'Plan Royal', price: 500000, daily: 115000, days: 8 }
+        ];
+
+        const STORAGE_KEY = 'avenir_capital_state_v1';
+        const DAY_MS = 24 * 60 * 60 * 1000;
+
+        let state = {
+            currentUserId: null,
+            users: [],
+            userData: {}
+        };
+
+        function formatFCFA(n) {
+            return Number(n || 0).toLocaleString('fr-FR') + ' FCFA';
         }
 
-        function getClaimableDays(plan) {
-            if (!plan || plan.daysLeft <= 0) return 0;
-            const now = Date.now();
-            const anchor = plan.lastCreditAt || now;
-            if (now - anchor < DAY_MS) return 0;
-            const elapsedDays = Math.floor((now - anchor) / DAY_MS);
-            return Math.min(elapsedDays, plan.daysLeft);
+        function formatShortF(n) {
+            return Number(n || 0).toLocaleString('fr-FR') + ' F';
         }
 
-        function claimPlanRevenue(planId) {
-            if (!currentUser) return;
-            const plan = (currentUser.activePlans || []).find(p => p.id === planId);
-            if (!plan) return;
-
-            if (plan.daysLeft <= 0) {
-                return notify('Les 8 jours de ce plan sont déjà tous réclamés.', 'warning');
-            }
-
-            const daysToClaim = getClaimableDays(plan);
-            if (daysToClaim <= 0) {
-                const msLeft = Math.max(0, ((plan.lastCreditAt || Date.now()) + DAY_MS) - Date.now());
-                const hrs = Math.floor(msLeft / 3600000);
-                const mins = Math.floor((msLeft % 3600000) / 60000);
-                return notify(`Patientez encore ${hrs}h ${mins}min (cycle strict de 24h).`, 'warning');
-            }
-
-            const gain = daysToClaim * plan.daily;
-            plan.daysLeft -= daysToClaim;
-            plan.earnedSoFar = (plan.earnedSoFar || 0) + gain;
-            plan.lastCreditAt = Date.now();
-
-            currentUser.balance += gain;
-            currentUser.revenueTotal = (currentUser.revenueTotal || 0) + gain;
-
-            transactionsDB.unshift({
-                id: newId('CLM'),
-                userPhone: currentUser.phone,
-                userName: currentUser.name,
-                category: 'revenue',
-                type: `Revenu réclamé (${plan.name} • ${daysToClaim}j / 24h)`,
-                amount: gain,
-                status: 'Validé',
-                date: todayFR()
-            });
-
-            saveData();
-            notify(`Revenu réclamé : +${formatFCFA(gain)} ! Prochaine réclamation dans 24h.`, 'success');
-        }
-
-        function simulateNextDay() {
-            if (!TEST_MODE || !currentUser || !currentUser.activePlans) return;
-            let updated = false;
-            currentUser.activePlans.forEach(plan => {
-                if (plan.daysLeft > 0) {
-                    plan.lastCreditAt = Date.now() - DAY_MS;
-                    updated = true;
-                }
-            });
-            if (updated) {
-                saveData();
-                notify('24h écoulées (test) : bouton Réclamer débloqué.');
-            } else {
-                notify('Aucun plan actif avec jours restants.', 'warning');
-            }
-        }
-
-        // ---------- Recharge ----------
-        function renderRechargeNumbers() {
-            const container = document.getElementById('recharge-numbers-list');
-            container.innerHTML = RECHARGE_NUMBERS.map(item => `
-                <div class="flex items-center justify-between bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2.5">
-                    <div>
-                        <p class="text-[11px] text-yellow-300 font-semibold">${item.label}</p>
-                        <p class="text-sm font-extrabold text-white font-mono">${item.phone}</p>
-                    </div>
-                    <button type="button" onclick="copyRechargeNumber('${item.op}', '${item.phone}')" class="px-3 py-1 rounded-lg yellow-btn text-xs font-extrabold">
-                        Copier
-                    </button>
-                </div>
-            `).join('');
-        }
-
-        function copyRechargeNumber(op, phone) {
-            selectedOperator = op;
-            copiedNumber = phone;
-            navigator.clipboard?.writeText(phone).catch(() => {});
-            document.getElementById('selected-op-label').innerText = op;
-            document.getElementById('copied-number-display').innerText = phone;
-            notify(`Numéro ${op} (${phone}) copié.`);
-        }
-
-        function syncRechargeAmountFromHome() {
-            const val = parseInt(document.getElementById('home-recharge-amount').value) || 0;
-            document.getElementById('home-recharge-amount-display').innerText = `${val.toLocaleString('fr-FR')} F`;
-            document.getElementById('recharge-amount').value = val || '';
-        }
-
-        function syncRechargeAmountFromStep1() {
-            const val = parseInt(document.getElementById('recharge-amount').value) || 0;
-            document.getElementById('home-recharge-amount').value = val || '';
-            document.getElementById('home-recharge-amount-display').innerText = `${val.toLocaleString('fr-FR')} F`;
-        }
-
-        function openRechargeHomeView() {
-            rechargeSubView = 'home';
-            document.getElementById('recharge-home-view').classList.remove('hidden');
-            document.getElementById('recharge-step-1').classList.add('hidden');
-            document.getElementById('recharge-step-2').classList.add('hidden');
-            document.getElementById('recharge-back-label').innerText = 'Retour';
-            syncRechargeAmountFromStep1();
-        }
-
-        function selectPaymentMethodAndOpenStep1(op, phone) {
-            const amount = parseInt(document.getElementById('home-recharge-amount').value);
-            if (!amount || amount < 1000) {
-                return notify('Montant minimum : 1 000 FCFA.', 'error');
-            }
-            document.getElementById('recharge-amount').value = amount;
-            copyRechargeNumber(op, phone);
-            backToRechargeStep1(true);
-        }
-
-        function handleRechargeBackButton() {
-            if (rechargeSubView === 'step2') {
-                backToRechargeStep1(true);
-            } else if (rechargeSubView === 'step1') {
-                openRechargeHomeView();
-            } else {
-                navigateTo('dashboard');
-            }
-        }
-
-        // ---------- Plans ----------
-        function renderPlans() {
-            const container = document.getElementById('plans-list');
-            container.innerHTML = INVESTMENT_PLANS_9.map(p => `
-                <div class="real-card rounded-2xl p-3.5 space-y-2">
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-extrabold text-neutral-950">${p.name}</span>
-                        <span class="text-xs font-extrabold text-yellow-600">${formatFCFA(p.price)}</span>
-                    </div>
-                    <div class="grid grid-cols-3 gap-2 text-[11px] bg-neutral-50 border border-neutral-200 rounded-xl p-2 text-center">
-                        <div>
-                            <p class="text-neutral-500">Revenu / 24h</p>
-                            <p class="font-extrabold text-red-600">+${p.daily.toLocaleString('fr-FR')} F</p>
-                        </div>
-                        <div>
-                            <p class="text-neutral-500">Bénéfice (8j)</p>
-                            <p class="font-extrabold text-red-600">+${p.profit.toLocaleString('fr-FR')} F</p>
-                        </div>
-                        <div>
-                            <p class="text-neutral-500">Total (8j)</p>
-                            <p class="font-extrabold text-neutral-950">${p.total.toLocaleString('fr-FR')} F</p>
-                        </div>
-                    </div>
-                    <button onclick="subscribePlan('${p.id}')" class="w-full yellow-btn font-extrabold py-2 rounded-xl text-xs transition shadow-xs">
-                        Investir sur ce plan (8 jours • 24h/24)
-                    </button>
-                </div>
-            `).join('');
-        }
-
-        function subscribePlan(planId) {
-            if (!currentUser) return;
-            const plan = INVESTMENT_PLANS_9.find(x => x.id === planId);
-            if (!plan) return;
-
-            if (currentUser.balance < plan.price) {
-                notify(`Solde insuffisant (${formatFCFA(plan.price)} requis).`, 'error');
-                return navigateTo('recharge');
-            }
-
-            const now = Date.now();
-            currentUser.balance -= plan.price;
-            currentUser.activePlans.unshift({
-                id: newId('PCK'),
-                name: plan.name,
-                price: plan.price,
-                daily: plan.daily,
-                totalDays: plan.days,
-                daysLeft: plan.days,
-                earnedSoFar: 0,
-                purchasedAt: now,
-                lastCreditAt: now
-            });
-
-            transactionsDB.unshift({
-                id: newId('TX'),
-                userPhone: currentUser.phone,
-                userName: currentUser.name,
-                category: 'pack',
-                type: `Achat ${plan.name}`,
-                amount: -plan.price,
-                status: 'Validé',
-                date: todayFR()
-            });
-
-            saveData();
-            notify(`${plan.name} activé ! Première réclamation disponible dans 24h exactes.`);
-            navigateTo('packs');
-        }
-
-        function saveData() {
-            updateUI();
-            if (window.fbPush) window.fbPush();
-        }
-
-        function notify(message, type = 'success') {
+        function showToast(message, type = 'success') {
             const toast = document.getElementById('toast');
             const content = document.getElementById('toast-content');
-
             const styles = {
-                success: 'bg-neutral-950 border-yellow-400 text-yellow-300',
-                error: 'bg-neutral-950 border-red-500 text-red-400',
-                warning: 'bg-yellow-50 border-yellow-500 text-neutral-950'
+                success: 'bg-neutral-950 text-yellow-300 border-yellow-400',
+                error: 'bg-red-600 text-white border-red-400',
+                info: 'bg-neutral-900 text-white border-yellow-500'
             };
-
-            content.className = `px-4 py-3 rounded-xl shadow-lg border flex items-center gap-2.5 text-xs font-bold ${styles[type]}`;
-            content.innerHTML = `<i class="fas fa-info-circle"></i><span>${esc(message)}</span>`;
-
+            content.className = `px-4 py-3 rounded-xl shadow-xl border flex items-center gap-3 text-xs font-bold ${styles[type] || styles.info}`;
+            content.innerHTML = `<i class="fas ${type === 'error' ? 'fa-circle-exclamation' : 'fa-circle-check'}"></i><span>${message}</span>`;
             toast.classList.remove('hidden');
-            clearTimeout(window.__toastTimer);
-            window.__toastTimer = setTimeout(() => toast.classList.add('hidden'), 3400);
+            clearTimeout(window._toastTimer);
+            window._toastTimer = setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
+
+        function saveState() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function getDefaultUserData(user) {
+            return {
+                balance: 0,
+                planRevenue: 0,
+                referralBonus: 0,
+                referralCode: 'AVN-' + String(user.id).slice(-6),
+                referrals: [],
+                activePacks: [],
+                recharges: [],
+                withdrawals: [],
+                linkedAccount: null
+            };
+        }
+
+        function ensureUserData(user) {
+            if (!state.userData[user.id]) {
+                state.userData[user.id] = getDefaultUserData(user);
+            }
+            return state.userData[user.id];
+        }
+
+        function getCurrentUser() {
+            return state.users.find(u => u.id === state.currentUserId) || null;
         }
 
         function switchAuthTab(tab) {
-            document.getElementById('login-form').classList.toggle('hidden', tab !== 'login');
-            document.getElementById('register-form').classList.toggle('hidden', tab !== 'register');
-
-            const activeCls = 'w-1/2 pb-3 text-xs font-bold border-b-2 border-yellow-500 text-neutral-950';
-            const inactiveCls = 'w-1/2 pb-3 text-xs font-bold border-b-2 border-transparent text-neutral-400';
-
-            document.getElementById('tab-login').className = tab === 'login' ? activeCls : inactiveCls;
-            document.getElementById('tab-register').className = tab === 'register' ? activeCls : inactiveCls;
+            const isLogin = tab === 'login';
+            document.getElementById('login-form').classList.toggle('hidden', !isLogin);
+            document.getElementById('register-form').classList.toggle('hidden', isLogin);
+            document.getElementById('tab-login').className = isLogin
+                ? 'w-1/2 pb-3 text-xs font-bold border-b-2 border-yellow-500 text-neutral-950'
+                : 'w-1/2 pb-3 text-xs font-bold border-b-2 border-transparent text-neutral-400';
+            document.getElementById('tab-register').className = !isLogin
+                ? 'w-1/2 pb-3 text-xs font-bold border-b-2 border-yellow-500 text-neutral-950'
+                : 'w-1/2 pb-3 text-xs font-bold border-b-2 border-transparent text-neutral-400';
         }
 
-        function logout() {
-            const lastPhone = currentUser ? currentUser.phone : localStorage.getItem('avenir_v6_last_phone');
-            if (lastPhone) localStorage.setItem('avenir_v6_last_phone', lastPhone);
-            if (window.fbSignOut) window.fbSignOut();
-            currentUser = null;
-            transactionsDB = [];
-            supportTicketsDB = [];
-            pendingRechargeDraft = null;
-            refreshCustomerServiceWhatsAppLink();
-            revealAuth();
-            switchAuthTab('login');
-            if (lastPhone) document.getElementById('login-phone').value = lastPhone;
-            document.getElementById('login-pass').value = '';
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('reg-name').value.trim();
+            const phone = document.getElementById('reg-phone').value.replace(/\s+/g, '').trim();
+            const refInput = document.getElementById('reg-ref').value.trim().toUpperCase();
+            const pass = document.getElementById('reg-pass').value;
+
+            if (pass.length < 6) {
+                return showToast('Le mot de passe doit contenir au moins 6 caractères.', 'error');
+            }
+            if (state.users.some(u => u.phone === phone)) {
+                return showToast('Ce numéro est déjà inscrit.', 'error');
+            }
+
+            const newUser = {
+                id: 'U' + Date.now() + Math.floor(Math.random() * 100),
+                name,
+                phone,
+                pass
+            };
+            state.users.push(newUser);
+            const data = ensureUserData(newUser);
+
+            if (refInput) {
+                const referrer = state.users.find(u => {
+                    const uData = ensureUserData(u);
+                    return uData.referralCode === refInput;
+                });
+                if (referrer && referrer.id !== newUser.id) {
+                    const refData = ensureUserData(referrer);
+                    refData.balance += 500;
+                    refData.referralBonus += 500;
+                    refData.referrals.push({
+                        name: newUser.name,
+                        phone: newUser.phone,
+                        bonus: 500,
+                        date: new Date().toLocaleDateString('fr-FR')
+                    });
+                }
+            }
+
+            state.currentUserId = newUser.id;
+            saveState();
+            showToast('Compte créé avec succès !', 'success');
+            enterApp();
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const phone = document.getElementById('login-phone').value.replace(/\s+/g, '').trim();
+            const pass = document.getElementById('login-pass').value;
+            const user = state.users.find(u => u.phone === phone && u.pass === pass);
+            if (!user) {
+                return showToast('Numéro ou mot de passe incorrect.', 'error');
+            }
+            state.currentUserId = user.id;
+            ensureUserData(user);
+            saveState();
+            showToast(`Bienvenue ${user.name}`, 'success');
+            enterApp();
         }
 
         function logoutAndReconnect() {
-            const name = currentUser ? currentUser.name : '';
-            logout();
-            notify(name ? `Déconnecté (${name}). Vous pouvez vous reconnecter.` : 'Déconnecté.', 'warning');
-            setTimeout(() => document.getElementById('login-pass')?.focus(), 100);
+            state.currentUserId = null;
+            saveState();
+            document.getElementById('main-app').classList.add('hidden');
+            document.getElementById('auth-screen').classList.remove('hidden');
+            switchAuthTab('login');
         }
 
-        function showMainApp() {
-            document.getElementById('splash').classList.add('hidden');
-            document.getElementById('auth-screen').classList.add('hidden');
-            document.getElementById('main-app').classList.remove('hidden');
-            refreshCustomerServiceWhatsAppLink();
-            updateUI();
-        }
-
-        const ALL_PAGES = ['dashboard', 'plans', 'packs', 'recharge', 'recharge-history', 'withdraw', 'withdraw-pending', 'withdraw-history', 'team'];
-
-        function navigateTo(pageId) {
-            ALL_PAGES.forEach(p => {
-                const el = document.getElementById(`page-${p}`);
-                if (el) el.classList.add('hidden');
+        function navigateTo(page) {
+            const pages = [
+                'dashboard', 'plans', 'packs', 'team',
+                'recharge', 'withdraw', 'recharge-history',
+                'withdraw-history', 'withdraw-pending'
+            ];
+            pages.forEach(p => {
+                const el = document.getElementById('page-' + p);
+                if (el) el.classList.toggle('hidden', p !== page);
             });
 
-            ['dashboard', 'plans', 'packs', 'recharge', 'withdraw', 'team'].forEach(nav => {
-                const btn = document.getElementById(`nav-${nav}`);
-                if (btn) btn.classList.remove('nav-active');
+            const navs = ['dashboard', 'plans', 'packs', 'team'];
+            navs.forEach(n => {
+                const btn = document.getElementById('nav-' + n);
+                if (btn) {
+                    btn.className = n === page
+                        ? 'nav-active flex flex-col items-center gap-1 py-1 px-2 text-[11px] font-bold'
+                        : 'text-neutral-400 flex flex-col items-center gap-1 py-1 px-2 text-[11px] font-bold';
+                }
             });
 
-            const target = document.getElementById(`page-${pageId}`);
-            if (target) target.classList.remove('hidden');
-
-            const navMap = {
-                'dashboard': 'dashboard', 'plans': 'plans', 'packs': 'packs',
-                'recharge': 'recharge', 'recharge-history': 'recharge',
-                'withdraw': 'withdraw', 'withdraw-pending': 'withdraw', 'withdraw-history': 'withdraw',
-                'team': 'team'
-            };
-            const activeBtn = document.getElementById(`nav-${navMap[pageId]}`);
-            if (activeBtn) activeBtn.classList.add('nav-active');
-
-            if (pageId === 'recharge') openRechargeHomeView();
-            else if (pageId === 'withdraw') updateWithdrawFeePreview();
-
-            window.scrollTo(0, 0);
-            updateUI();
+            renderAll();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function getReferralLink() {
-            if (!currentUser) return `${REFERRAL_BASE_URL}?ref=AVN-000000`;
-            return `${REFERRAL_BASE_URL}?ref=${encodeURIComponent(currentUser.referralCode)}`;
+        function buyPlan(planId) {
+            const user = getCurrentUser();
+            if (!user) return;
+            const data = ensureUserData(user);
+            const plan = INVESTMENT_PLANS.find(p => p.id === planId);
+            if (!plan) return;
+
+            if (data.balance < plan.price) {
+                return showToast('Solde insuffisant. Veuillez recharger votre compte.', 'error');
+            }
+
+            data.balance -= plan.price;
+            data.activePacks.push({
+                instanceId: 'PK_' + Date.now() + '_' + Math.floor(Math.random() * 1000),
+                planId: plan.id,
+                name: plan.name,
+                price: plan.price,
+                daily: plan.daily,
+                daysTotal: plan.days,
+                claimedDays: 0,
+                lastClaimAt: Date.now()
+            });
+
+            saveState();
+            showToast(`${plan.name} activé pour 8 jours !`, 'success');
+            navigateTo('packs');
         }
 
-        function copyReferralCode() {
-            if (!currentUser) return;
-            navigator.clipboard?.writeText(currentUser.referralCode).catch(() => {});
-            notify(`Code ${currentUser.referralCode} copié.`);
+        function claimPackDaily(instanceId) {
+            const user = getCurrentUser();
+            if (!user) return;
+            const data = ensureUserData(user);
+            const pack = data.activePacks.find(p => p.instanceId === instanceId);
+            if (!pack) return;
+
+            if (pack.claimedDays >= pack.daysTotal) {
+                return showToast('Ce cycle de 8 jours est déjà terminé.', 'info');
+            }
+
+            const now = Date.now();
+            if (now - pack.lastClaimAt < DAY_MS) {
+                return showToast('Réclamation disponible toutes les 24h exactes.', 'error');
+            }
+
+            pack.claimedDays += 1;
+            pack.lastClaimAt = now;
+            data.balance += pack.daily;
+            data.planRevenue += pack.daily;
+
+            saveState();
+            showToast(`+${formatFCFA(pack.daily)} réclamés (Jour ${pack.claimedDays}/${pack.daysTotal})`, 'success');
+            renderAll();
+        }
+
+        function setRechargeAmount(amt) {
+            document.getElementById('recharge-amount').value = amt;
+        }
+
+        function submitRecharge(method) {
+            const user = getCurrentUser();
+            if (!user) return;
+            const data = ensureUserData(user);
+            const amount = Number(document.getElementById('recharge-amount').value);
+
+            if (!amount || amount < 1000) {
+                return showToast('Montant minimum de recharge : 1 000 FCFA.', 'error');
+            }
+
+            data.balance += amount;
+            data.recharges.unshift({
+                id: 'RCH-' + Date.now().toString().slice(-6),
+                amount,
+                method,
+                status: 'Validée',
+                date: new Date().toLocaleString('fr-FR')
+            });
+
+            document.getElementById('recharge-amount').value = '';
+            saveState();
+            showToast(`Recharge de ${formatFCFA(amount)} via ${method} effectuée !`, 'success');
+            renderAll();
+        }
+
+        function saveLinkedAccount(e) {
+            e.preventDefault();
+            const user = getCurrentUser();
+            if (!user) return;
+            const data = ensureUserData(user);
+
+            const operator = document.getElementById('link-operator').value;
+            const phone = document.getElementById('link-phone').value.trim();
+            const holder = document.getElementById('link-holder').value.trim();
+
+            if (!phone || !holder) {
+                return showToast('Veuillez remplir tous les champs du compte lié.', 'error');
+            }
+
+            data.linkedAccount = { operator, phone, holder };
+            saveState();
+            showToast('Compte de retrait lié enregistré.', 'success');
+            renderAll();
+        }
+
+        function submitWithdraw(e) {
+            e.preventDefault();
+            const user = getCurrentUser();
+            if (!user) return;
+            const data = ensureUserData(user);
+
+            if (!data.linkedAccount) {
+                return showToast('Veuillez d’abord lier un compte de retrait.', 'error');
+            }
+
+            const amount = Number(document.getElementById('withdraw-amount').value);
+            if (!amount || amount < 1000) {
+                return showToast('Montant minimum de retrait : 1 000 FCFA.', 'error');
+            }
+            if (amount > data.balance) {
+                return showToast('Solde disponible insuffisant.', 'error');
+            }
+
+            data.balance -= amount;
+            data.withdrawals.unshift({
+                id: 'WDR-' + Date.now().toString().slice(-6),
+                amount,
+                operator: data.linkedAccount.operator,
+                phone: data.linkedAccount.phone,
+                status: 'En attente',
+                date: new Date().toLocaleString('fr-FR')
+            });
+
+            document.getElementById('withdraw-amount').value = '';
+            saveState();
+            showToast(`Demande de retrait de ${formatFCFA(amount)} envoyée.`, 'success');
+            renderAll();
         }
 
         function copyReferralLink() {
-            if (!currentUser) return;
-            navigator.clipboard?.writeText(getReferralLink()).catch(() => {});
-            notify('Lien de parrainage copié ! Bonus 500 FCFA dès le 1er rechargement validé du filleul.');
+            const input = document.getElementById('ref-link-input');
+            input.select();
+            navigator.clipboard?.writeText(input.value);
+            showToast('Lien de parrainage copié !', 'success');
         }
 
-        function formatFCFA(num) {
-            return (num || 0).toLocaleString('fr-FR') + ' FCFA';
-        }
+        function renderAll() {
+            const user = getCurrentUser();
+            if (!user) return;
+            const data = ensureUserData(user);
 
-        function updateUI() {
-            if (!currentUser) return;
+            document.getElementById('header-user-name').textContent = user.name;
+            document.getElementById('dash-balance').innerHTML = `${Number(data.balance || 0).toLocaleString('fr-FR')} <span class="text-base font-bold text-yellow-400">FCFA</span>`;
+            document.getElementById('dash-revenue').textContent = `+${formatShortF(data.planRevenue)}`;
+            document.getElementById('dash-ref-bonus').textContent = `+${formatShortF(data.referralBonus)}`;
+            document.getElementById('dash-linked-status').textContent = data.linkedAccount ? data.linkedAccount.operator : 'Non lié';
+            document.getElementById('withdraw-avail-balance').textContent = formatFCFA(data.balance);
 
-            const rev = currentUser.revenueTotal || 0;
-            const refBonus = currentUser.referralBonusTotal || 0;
-
-            document.getElementById('header-user-name').innerText = currentUser.name;
-            document.getElementById('dash-balance').innerHTML = `${currentUser.balance.toLocaleString('fr-FR')} <span class="text-base font-bold text-yellow-400">FCFA</span>`;
-            document.getElementById('dash-revenue').innerText = '+' + formatFCFA(rev);
-            document.getElementById('dash-ref-bonus').innerText = '+' + formatFCFA(refBonus);
-            document.getElementById('packs-revenue-total').innerText = formatFCFA(rev);
-            document.getElementById('withdraw-available').innerText = formatFCFA(currentUser.balance);
-
-            const isLinked = Boolean(currentUser.wallet);
-            document.getElementById('dash-linked-status').innerText = isLinked ? currentUser.wallet.username : 'Non lié';
-
-            const accBadge = document.getElementById('account-link-badge');
-            const accCard = document.getElementById('linked-account-card');
-            if (isLinked) {
-                accBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-neutral-950 text-yellow-400';
-                accBadge.innerText = 'Compte lié actif';
-                accCard.innerHTML = `
-                    <div class="flex justify-between"><span class="text-neutral-600">Nom lié :</span><strong class="text-neutral-950">${esc(currentUser.wallet.username)}</strong></div>
-                    <div class="flex justify-between"><span class="text-neutral-600">Numéro lié :</span><strong class="text-neutral-950 font-mono">${esc(currentUser.wallet.userNumber)}</strong></div>
-                    <div class="flex justify-between"><span class="text-neutral-600">Code PIN :</span><strong class="text-yellow-600 font-mono">•••••• (Configuré)</strong></div>
-                `;
-                const u = document.getElementById('wallet-username');
-                const n = document.getElementById('wallet-usernumber');
-                if (document.activeElement !== u && !u.value) u.value = currentUser.wallet.username;
-                if (document.activeElement !== n && !n.value) n.value = currentUser.wallet.userNumber;
+            const badge = document.getElementById('linked-account-badge');
+            if (data.linkedAccount) {
+                badge.textContent = `${data.linkedAccount.operator} • ${data.linkedAccount.phone}`;
+                badge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-yellow-300 text-neutral-950';
+                document.getElementById('link-operator').value = data.linkedAccount.operator;
+                document.getElementById('link-phone').value = data.linkedAccount.phone;
+                document.getElementById('link-holder').value = data.linkedAccount.holder;
             } else {
-                accBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white text-neutral-900 border border-yellow-500';
-                accBadge.innerText = 'Non lié';
-                accCard.innerHTML = `<p class="text-neutral-700">Aucun compte de portefeuille lié pour le moment.</p>`;
+                badge.textContent = 'Non lié';
+                badge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-neutral-200 text-neutral-700';
             }
 
-            document.getElementById('referral-code-display').innerText = currentUser.referralCode;
-            document.getElementById('referral-link-display').innerText = getReferralLink();
-            document.getElementById('referrer-name-display').innerText = currentUser.referredBy || 'Aucun';
-            document.getElementById('team-bonus-total').innerText = formatFCFA(refBonus);
-
-            renderMyPurchasedPacks();
-            renderRechargeHistory();
-            renderWithdrawPending();
-            renderWithdrawHistory();
-            renderTeam();
-        }
-
-        function renderMyPurchasedPacks() {
-            const container = document.getElementById('my-purchased-packs-list');
-            const packs = currentUser.activePlans || [];
-            document.getElementById('packs-count-badge').innerText = `${packs.length} plan${packs.length > 1 ? 's' : ''}`;
-
-            if (packs.length === 0) {
-                container.innerHTML = `
-                    <div class="real-card rounded-2xl p-5 text-center space-y-2">
-                        <p class="text-xs font-bold text-neutral-700">Aucun plan d'investissement actif.</p>
-                        <button onclick="navigateTo('plans')" class="px-4 py-2 rounded-xl yellow-btn text-xs font-extrabold">Choisir un plan</button>
-                    </div>`;
-                return;
-            }
-
-            container.innerHTML = packs.map(p => {
-                const totalDays = p.totalDays || 8;
-                const claimableDays = getClaimableDays(p);
-                const claimableAmount = claimableDays * p.daily;
-                const isFinished = p.daysLeft <= 0;
-
-                let actionButtonHtml = '';
-                if (isFinished) {
-                    actionButtonHtml = `
-                        <button type="button" disabled class="w-full bg-neutral-200 text-neutral-500 font-bold py-2.5 rounded-xl text-xs">
-                            Plan terminé (${totalDays}/${totalDays} jours réclamés)
-                        </button>`;
-                } else if (claimableDays > 0) {
-                    actionButtonHtml = `
-                        <button type="button" onclick="claimPlanRevenue('${esc(p.id)}')" class="w-full yellow-btn font-extrabold py-2.5 rounded-xl text-xs shadow-sm transition flex items-center justify-center gap-2">
-                            <i class="fas fa-hand-holding-dollar"></i>
-                            <span>Réclamer mon revenu (+${claimableAmount.toLocaleString('fr-FR')} FCFA • ${claimableDays}j)</span>
-                        </button>`;
-                } else {
-                    const nextAt = (p.lastCreditAt || Date.now()) + DAY_MS;
-                    const msLeft = Math.max(0, nextAt - Date.now());
-                    const hrs = Math.floor(msLeft / 3600000);
-                    const mins = Math.floor((msLeft % 3600000) / 60000);
-                    const secs = Math.floor((msLeft % 60000) / 1000);
-                    actionButtonHtml = `
-                        <button type="button" disabled class="w-full bg-neutral-100 border border-neutral-300 text-neutral-600 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5">
-                            <i class="fas fa-clock text-yellow-600"></i>
-                            <span>Disponible dans ${hrs}h ${String(mins).padStart(2, '0')}m ${String(secs).padStart(2, '0')}s (24h/24)</span>
-                        </button>`;
-                }
-
+            // 9 plans
+            const plansContainer = document.getElementById('plans-list');
+            plansContainer.innerHTML = INVESTMENT_PLANS.map(plan => {
+                const total8d = plan.daily * plan.days;
                 return `
-                <div class="real-card rounded-2xl p-4 space-y-2.5">
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs font-extrabold text-neutral-950">${esc(p.name)}</span>
-                        <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full ${!isFinished ? 'bg-yellow-200 text-neutral-950' : 'bg-neutral-200 text-neutral-600'}">
-                            ${!isFinished ? p.daysLeft + 'j restants / ' + totalDays + 'j' : 'Terminé (' + totalDays + 'j)'}
-                        </span>
-                    </div>
-                    <div class="grid grid-cols-2 gap-2 text-xs bg-neutral-50 border border-neutral-200 rounded-xl p-2.5">
+                    <div class="real-card rounded-2xl p-4 flex items-center justify-between gap-3">
                         <div>
-                            <p class="text-[10px] text-neutral-500">Revenu / 24h</p>
-                            <p class="font-extrabold text-red-600">+${p.daily.toLocaleString('fr-FR')} FCFA</p>
+                            <div class="flex items-center gap-2">
+                                <span class="text-sm font-extrabold text-neutral-950">${plan.name}</span>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-yellow-100 text-neutral-900">8 jours</span>
+                            </div>
+                            <p class="text-xs text-neutral-500 mt-1">
+                                Gain / 24h : <strong class="text-neutral-950">${formatShortF(plan.daily)}</strong> • Total 8j : <strong class="text-yellow-700">${formatShortF(total8d)}</strong>
+                            </p>
                         </div>
-                        <div class="text-right">
-                            <p class="text-[10px] text-neutral-500">Revenus réclamés</p>
-                            <p class="font-extrabold text-red-600">+${(p.earnedSoFar || 0).toLocaleString('fr-FR')} FCFA</p>
-                        </div>
+                        <button onclick="buyPlan(${plan.id})" class="yellow-btn font-extrabold px-3.5 py-2.5 rounded-xl text-xs shrink-0 shadow-sm">
+                            ${formatShortF(plan.price)}
+                        </button>
                     </div>
-                    ${actionButtonHtml}
-                </div>
-            `}).join('');
-        }
-
-        async function linkWalletAccount() {
-            if (!currentUser) return;
-            const username = document.getElementById('wallet-username').value.trim();
-            const userNumber = document.getElementById('wallet-usernumber').value.trim();
-            const pin = document.getElementById('wallet-pin').value.trim();
-
-            if (!username) return notify('Veuillez saisir le nom d\'utilisateur du portefeuille.', 'error');
-            if (!userNumber) return notify('Veuillez saisir le numéro du portefeuille.', 'error');
-            if (!/^\d{6}$/.test(pin)) return notify('Le mot de passe du portefeuille doit contenir exactement 6 chiffres.', 'error');
-
-            try {
-                const pinHash = await hashPin(pin);
-                currentUser.wallet = { username, userNumber, pinHash };
-                document.getElementById('wallet-pin').value = '';
-                saveData();
-                notify('Compte du portefeuille lié avec succès !');
-            } catch (err) {
-                notify('Sécurité indisponible : ouvrez le site en HTTPS ou sur localhost.', 'error');
-            }
-        }
-
-        function prepareRechargeConfirmation() {
-            const amount = parseInt(document.getElementById('recharge-amount').value);
-            const txid = document.getElementById('recharge-txid').value.trim().toUpperCase();
-
-            if (!amount || amount < 1000) return notify('Montant minimum : 1 000 FCFA.', 'error');
-            if (!txid) return notify('Veuillez renseigner l\'ID de transaction.', 'error');
-            if (transactionsDB.some(t => t.txid === txid)) return notify('Cet ID de transaction a déjà été utilisé.', 'error');
-
-            pendingRechargeDraft = { amount, txid, operator: selectedOperator, number: copiedNumber };
-
-            document.getElementById('confirm-op').innerText = selectedOperator;
-            document.getElementById('confirm-number').innerText = copiedNumber;
-            document.getElementById('confirm-amount').innerText = formatFCFA(amount);
-            document.getElementById('confirm-txid').innerText = txid;
-            document.getElementById('confirm-payment-checkbox').checked = false;
-
-            rechargeSubView = 'step2';
-            document.getElementById('recharge-home-view').classList.add('hidden');
-            document.getElementById('recharge-step-1').classList.add('hidden');
-            document.getElementById('recharge-step-2').classList.remove('hidden');
-            document.getElementById('recharge-back-label').innerText = 'Retour paiement';
-        }
-
-        function backToRechargeStep1(keepInputs = true) {
-            rechargeSubView = 'step1';
-            document.getElementById('recharge-home-view').classList.add('hidden');
-            document.getElementById('recharge-step-2').classList.add('hidden');
-            document.getElementById('recharge-step-1').classList.remove('hidden');
-            document.getElementById('recharge-back-label').innerText = 'Modes de paiement';
-
-            if (!keepInputs) {
-                document.getElementById('recharge-txid').value = '';
-                pendingRechargeDraft = null;
-            }
-        }
-
-        function confirmAndSubmitRecharge() {
-            if (!pendingRechargeDraft) return prepareRechargeConfirmation();
-
-            if (!document.getElementById('confirm-payment-checkbox').checked) {
-                return notify('Veuillez cocher la case pour confirmer votre paiement.', 'error');
-            }
-
-            const { amount, txid, operator, number } = pendingRechargeDraft;
-
-            transactionsDB.unshift({
-                id: newId('DEP'),
-                userPhone: currentUser.phone,
-                userName: currentUser.name,
-                category: 'recharge',
-                type: `Recharge confirmée (${operator} • ${number})`,
-                amount: amount,
-                txid: txid,
-                paymentConfirmed: true,
-                status: 'En attente',
-                date: todayFR()
-            });
-
-            pendingRechargeDraft = null;
-            backToRechargeStep1(false);
-            openRechargeHomeView();
-            saveData();
-            notify('Paiement confirmé ! Recharge envoyée en attente.', 'success');
-            navigateTo('recharge-history');
-        }
-
-        function updateWithdrawFeePreview() {
-            const amount = parseInt(document.getElementById('withdraw-amount')?.value) || 0;
-            const fee = amount > 0 ? Math.round(amount * WITHDRAW_FEE_RATE) : 0;
-            const netAmount = Math.max(0, amount - fee);
-
-            document.getElementById('withdraw-gross-amount').innerText = formatFCFA(amount);
-            document.getElementById('withdraw-fee-amount').innerText = `-${formatFCFA(fee)}`;
-            document.getElementById('withdraw-net-amount').innerText = formatFCFA(netAmount);
-        }
-
-        async function submitWithdraw(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('button[type=submit]');
-            const phone = onlyDigits(document.getElementById('withdraw-phone').value);
-            const amount = parseInt(document.getElementById('withdraw-amount').value);
-            const pin = document.getElementById('withdraw-pin').value.trim();
-
-            if (phone.length < 8) return notify('Numéro de réception invalide.', 'error');
-            if (!amount || amount < 1000) return notify('Montant minimum de retrait : 1 000 FCFA.', 'error');
-            if (!currentUser.wallet) return notify('Veuillez d\'abord cliquer sur "Lier mon compte" dans l\'onglet Équipe.', 'error');
-            if (!/^\d{6}$/.test(pin)) return notify('Mot de passe du portefeuille : 6 chiffres.', 'error');
-
-            btn.disabled = true;
-            try {
-                const hash = await hashPin(pin);
-                if (hash !== currentUser.wallet.pinHash) return notify('Mot de passe du portefeuille (6 chiffres) incorrect.', 'error');
-                if (amount > currentUser.balance) return notify(`Solde insuffisant (${formatFCFA(amount)} requis).`, 'error');
-
-                const fee = Math.round(amount * WITHDRAW_FEE_RATE);
-                const netAmount = Math.max(0, amount - fee);
-
-                currentUser.balance -= amount;
-                transactionsDB.unshift({
-                    id: newId('RET'),
-                    userPhone: currentUser.phone,
-                    userName: currentUser.name,
-                    category: 'withdraw',
-                    type: `Retrait (${phone}) • Net: ${netAmount.toLocaleString('fr-FR')} F (-6% frais)`,
-                    amount: -amount,
-                    fee: fee,
-                    netAmount: netAmount,
-                    receivePhone: phone,
-                    status: 'En attente',
-                    date: todayFR()
-                });
-
-                document.getElementById('withdraw-amount').value = '';
-                document.getElementById('withdraw-pin').value = '';
-                updateWithdrawFeePreview();
-                saveData();
-                notify(`Retrait lancé : -6% (${formatFCFA(fee)}) déduits, net ${formatFCFA(netAmount)}.`);
-                navigateTo('withdraw-pending');
-            } catch (err) {
-                notify('Sécurité indisponible : ouvrez le site en HTTPS ou sur localhost.', 'error');
-            } finally {
-                btn.disabled = false;
-            }
-        }
-
-        function renderTxList(containerId, items, emptyText) {
-            const container = document.getElementById(containerId);
-            if (!items || items.length === 0) {
-                container.innerHTML = `<div class="real-card rounded-2xl p-5 text-center text-xs text-neutral-400">${emptyText}</div>`;
-                return;
-            }
-
-            container.innerHTML = items.map(tx => {
-                const pos = tx.amount > 0;
-                const isRev = tx.category === 'revenue';
-                const badgeClass = tx.status === 'Validé'
-                    ? 'bg-neutral-950 text-yellow-400'
-                    : (tx.status === 'Rejeté' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-neutral-900');
-
-                const amountColor = isRev ? 'text-red-600' : (pos ? 'text-yellow-600' : 'text-neutral-950');
-
-                return `
-                <div class="real-card rounded-2xl p-3.5 flex justify-between items-center">
-                    <div>
-                        <p class="text-xs font-bold text-neutral-950">${esc(tx.type)}</p>
-                        <p class="text-[10px] text-neutral-500 mt-0.5">${esc(tx.date)} ${tx.txid ? '• ID: ' + esc(tx.txid) : ''} ${tx.paymentConfirmed ? '• Paiement confirmé' : ''}</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-xs font-extrabold ${amountColor}">
-                            ${pos ? '+' : ''}${(tx.amount || 0).toLocaleString('fr-FR')} F
-                        </p>
-                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${badgeClass}">${esc(tx.status)}</span>
-                    </div>
-                </div>`;
+                `;
             }).join('');
-        }
 
-        const isRecharge = t => t.category === 'recharge' || (t.type && t.type.startsWith('Recharge'));
-        const isWithdraw = t => t.category === 'withdraw' || (t.type && t.type.startsWith('Retrait'));
+            // Plans actifs
+            const packsContainer = document.getElementById('active-packs-list');
+            document.getElementById('packs-revenue-total').textContent = formatFCFA(data.planRevenue);
+            document.getElementById('packs-count-badge').textContent = `${data.activePacks.length} actif${data.activePacks.length > 1 ? 's' : ''}`;
 
-        function renderRechargeHistory() {
-            renderTxList('recharge-history-list', transactionsDB.filter(t => t.userPhone === currentUser.phone && isRecharge(t)), 'Aucune recharge dans votre historique.');
-        }
-        function renderWithdrawPending() {
-            renderTxList('withdraw-pending-list', transactionsDB.filter(t => t.userPhone === currentUser.phone && isWithdraw(t) && t.status === 'En attente'), 'Aucune demande de retrait en attente.');
-        }
-        function renderWithdrawHistory() {
-            renderTxList('withdraw-history-list', transactionsDB.filter(t => t.userPhone === currentUser.phone && isWithdraw(t)), 'Aucun retrait dans votre historique.');
-        }
-
-        function renderTeam() {
-            const team = currentUser.team || [];
-            document.getElementById('team-count-badge').innerText = `${team.length}`;
-            const container = document.getElementById('team-members-list');
-
-            if (team.length === 0) {
-                container.innerHTML = `<p class="text-xs text-neutral-400 text-center py-3">Aucun filleul inscrit via votre lien pour le moment.</p>`;
-                return;
-            }
-
-            container.innerHTML = team.map(m => `
-                <div class="flex justify-between items-center bg-neutral-50 border border-neutral-200 rounded-xl px-3.5 py-2.5 text-xs">
-                    <div>
-                        <p class="font-bold text-neutral-950">${esc(m.name)}</p>
-                        <p class="text-[11px] font-mono text-neutral-600">${esc(m.phone)} • ${esc(m.date)}</p>
-                    </div>
-                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${m.bonusCredited ? 'bg-neutral-950 text-yellow-400' : 'bg-yellow-100 text-neutral-900'}">
-                        ${m.bonusCredited ? '+500 F crédités' : 'En attente recharge'}
-                    </span>
-                </div>
-            `).join('');
-        }
-
-        // ---------- Service client ----------
-        function openCustomerServiceModal() {
-            refreshCustomerServiceWhatsAppLink();
-            document.getElementById('cs-modal').classList.remove('hidden');
-            renderSupportTickets();
-        }
-
-        function closeCustomerServiceModal() {
-            document.getElementById('cs-modal').classList.add('hidden');
-        }
-
-        function submitSupportTicket(e) {
-            e.preventDefault();
-            if (!currentUser) {
-                return notify('Connectez-vous pour envoyer un ticket, ou utilisez WhatsApp.', 'warning');
-            }
-            const topic = document.getElementById('cs-topic').value;
-            const message = document.getElementById('cs-message').value.trim();
-            if (!message) return;
-
-            supportTicketsDB.unshift({
-                id: newId('SUP'),
-                userPhone: currentUser.phone,
-                userName: currentUser.name,
-                topic,
-                message,
-                reply: 'Merci pour votre message. Notre équipe (service avenir capital 24h/24) traite votre demande.',
-                date: todayFR()
-            });
-
-            document.getElementById('cs-message').value = '';
-            saveData();
-            renderSupportTickets();
-            notify('Message envoyé au service avenir capital 24h/24.');
-        }
-
-        function renderSupportTickets() {
-            const container = document.getElementById('cs-tickets-list');
-            const list = currentUser ? supportTicketsDB.filter(t => t.userPhone === currentUser.phone) : [];
-
-            if (list.length === 0) {
-                container.innerHTML = `<p class="text-xs text-neutral-400 text-center py-3 bg-neutral-50 rounded-xl border border-neutral-200">Aucun message envoyé pour le moment.</p>`;
-                return;
-            }
-
-            container.innerHTML = list.map(t => `
-                <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-3 text-xs space-y-1.5">
-                    <div class="flex justify-between items-center">
-                        <span class="font-extrabold text-neutral-950">${esc(t.topic)}</span>
-                        <span class="text-[10px] text-neutral-400">${esc(t.date)}</span>
-                    </div>
-                    <p class="text-neutral-800 font-medium">${esc(t.message)}</p>
-                    <p class="text-[11px] text-neutral-950 bg-yellow-100 border border-yellow-300 rounded-lg px-2.5 py-1.5">
-                        <strong>Support (24h/24) :</strong> ${esc(t.reply)}
-                    </p>
-                </div>
-            `).join('');
-        }
-    </script>
-
-    <!-- ===================== FIREBASE (Auth + Realtime Database) ===================== -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut }
-            from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-        import { getDatabase, ref, set, get, onValue, query, orderByChild, equalTo }
-            from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyBqs0z7GK6UmAAgfjXmlWA3dn9jOd7d6g0",
-            authDomain: "avenir-capital-h4.firebaseapp.com",
-            databaseURL: "https://avenir-capital-h4-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "avenir-capital-h4",
-            storageBucket: "avenir-capital-h4.firebasestorage.app",
-            messagingSenderId: "349708344991",
-            appId: "1:349708344991:web:9eddd458a38b72f3878caa"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getDatabase(app);
-        window.fbReady = true;
-
-        const toEmail = phone => onlyDigits(phone) + '@avenir-capital.app';
-        const idTime = x => Number(String(x.id).split('-')[1]) || 0;
-
-        let unsubs = [];
-        let pushTimer = null;
-        let profileTimer = null;
-        let teamCache = [];
-        const payingBonus = new Set();
-
-        function stopListening() {
-            unsubs.forEach(u => u());
-            unsubs = [];
-            clearTimeout(profileTimer);
-        }
-
-        function cleanUser(u) {
-            const c = JSON.parse(JSON.stringify(u));
-            delete c.pass;
-            delete c.team;
-            return c;
-        }
-
-        function authError(err) {
-            const m = {
-                'auth/email-already-in-use': 'Ce numéro est déjà inscrit.',
-                'auth/weak-password': 'Mot de passe : 6 caractères minimum.',
-                'auth/invalid-credential': 'Numéro ou mot de passe incorrect.',
-                'auth/invalid-login-credentials': 'Numéro ou mot de passe incorrect.',
-                'auth/user-not-found': 'Numéro ou mot de passe incorrect.',
-                'auth/wrong-password': 'Numéro ou mot de passe incorrect.',
-                'auth/too-many-requests': 'Trop de tentatives. Réessayez dans quelques minutes.',
-                'auth/network-request-failed': 'Pas de connexion internet.',
-                'auth/operation-not-allowed': 'E-mail/Mot de passe non activé dans Firebase.'
-            };
-            return m[err.code] || ('Erreur : ' + (err.code || err.message));
-        }
-
-        window.fbPush = () => {
-            clearTimeout(pushTimer);
-            pushTimer = setTimeout(pushNow, 250);
-        };
-
-        function pushNew(list, path, uid) {
-            list.filter(x => x.userPhone === currentUser.phone && !x.synced && !x.pushing).forEach(x => {
-                x.pushing = true;
-                const { synced, pushing, ...data } = x;
-                const payload = JSON.parse(JSON.stringify({ ...data, uid, createdAt: Date.now() }));
-                set(ref(db, `${path}/${x.id}`), payload)
-                    .then(() => { x.synced = true; })
-                    .catch(e => console.error('Envoi refusé', path, e))
-                    .finally(() => { x.pushing = false; });
-            });
-        }
-
-        function pushNow() {
-            const fu = auth.currentUser;
-            if (!fu || !currentUser) return;
-            set(ref(db, 'users/' + fu.uid), cleanUser(currentUser)).catch(e => console.error('Profil non enregistré', e));
-            pushNew(transactionsDB, 'transactions', fu.uid);
-            pushNew(supportTicketsDB, 'tickets', fu.uid);
-        }
-
-        function mergeRemote(local, snap) {
-            const remote = {};
-            snap.forEach(c => { remote[c.key] = { ...c.val(), id: c.key, synced: true }; });
-            const keep = local.filter(x => !remote[x.id] && !x.synced);
-            return [...Object.values(remote), ...keep].sort((a, b) => idTime(b) - idTime(a));
-        }
-
-        function listenAll(uid) {
-            stopListening();
-
-            profileTimer = setTimeout(() => {
-                if (!currentUser) {
-                    notify('Profil introuvable. Réessayez ou contactez le support.', 'error');
-                    signOut(auth);
-                }
-            }, 10000);
-
-            unsubs.push(onValue(ref(db, 'users/' + uid), snap => {
-                const v = snap.val();
-                if (!v) return;
-                clearTimeout(profileTimer);
-                currentUser = normalizeUser({ ...v, team: teamCache });
-                localStorage.setItem('avenir_v6_last_phone', currentUser.phone);
-                refreshCustomerServiceWhatsAppLink();
-                if (document.getElementById('main-app').classList.contains('hidden')) showMainApp();
-                else updateUI();
-                checkReferralSignal(uid);
-            }, err => console.error('Lecture profil refusée', err)));
-
-            unsubs.push(onValue(query(ref(db, 'transactions'), orderByChild('uid'), equalTo(uid)), snap => {
-                transactionsDB = mergeRemote(transactionsDB, snap);
-                if (currentUser) { updateUI(); checkReferralSignal(uid); }
-            }, err => console.error('Lecture transactions refusée', err)));
-
-            unsubs.push(onValue(query(ref(db, 'tickets'), orderByChild('uid'), equalTo(uid)), snap => {
-                supportTicketsDB = mergeRemote(supportTicketsDB, snap);
-                if (currentUser) renderSupportTickets();
-            }, err => console.error('Lecture tickets refusée', err)));
-
-            unsubs.push(onValue(ref(db, 'referrals/' + uid), snap => {
-                const team = [];
-                snap.forEach(c => { team.unshift({ ...c.val(), uid: c.key }); });
-                teamCache = team;
-                if (currentUser) {
-                    currentUser.team = team;
-                    updateUI();
-                    team.filter(m => m.recharged === true && !m.bonusCredited).forEach(m => payReferralBonus(uid, m));
-                }
-            }, err => console.error('Lecture filleuls refusée', err)));
-        }
-
-        function checkReferralSignal(uid) {
-            if (!currentUser || !currentUser.sponsorUid || currentUser.referralRewardPaid) return;
-            const hasValidatedRecharge = transactionsDB.some(t => isRecharge(t) && t.status === 'Validé' && Number(t.amount) > 0);
-            if (!hasValidatedRecharge) return;
-            currentUser.referralRewardPaid = true;
-            set(ref(db, `referrals/${currentUser.sponsorUid}/${uid}/recharged`), true)
-                .then(() => saveData())
-                .catch(e => { currentUser.referralRewardPaid = false; console.error(e); });
-        }
-
-        function payReferralBonus(uid, m) {
-            if (!m || m.recharged !== true || m.bonusCredited) return;
-            if (payingBonus.has(m.uid)) return;
-            payingBonus.add(m.uid);
-            set(ref(db, `referrals/${uid}/${m.uid}/bonusCredited`), true).then(() => {
-                currentUser.balance += REFERRAL_BONUS;
-                currentUser.referralBonusTotal += REFERRAL_BONUS;
-                transactionsDB.unshift({
-                    id: newId('REF'),
-                    userPhone: currentUser.phone,
-                    userName: currentUser.name,
-                    category: 'bonus',
-                    type: `Bonus parrainage (500 F) — ${m.name}`,
-                    amount: REFERRAL_BONUS,
-                    status: 'Validé',
-                    date: todayFR()
-                });
-                saveData();
-                notify(`Bonus parrainage : +${formatFCFA(REFERRAL_BONUS)} (${m.name})`);
-            }).catch(e => { payingBonus.delete(m.uid); console.error(e); });
-        }
-
-        window.handleRegister = async function (e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('button[type=submit]');
-            const name = document.getElementById('reg-name').value.trim();
-            const phone = onlyDigits(document.getElementById('reg-phone').value);
-            const refCode = document.getElementById('reg-ref').value.trim().toUpperCase();
-            const pass = document.getElementById('reg-pass').value;
-
-            if (name.length < 2) return notify('Veuillez saisir votre nom complet.', 'error');
-            if (phone.length < 8) return notify('Numéro de téléphone invalide.', 'error');
-            if (pass.length < 6) return notify('Mot de passe : 6 caractères minimum.', 'error');
-
-            btn.disabled = true;
-            try {
-                const cred = await createUserWithEmailAndPassword(auth, toEmail(phone), pass);
-                const uid = cred.user.uid;
-
-                const base = 'AVN-' + phone.slice(-6).padStart(6, '0');
-                let myCode = base;
-                for (let i = 0; i < 5; i++) {
-                    const taken = await get(ref(db, 'referralCodes/' + myCode));
-                    if (!taken.exists()) break;
-                    myCode = base + Math.random().toString(36).slice(2, 4).toUpperCase();
-                }
-
-                let sponsorUid = null, referredBy = null;
-                if (refCode && refCode !== myCode) {
-                    try {
-                        const s = await get(ref(db, 'referralCodes/' + refCode));
-                        if (s.exists()) { sponsorUid = s.val(); referredBy = refCode; }
-                        else notify('Code de parrainage introuvable : inscription sans parrain.', 'warning');
-                    } catch (_) {}
-                }
-
-                const newUser = normalizeUser({
-                    name, phone,
-                    registeredAt: todayFR(),
-                    balance: 0, revenueTotal: 0, referralBonusTotal: 0,
-                    referralRewardPaid: false,
-                    sponsorUid, referredBy,
-                    activePlans: [], wallet: null,
-                    referralCode: myCode
-                });
-
-                await set(ref(db, 'users/' + uid), cleanUser(newUser));
-                await set(ref(db, 'referralCodes/' + myCode), uid);
-                if (sponsorUid) {
-                    await set(ref(db, `referrals/${sponsorUid}/${uid}`), {
-                        name, phone, date: todayFR(), recharged: false, bonusCredited: false
-                    });
-                }
-
-                localStorage.setItem('avenir_v6_last_phone', phone);
-                notify('Compte créé avec succès.');
-            } catch (err) {
-                console.error(err);
-                notify(authError(err), 'error');
-            } finally {
-                btn.disabled = false;
-            }
-        };
-
-        window.handleLogin = async function (e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('button[type=submit]');
-            const phone = onlyDigits(document.getElementById('login-phone').value);
-            const pass = document.getElementById('login-pass').value;
-
-            btn.disabled = true;
-            try {
-                await signInWithEmailAndPassword(auth, toEmail(phone), pass);
-                localStorage.setItem('avenir_v6_last_phone', phone);
-                notify('Connexion réussie.');
-            } catch (err) {
-                console.error(err);
-                notify(authError(err), 'error');
-            } finally {
-                btn.disabled = false;
-            }
-        };
-
-        window.fbSignOut = () => {
-            stopListening();
-            signOut(auth).catch(() => {});
-        };
-
-        onAuthStateChanged(auth, user => {
-            if (user) {
-                listenAll(user.uid);
+            if (!data.activePacks.length) {
+                packsContainer.innerHTML = `<div class="real-card rounded-2xl p-6 text-center text-xs text-neutral-500">Aucun plan actif pour le moment.</div>`;
             } else {
-                stopListening();
-                currentUser = null;
-                refreshCustomerServiceWhatsAppLink();
-                revealAuth();
+                packsContainer.innerHTML = data.activePacks.map(pack => {
+                    const isCompleted = pack.claimedDays >= pack.daysTotal;
+                    const remainingMs = Math.max(0, DAY_MS - (Date.now() - pack.lastClaimAt));
+                    const canClaim = !isCompleted && remainingMs <= 0;
+                    const hrs = Math.floor(remainingMs / (1000 * 60 * 60));
+                    const mins = Math.floor((remainingMs % (1000 * 60 * 60)) / (1000 * 60));
+
+                    return `
+                        <div class="real-card rounded-2xl p-4 space-y-2.5">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm font-extrabold text-neutral-950">${pack.name}</span>
+                                <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-yellow-100 text-neutral-950">
+                                    Jour ${pack.claimedDays}/${pack.daysTotal}
+                                </span>
+                            </div>
+                            <div class="flex justify-between items-center text-xs text-neutral-600">
+                                <span>Gain journalier : <strong>${formatShortF(pack.daily)}</strong></span>
+                                <span>${isCompleted ? 'Cycle terminé' : (canClaim ? 'Prêt à réclamer' : `Prochain dans ${hrs}h ${mins}m`)}</span>
+                            </div>
+                            <button onclick="claimPackDaily('${pack.instanceId}')" ${!canClaim ? 'disabled' : ''} class="w-full yellow-btn font-extrabold py-2.5 rounded-xl text-xs">
+                                ${isCompleted ? 'Cycle 8 jours terminé' : (canClaim ? `Réclamer ${formatShortF(pack.daily)}` : 'En attente des 24h')}
+                            </button>
+                        </div>
+                    `;
+                }).join('');
             }
-        });
+
+            // Équipe
+            document.getElementById('ref-code-badge').textContent = data.referralCode;
+            document.getElementById('ref-link-input').value = `${window.location.origin}${window.location.pathname}?ref=${data.referralCode}`;
+            document.getElementById('team-count').textContent = data.referrals.length;
+            document.getElementById('team-bonus').textContent = formatShortF(data.referralBonus);
+
+            const teamList = document.getElementById('team-members-list');
+            if (!data.referrals.length) {
+                teamList.innerHTML = 'Aucun filleul pour le moment.';
+            } else {
+                teamList.innerHTML = data.referrals.map(r => `
+                    <div class="flex justify-between items-center py-2 border-b border-neutral-100 last:border-0">
+                        <div>
+                            <p class="font-bold text-neutral-900">${r.name}</p>
+                            <p class="text-[11px] text-neutral-400">+225 ${r.phone} • ${r.date}</p>
+                        </div>
+                        <span class="font-extrabold text-yellow-700">+${formatShortF(r.bonus)}</span>
+                    </div>
+                `).join('');
+            }
+
+            // Historique recharges
+            const rchList = document.getElementById('recharge-history-list');
+            rchList.innerHTML = !data.recharges.length
+                ? `<div class="real-card rounded-2xl p-6 text-center text-xs text-neutral-500">Aucune recharge enregistrée.</div>`
+                : data.recharges.map(r => `
+                    <div class="real-card rounded-2xl p-3.5 flex justify-between items-center text-xs">
+                        <div>
+                            <p class="font-extrabold text-neutral-950">${formatFCFA(r.amount)} • ${r.method}</p>
+                            <p class="text-[11px] text-neutral-400">${r.id} • ${r.date}</p>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full font-bold bg-yellow-100 text-neutral-950">${r.status}</span>
+                    </div>
+                `).join('');
+
+            // Historique retraits & retraits en attente
+            const wdrList = document.getElementById('withdraw-history-list');
+            const pendingList = document.getElementById('withdraw-pending-list');
+            const pendingItems = data.withdrawals.filter(w => w.status === 'En attente');
+
+            wdrList.innerHTML = !data.withdrawals.length
+                ? `<div class="real-card rounded-2xl p-6 text-center text-xs text-neutral-500">Aucun retrait enregistré.</div>`
+                : data.withdrawals.map(w => `
+                    <div class="real-card rounded-2xl p-3.5 flex justify-between items-center text-xs">
+                        <div>
+                            <p class="font-extrabold text-neutral-950">${formatFCFA(w.amount)} • ${w.operator}</p>
+                            <p class="text-[11px] text-neutral-400">${w.phone} • ${w.date}</p>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full font-bold bg-yellow-100 text-neutral-950">${w.status}</span>
+                    </div>
+                `).join('');
+
+            pendingList.innerHTML = !pendingItems.length
+                ? `<div class="real-card rounded-2xl p-6 text-center text-xs text-neutral-500">Aucun retrait en attente.</div>`
+                : pendingItems.map(w => `
+                    <div class="real-card rounded-2xl p-3.5 flex justify-between items-center text-xs">
+                        <div>
+                            <p class="font-extrabold text-neutral-950">${formatFCFA(w.amount)} • ${w.operator}</p>
+                            <p class="text-[11px] text-neutral-400">${w.phone} • ${w.date}</p>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-full font-bold bg-neutral-950 text-yellow-400">En attente</span>
+                    </div>
+                `).join('');
+        }
+
+        function enterApp() {
+            document.getElementById('splash').classList.add('hidden');
+            document.getElementById('auth-screen').classList.add('hidden');
+            document.getElementById('main-app').classList.remove('hidden');
+            renderAll();
+        }
+
+        function init() {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (raw) {
+                try {
+                    const parsed = JSON.parse(raw);
+                    state = Object.assign(state, parsed);
+                } catch (_) {}
+            }
+
+            const params = new URLSearchParams(window.location.search);
+            const refParam = params.get('ref');
+            if (refParam) {
+                const regRef = document.getElementById('reg-ref');
+                if (regRef) regRef.value = refParam.toUpperCase();
+                switchAuthTab('register');
+            }
+
+            setTimeout(() => {
+                document.getElementById('splash').classList.add('hidden');
+                if (getCurrentUser()) {
+                    enterApp();
+                } else {
+                    document.getElementById('auth-screen').classList.remove('hidden');
+                }
+            }, 350);
+        }
+
+        init();
     </script>
 </body>
 </html>
