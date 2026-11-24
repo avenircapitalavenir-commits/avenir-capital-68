@@ -16,7 +16,7 @@
             padding-bottom: 92px;
             user-select: none;
         }
-        input, textarea { user-select: text; }
+        input, textarea, select { user-select: text; }
 
         .real-card {
             background-color: #ffffff;
@@ -103,10 +103,14 @@
             <!-- CONNEXION -->
             <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
                 <div>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Pays</label>
+                    <select id="login-country" onchange="onCountryChange('login')" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-3.5 text-sm font-bold text-neutral-950 focus:outline-none focus:border-yellow-500"></select>
+                </div>
+                <div>
                     <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Numéro de téléphone</label>
                     <div class="relative">
-                        <span class="absolute left-3.5 top-3 text-neutral-600 text-sm font-semibold">+225</span>
-                        <input type="tel" id="login-phone" required placeholder="07 00 00 00 00" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 pl-14 pr-4 text-sm text-neutral-950 focus:outline-none focus:border-yellow-500">
+                        <span id="login-prefix-label" class="absolute left-3.5 top-3 text-neutral-600 text-sm font-semibold">+225</span>
+                        <input type="tel" id="login-phone" required placeholder="07 00 00 00 00" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 pl-16 pr-4 text-sm text-neutral-950 focus:outline-none focus:border-yellow-500">
                     </div>
                 </div>
                 <div>
@@ -125,10 +129,14 @@
                     <input type="text" id="reg-name" required placeholder="Kouassi Jean" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-4 text-sm text-neutral-950 focus:outline-none focus:border-yellow-500">
                 </div>
                 <div>
+                    <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Choisir votre pays</label>
+                    <select id="reg-country" onchange="onCountryChange('reg')" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-3.5 text-sm font-bold text-neutral-950 focus:outline-none focus:border-yellow-500"></select>
+                </div>
+                <div>
                     <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Numéro de téléphone</label>
                     <div class="relative">
-                        <span class="absolute left-3.5 top-3 text-neutral-600 text-sm font-semibold">+225</span>
-                        <input type="tel" id="reg-phone" required placeholder="07 00 00 00 00" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 pl-14 pr-4 text-sm text-neutral-950 focus:outline-none focus:border-yellow-500">
+                        <span id="reg-prefix-label" class="absolute left-3.5 top-3 text-neutral-600 text-sm font-semibold">+225</span>
+                        <input type="tel" id="reg-phone" required placeholder="07 00 00 00 00" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 pl-16 pr-4 text-sm text-neutral-950 focus:outline-none focus:border-yellow-500">
                     </div>
                 </div>
                 <div>
@@ -755,6 +763,15 @@
         const CS_WHATSAPP_URL = 'https://wa.me/message/ABZ2BRFJPVIOE1';
         const TEST_MODE = false; // true = affiche le bouton "+24h" (à laisser false en production)
 
+        const COUNTRIES = [
+            { code: 'CI', name: "Côte d'Ivoire", dial: '225', label: '+225' },
+            { code: 'TG', name: 'Togo', dial: '228', label: '+228' },
+            { code: 'BJ', name: 'Bénin', dial: '229', label: '+229' },
+            { code: 'ML', name: 'Mali', dial: '223', label: '+223' },
+            { code: 'BF', name: 'Burkina Faso', dial: '226', label: '+226' },
+            { code: 'SN', name: 'Sénégal', dial: '221', label: '+221' }
+        ];
+
         const INVESTMENT_PLANS_9 = [
             { id: 'plan-1', name: '🌱 Plan 1 — Découverte', price: 3000, daily: 120, days: 8 },
             { id: 'plan-2', name: '🚀 Plan 2 — Starter', price: 5000, daily: 220, days: 8 },
@@ -791,6 +808,50 @@
         const todayFR = () => new Date().toLocaleDateString('fr-FR');
         const onlyDigits = s => (s || '').replace(/\D/g, '');
 
+        function getCountryByCode(code) {
+            return COUNTRIES.find(c => c.code === code) || COUNTRIES[0];
+        }
+
+        function initCountrySelectors() {
+            const optionsHtml = COUNTRIES.map(c =>
+                `<option value="${c.code}">${c.name} (${c.label})</option>`
+            ).join('');
+
+            const regSelect = document.getElementById('reg-country');
+            const loginSelect = document.getElementById('login-country');
+            if (regSelect) regSelect.innerHTML = optionsHtml;
+            if (loginSelect) loginSelect.innerHTML = optionsHtml;
+
+            const savedCountry = localStorage.getItem('avenir_v6_last_country');
+            const defaultCode = COUNTRIES.some(c => c.code === savedCountry) ? savedCountry : 'CI';
+            if (regSelect) regSelect.value = defaultCode;
+            if (loginSelect) loginSelect.value = defaultCode;
+
+            onCountryChange('reg');
+            onCountryChange('login');
+        }
+
+        function onCountryChange(prefix) {
+            const selectEl = document.getElementById(`${prefix}-country`);
+            const labelEl = document.getElementById(`${prefix}-prefix-label`);
+            if (!selectEl || !labelEl) return;
+            const country = getCountryByCode(selectEl.value);
+            labelEl.textContent = country.label;
+        }
+
+        function buildFullPhone(countryCode, rawPhone) {
+            const country = getCountryByCode(countryCode);
+            let digits = onlyDigits(rawPhone);
+            if (!digits) return '';
+            if (digits.startsWith('00' + country.dial)) {
+                digits = digits.slice(2);
+            }
+            if (!digits.startsWith(country.dial)) {
+                digits = country.dial + digits;
+            }
+            return digits;
+        }
+
         async function hashPin(pin) {
             if (!window.crypto || !crypto.subtle) throw new Error('crypto-indisponible');
             const data = new TextEncoder().encode(currentUser.phone + ':' + pin);
@@ -806,6 +867,7 @@
 
         // ---------- Démarrage ----------
         window.onload = () => {
+            initCountrySelectors();
             renderRechargeNumbers();
             renderPlans();
             syncRechargeAmountFromHome();
@@ -822,7 +884,16 @@
             }
 
             const lastPhone = localStorage.getItem('avenir_v6_last_phone');
-            if (lastPhone) document.getElementById('login-phone').value = lastPhone;
+            const lastCountry = localStorage.getItem('avenir_v6_last_country');
+            if (lastCountry && COUNTRIES.some(c => c.code === lastCountry)) {
+                document.getElementById('login-country').value = lastCountry;
+                onCountryChange('login');
+            }
+            if (lastPhone) {
+                const c = getCountryByCode(document.getElementById('login-country').value);
+                const localPart = lastPhone.startsWith(c.dial) ? lastPhone.slice(c.dial.length) : lastPhone;
+                document.getElementById('login-phone').value = localPart;
+            }
 
             setInterval(() => {
                 if (!currentUser) return;
@@ -845,6 +916,8 @@
         function normalizeUser(user) {
             return {
                 ...user,
+                countryCode: user.countryCode || 'CI',
+                countryName: user.countryName || "Côte d'Ivoire",
                 registeredAt: user.registeredAt || todayFR(),
                 balance: user.balance || 0,
                 revenueTotal: user.revenueTotal || 0,
@@ -1102,7 +1175,9 @@
 
         function logout() {
             const lastPhone = currentUser ? currentUser.phone : localStorage.getItem('avenir_v6_last_phone');
+            const lastCountry = currentUser ? currentUser.countryCode : localStorage.getItem('avenir_v6_last_country');
             if (lastPhone) localStorage.setItem('avenir_v6_last_phone', lastPhone);
+            if (lastCountry) localStorage.setItem('avenir_v6_last_country', lastCountry);
             if (window.fbSignOut) window.fbSignOut();
             currentUser = null;
             transactionsDB = [];
@@ -1111,7 +1186,14 @@
             refreshCustomerServiceWhatsAppLink();
             revealAuth();
             switchAuthTab('login');
-            if (lastPhone) document.getElementById('login-phone').value = lastPhone;
+            if (lastCountry && COUNTRIES.some(c => c.code === lastCountry)) {
+                document.getElementById('login-country').value = lastCountry;
+                onCountryChange('login');
+            }
+            if (lastPhone) {
+                const c = getCountryByCode(document.getElementById('login-country').value);
+                document.getElementById('login-phone').value = lastPhone.startsWith(c.dial) ? lastPhone.slice(c.dial.length) : lastPhone;
+            }
             document.getElementById('login-pass').value = '';
         }
 
@@ -1189,7 +1271,7 @@
             const rev = currentUser.revenueTotal || 0;
             const refBonus = currentUser.referralBonusTotal || 0;
 
-            document.getElementById('header-user-name').innerText = currentUser.name;
+            document.getElementById('header-user-name').innerText = `${currentUser.name} • ${currentUser.countryName}`;
             document.getElementById('dash-balance').innerHTML = `${currentUser.balance.toLocaleString('fr-FR')} <span class="text-base font-bold text-yellow-400">FCFA</span>`;
             document.getElementById('dash-revenue').innerText = '+' + formatFCFA(rev);
             document.getElementById('dash-ref-bonus').innerText = '+' + formatFCFA(refBonus);
@@ -1504,7 +1586,7 @@
                 <div class="flex justify-between items-center bg-neutral-50 border border-neutral-200 rounded-xl px-3.5 py-2.5 text-xs">
                     <div>
                         <p class="font-bold text-neutral-950">${esc(m.name)}</p>
-                        <p class="text-[11px] font-mono text-neutral-600">${esc(m.phone)} • ${esc(m.date)}</p>
+                        <p class="text-[11px] font-mono text-neutral-600">${esc(m.phone)} ${m.countryName ? '• ' + esc(m.countryName) : ''} • ${esc(m.date)}</p>
                     </div>
                     <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${m.bonusCredited ? 'bg-neutral-950 text-yellow-400' : 'bg-yellow-100 text-neutral-900'}">
                         ${m.bonusCredited ? '+250 F crédités' : 'En attente recharge'}
@@ -1681,6 +1763,7 @@
                 clearTimeout(profileTimer);
                 currentUser = normalizeUser({ ...v, team: teamCache });
                 localStorage.setItem('avenir_v6_last_phone', currentUser.phone);
+                if (currentUser.countryCode) localStorage.setItem('avenir_v6_last_country', currentUser.countryCode);
                 refreshCustomerServiceWhatsAppLink();
                 if (document.getElementById('main-app').classList.contains('hidden')) showMainApp();
                 else updateUI();
@@ -1745,12 +1828,14 @@
             e.preventDefault();
             const btn = e.target.querySelector('button[type=submit]');
             const name = document.getElementById('reg-name').value.trim();
-            const phone = onlyDigits(document.getElementById('reg-phone').value);
+            const countryObj = getCountryByCode(document.getElementById('reg-country').value);
+            const rawPhone = document.getElementById('reg-phone').value;
+            const phone = buildFullPhone(countryObj.code, rawPhone);
             const refCode = document.getElementById('reg-ref').value.trim().toUpperCase();
             const pass = document.getElementById('reg-pass').value;
 
             if (name.length < 2) return notify('Veuillez saisir votre nom complet.', 'error');
-            if (phone.length < 8) return notify('Numéro de téléphone invalide.', 'error');
+            if (onlyDigits(rawPhone).length < 7) return notify('Numéro de téléphone invalide.', 'error');
             if (pass.length < 6) return notify('Mot de passe : 6 caractères minimum.', 'error');
 
             btn.disabled = true;
@@ -1776,7 +1861,10 @@
                 }
 
                 const newUser = normalizeUser({
-                    name, phone,
+                    name,
+                    phone,
+                    countryCode: countryObj.code,
+                    countryName: countryObj.name,
                     registeredAt: todayFR(),
                     balance: 0, revenueTotal: 0, referralBonusTotal: 0,
                     referralRewardPaid: false,
@@ -1789,12 +1877,18 @@
                 await set(ref(db, 'referralCodes/' + myCode), uid);
                 if (sponsorUid) {
                     await set(ref(db, `referrals/${sponsorUid}/${uid}`), {
-                        name, phone, date: todayFR(), recharged: false, bonusCredited: false
+                        name,
+                        phone,
+                        countryName: countryObj.name,
+                        date: todayFR(),
+                        recharged: false,
+                        bonusCredited: false
                     });
                 }
 
                 localStorage.setItem('avenir_v6_last_phone', phone);
-                notify('Compte créé avec succès.');
+                localStorage.setItem('avenir_v6_last_country', countryObj.code);
+                notify(`Compte créé avec succès (${countryObj.name}).`);
             } catch (err) {
                 console.error(err);
                 notify(authError(err), 'error');
@@ -1806,13 +1900,28 @@
         window.handleLogin = async function (e) {
             e.preventDefault();
             const btn = e.target.querySelector('button[type=submit]');
-            const phone = onlyDigits(document.getElementById('login-phone').value);
+            const countryObj = getCountryByCode(document.getElementById('login-country').value);
+            const rawPhone = document.getElementById('login-phone').value;
             const pass = document.getElementById('login-pass').value;
+
+            const fullPhone = buildFullPhone(countryObj.code, rawPhone);
+            const localDigits = onlyDigits(rawPhone);
 
             btn.disabled = true;
             try {
-                await signInWithEmailAndPassword(auth, toEmail(phone), pass);
-                localStorage.setItem('avenir_v6_last_phone', phone);
+                try {
+                    await signInWithEmailAndPassword(auth, toEmail(fullPhone), pass);
+                    localStorage.setItem('avenir_v6_last_phone', fullPhone);
+                    localStorage.setItem('avenir_v6_last_country', countryObj.code);
+                } catch (firstErr) {
+                    if (localDigits && fullPhone !== localDigits && (firstErr.code === 'auth/invalid-credential' || firstErr.code === 'auth/user-not-found')) {
+                        await signInWithEmailAndPassword(auth, toEmail(localDigits), pass);
+                        localStorage.setItem('avenir_v6_last_phone', localDigits);
+                        localStorage.setItem('avenir_v6_last_country', countryObj.code);
+                    } else {
+                        throw firstErr;
+                    }
+                }
                 notify('Connexion réussie.');
             } catch (err) {
                 console.error(err);
