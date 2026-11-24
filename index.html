@@ -91,7 +91,7 @@
                 <i class="fas fa-landmark text-yellow-400 text-2xl"></i>
             </div>
             <h1 class="text-3xl font-extrabold tracking-tight text-neutral-950">Avenir <span class="text-yellow-500">Capital</span></h1>
-            <p class="text-neutral-500 text-sm mt-1.5">Investissement (8j), parrainage 500 F, recharges & retraits</p>
+            <p class="text-neutral-500 text-sm mt-1.5">Investissement (8j), parrainage 250 F, recharges & retraits</p>
         </div>
 
         <div class="real-card rounded-3xl p-6">
@@ -289,7 +289,7 @@
                             <i class="fas fa-users"></i>
                         </div>
                         <p class="text-sm font-extrabold text-neutral-950">Mon Équipe</p>
-                        <p class="text-[11px] text-neutral-500 mt-0.5">Lien & bonus 500 F</p>
+                        <p class="text-[11px] text-neutral-500 mt-0.5">Lien & bonus 250 F</p>
                     </button>
                 </div>
             </section>
@@ -579,13 +579,13 @@
             <section id="page-team" class="hidden space-y-4">
                 <div>
                     <h2 class="text-xl font-extrabold text-neutral-950">Mon Équipe & Parrainage</h2>
-                    <p class="text-xs text-neutral-500 mt-1">Partagez votre lien : <strong>500 FCFA</strong> crédités automatiquement uniquement après le 1er rechargement validé de votre filleul.</p>
+                    <p class="text-xs text-neutral-500 mt-1">Partagez votre lien : <strong>250 FCFA</strong> crédités automatiquement uniquement après le 1er rechargement validé de votre filleul.</p>
                 </div>
 
                 <div class="real-card rounded-2xl p-4 space-y-3">
                     <div class="flex items-center justify-between">
                         <h3 class="text-sm font-extrabold text-neutral-950">Lien de Parrainage</h3>
-                        <span class="text-[11px] font-extrabold text-neutral-950 bg-yellow-300 px-2.5 py-0.5 rounded-full">+500 F / filleul rechargé</span>
+                        <span class="text-[11px] font-extrabold text-neutral-950 bg-yellow-300 px-2.5 py-0.5 rounded-full">+250 F / filleul rechargé</span>
                     </div>
 
                     <div class="bg-neutral-950 text-white rounded-xl p-3.5 space-y-2 border border-yellow-500/40">
@@ -729,7 +729,7 @@
                         <option value="Recharge / Confirmation paiement">Recharge / Confirmation paiement</option>
                         <option value="Retrait en attente">Retrait en attente</option>
                         <option value="Plans d'investissement (8 jours)">Plans d'investissement (8 jours)</option>
-                        <option value="Parrainage / Bonus 500 FCFA">Parrainage / Bonus 500 FCFA</option>
+                        <option value="Parrainage / Bonus 250 FCFA">Parrainage / Bonus 250 FCFA</option>
                         <option value="Autre question">Autre question</option>
                     </select>
                     <textarea id="cs-message" rows="3" required placeholder="Décrivez votre demande (ex: ID de transaction, montant, question)..." class="w-full bg-white border border-neutral-300 rounded-xl py-2 px-3 text-xs text-neutral-950 focus:outline-none focus:border-yellow-500"></textarea>
@@ -750,7 +750,7 @@
     <script>
         const DAY_MS = 24 * 60 * 60 * 1000;
         const WITHDRAW_FEE_RATE = 0.06;
-        const REFERRAL_BONUS = 500;
+        const REFERRAL_BONUS = 250;
         const REFERRAL_BASE_URL = 'https://avenircapitalavenir-commits.github.io/avenir-capital-68/';
         const CS_WHATSAPP_URL = 'https://wa.me/message/ABZ2BRFJPVIOE1';
         const TEST_MODE = false; // true = affiche le bouton "+24h" (à laisser false en production)
@@ -1176,7 +1176,7 @@
         function copyReferralLink() {
             if (!currentUser) return;
             navigator.clipboard?.writeText(getReferralLink()).catch(() => {});
-            notify('Lien de parrainage copié ! Bonus 500 FCFA dès le 1er rechargement validé du filleul.');
+            notify('Lien de parrainage copié ! Bonus 250 FCFA dès le 1er rechargement validé du filleul.');
         }
 
         function formatFCFA(num) {
@@ -1507,7 +1507,7 @@
                         <p class="text-[11px] font-mono text-neutral-600">${esc(m.phone)} • ${esc(m.date)}</p>
                     </div>
                     <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${m.bonusCredited ? 'bg-neutral-950 text-yellow-400' : 'bg-yellow-100 text-neutral-900'}">
-                        ${m.bonusCredited ? '+500 F crédités' : 'En attente recharge'}
+                        ${m.bonusCredited ? '+250 F crédités' : 'En attente recharge'}
                     </span>
                 </div>
             `).join('');
@@ -1731,7 +1731,7 @@
                     userPhone: currentUser.phone,
                     userName: currentUser.name,
                     category: 'bonus',
-                    type: `Bonus parrainage (500 F) — ${m.name}`,
+                    type: `Bonus parrainage (250 F) — ${m.name}`,
                     amount: REFERRAL_BONUS,
                     status: 'Validé',
                     date: todayFR()
