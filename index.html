@@ -153,10 +153,10 @@
             </form>
 
             <div class="mt-5 pt-4 border-t border-neutral-200 flex items-center justify-between text-xs">
-                <span class="text-neutral-500 font-medium">Service avenir capital 24h/24 • 0556848202</span>
-                <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" class="text-neutral-950 font-extrabold hover:underline flex items-center gap-1.5">
+                <span class="text-neutral-500 font-medium">Service avenir capital 24h/24</span>
+                <button type="button" onclick="openCustomerServiceModal()" class="text-neutral-950 font-extrabold hover:underline flex items-center gap-1.5">
                     <i class="fas fa-headset text-yellow-500"></i> Service Client
-                </a>
+                </button>
             </div>
         </div>
     </div>
@@ -177,10 +177,10 @@
             </div>
 
             <div class="flex items-center gap-1.5">
-                <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" title="Service Client" class="px-2.5 py-2 rounded-xl bg-neutral-950 hover:bg-neutral-800 text-yellow-400 border border-yellow-500/40 text-[11px] font-bold flex items-center gap-1 shadow-sm transition">
+                <button onclick="openCustomerServiceModal()" title="Service Client" class="px-2.5 py-2 rounded-xl bg-neutral-950 hover:bg-neutral-800 text-yellow-400 border border-yellow-500/40 text-[11px] font-bold flex items-center gap-1 shadow-sm transition">
                     <i class="fas fa-headset text-xs"></i>
-                    <span>0556848202</span>
-                </a>
+                    <span>Service Client</span>
+                </button>
 
                 <button onclick="logoutAndReconnect()" id="header-auth-btn" title="Se déconnecter" class="w-8 h-8 rounded-xl bg-white border border-neutral-300 flex items-center justify-center text-neutral-900 hover:bg-yellow-50">
                     <i class="fas fa-right-from-bracket text-xs"></i>
@@ -229,34 +229,16 @@
                     </div>
                 </div>
 
-                <!-- BLOC PRÊT D'INVESTISSEMENT (REDIRECTION DIRECTE VERS WHATSAPP SERVICE CLIENT) -->
-                <div class="real-card rounded-2xl p-4 space-y-3 border-yellow-400">
-                    <div class="flex justify-between items-center gap-2">
-                        <div>
-                            <p class="text-xs font-extrabold text-neutral-950">Prêt Boost Investissement (1 mois)</p>
-                            <p class="text-[11px] text-neutral-500">Investissez <strong>25 000 F</strong> → Prêt <strong>95 000 F</strong> + Pack <strong>5 000 F</strong></p>
-                        </div>
-                        <span class="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-yellow-100 text-neutral-950 shrink-0">
-                            0556848202
-                        </span>
-                    </div>
-
-                    <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" id="btn-activate-loan-25k" class="w-full yellow-btn font-extrabold py-2.5 px-3 rounded-xl text-xs shadow-sm transition flex items-center justify-center gap-2">
-                        <i class="fab fa-whatsapp text-sm"></i>
-                        <span>Demander le prêt sur WhatsApp Service Client (0556848202)</span>
-                    </a>
-                </div>
-
                 <div class="grid grid-cols-2 gap-3">
-                    <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-yellow-500 transition">
+                    <button onclick="openCustomerServiceModal()" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-yellow-500 transition">
                         <div class="w-9 h-9 rounded-xl bg-neutral-950 text-yellow-400 flex items-center justify-center shrink-0">
                             <i class="fas fa-headset"></i>
                         </div>
                         <div>
                             <p class="text-xs font-extrabold text-neutral-950">Service Client</p>
-                            <p class="text-[10px] text-neutral-500">0556848202</p>
+                            <p class="text-[10px] text-neutral-500">WhatsApp & tickets 24h/24</p>
                         </div>
-                    </a>
+                    </button>
 
                     <button onclick="logoutAndReconnect()" id="dash-session-btn" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-yellow-500 transition">
                         <div class="w-9 h-9 rounded-xl bg-yellow-100 text-neutral-950 flex items-center justify-center shrink-0">
@@ -314,257 +296,1663 @@
                         <div class="w-9 h-9 rounded-xl bg-neutral-950 text-yellow-400 flex items-center justify-center mb-2">
                             <i class="fas fa-users"></i>
                         </div>
-                        <p class="text-sm font-extrabold text-neutral-950">Équipe</p>
-                        <p class="text-[11px] text-neutral-500 mt-0.5">Parrainage & bonus</p>
+                        <p class="text-sm font-extrabold text-neutral-950">Mon Équipe</p>
+                        <p class="text-[11px] text-neutral-500 mt-0.5">Lien & bonus 250 F</p>
                     </button>
                 </div>
             </section>
 
-            <!-- PAGE : PLANS -->
-            <section id="page-plans" class="hidden space-y-3">
-                <h2 class="text-lg font-extrabold text-neutral-950">Plans d'investissement</h2>
-                <div class="real-card rounded-2xl p-4 text-xs text-neutral-600">
-                    12 plans disponibles sur des cycles de 4 jours et 8 jours.
+            <!-- PAGE 2 : INVESTISSEMENT (12 PLANS : 4 JOURS & 8 JOURS) -->
+            <section id="page-plans" class="hidden space-y-4">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-neutral-950">Plans d'Investissement</h2>
+                        <p class="text-xs text-neutral-500 mt-1">12 plans disponibles • Cycle 24h/24 (4 jours ou 8 jours).</p>
+                    </div>
+                    <span class="text-[11px] font-extrabold text-neutral-950 bg-yellow-300 px-2.5 py-1 rounded-full">4j & 8j • 24h/24</span>
                 </div>
+                <div id="plans-list" class="space-y-2.5"></div>
             </section>
 
-            <!-- PAGE : PACKS ACTIFS -->
-            <section id="page-packs" class="hidden space-y-3">
-                <h2 class="text-lg font-extrabold text-neutral-950">Plans Actifs</h2>
-                <div class="real-card rounded-2xl p-4 text-xs text-neutral-600">
-                    Réclamez vos revenus toutes les 24 heures.
+            <!-- PAGE 3 : PLANS ACTIFS (RÉCLAMATION TOUTES LES 24H) -->
+            <section id="page-packs" class="hidden space-y-4">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-neutral-950">Mes Plans Actifs</h2>
+                        <p class="text-xs text-neutral-500 mt-1">Réclamation disponible toutes les 24h exactes selon la durée du plan.</p>
+                    </div>
+                    <button id="btn-sim-day" onclick="simulateNextDay()" class="hidden px-3 py-1.5 rounded-xl bg-yellow-100 hover:bg-yellow-200 text-neutral-950 border border-yellow-400 text-[11px] font-bold">
+                        +24h (Test)
+                    </button>
                 </div>
+
+                <div class="real-card rounded-2xl p-4 flex justify-between items-center">
+                    <div>
+                        <p class="text-xs text-neutral-500">Total des revenus réclamés</p>
+                        <p class="text-xl font-extrabold text-red-600" id="packs-revenue-total">0 FCFA</p>
+                    </div>
+                    <span id="packs-count-badge" class="text-xs font-extrabold px-3 py-1 rounded-full bg-neutral-950 text-yellow-400">0 plan</span>
+                </div>
+
+                <div id="my-purchased-packs-list" class="space-y-2.5"></div>
             </section>
 
-            <!-- PAGE : RECHARGE -->
-            <section id="page-recharge" class="hidden space-y-3">
-                <h2 class="text-lg font-extrabold text-neutral-950">Recharger</h2>
-                <div class="recharge-dark-card rounded-2xl p-4 space-y-2 text-xs">
-                    <p class="font-bold text-yellow-400">Service Client : 0556848202</p>
-                    <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" class="yellow-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-extrabold">
-                        <i class="fab fa-whatsapp"></i> Contacter le Service Client
+            <!-- PAGE 4 : RECHARGE -->
+            <section id="page-recharge" class="hidden space-y-4">
+                <div class="flex justify-between items-center">
+                    <button type="button" onclick="handleRechargeBackButton()" class="text-xs font-extrabold text-neutral-950 hover:underline flex items-center gap-1">
+                        <i class="fas fa-chevron-left text-[10px]"></i>
+                        <span id="recharge-back-label">Retour</span>
+                    </button>
+
+                    <button onclick="navigateTo('recharge-history')" class="px-3 py-1.5 rounded-xl bg-neutral-950 hover:bg-neutral-800 text-yellow-400 text-[11px] font-bold">
+                        Historique →
+                    </button>
+                </div>
+
+                <div id="recharge-home-view" class="recharge-dark-card rounded-3xl p-5 space-y-4">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-white tracking-tight">Choisir le mode de paiement</h2>
+                        <p class="text-xs text-neutral-300 mt-1">
+                            Montant à recharger : <strong id="home-recharge-amount-display" class="text-yellow-400 font-extrabold">4 000 F</strong>
+                        </p>
+                    </div>
+
+                    <div>
+                        <label class="block text-[11px] font-bold text-yellow-300 uppercase mb-1.5">Montant à recharger (FCFA)</label>
+                        <input type="number" id="home-recharge-amount" min="1000" value="4000" oninput="syncRechargeAmountFromHome()" placeholder="Ex: 4000" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl py-2.5 px-4 text-sm font-extrabold text-white focus:outline-none focus:border-yellow-400">
+                    </div>
+
+                    <div class="space-y-2.5 pt-1">
+                        <button type="button" onclick="selectPaymentMethodAndOpenStep1('Wave', '0509302107')" class="w-full recharge-method-btn rounded-2xl px-4 py-3.5 flex items-center justify-between text-left">
+                            <span class="text-sm font-extrabold text-white">Wave</span>
+                            <i class="fas fa-chevron-right text-xs text-yellow-400"></i>
+                        </button>
+
+                        <button type="button" onclick="selectPaymentMethodAndOpenStep1('MTN Money', '0545576710')" class="w-full recharge-method-btn rounded-2xl px-4 py-3.5 flex items-center justify-between text-left">
+                            <span class="text-sm font-extrabold text-white">MTN Money</span>
+                            <i class="fas fa-chevron-right text-xs text-yellow-400"></i>
+                        </button>
+
+                        <button type="button" onclick="selectPaymentMethodAndOpenStep1('Moov Money', '0104217547')" class="w-full recharge-method-btn rounded-2xl px-4 py-3.5 flex items-center justify-between text-left">
+                            <span class="text-sm font-extrabold text-white">Moov Money</span>
+                            <i class="fas fa-chevron-right text-xs text-yellow-400"></i>
+                        </button>
+                    </div>
+
+                    <a href="https://pay.jeko.africa/pl/4f580acc-5df9-440e-b168-6beb65823bea" target="_blank" rel="noopener noreferrer" class="w-full yellow-btn font-extrabold py-3 px-4 rounded-xl text-xs shadow-md flex items-center justify-center gap-2 transition">
+                        <i class="fas fa-link"></i>
+                        <span>Payer pour Avenir (Lien Jeko)</span>
                     </a>
                 </div>
-            </section>
 
-            <!-- PAGE : RETRAIT -->
-            <section id="page-withdraw" class="hidden space-y-3">
-                <h2 class="text-lg font-extrabold text-neutral-950">Retirer</h2>
-                <div class="wallet-yellow-card rounded-2xl p-4 space-y-2 text-xs">
-                    <p class="font-bold text-neutral-950">Service Client : 0556848202</p>
-                    <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" class="wallet-yellow-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-extrabold">
-                        <i class="fab fa-whatsapp"></i> Contacter le Service Client
-                    </a>
+                <div id="recharge-step-1" class="recharge-dark-card rounded-2xl p-4 space-y-4 hidden">
+                    <div class="flex items-center justify-between border-b border-neutral-800 pb-2.5">
+                        <span class="text-xs font-extrabold text-yellow-300">Étape 1/2 : Paiement & ID transaction</span>
+                        <button type="button" onclick="openRechargeHomeView()" class="text-[11px] font-bold text-yellow-400 hover:underline">
+                            Changer mode
+                        </button>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-2 bg-neutral-950 border border-neutral-800 rounded-xl p-3">
+                        <div class="text-xs font-bold text-neutral-200">Payer pour Avenir via Jeko :</div>
+                        <a href="https://pay.jeko.africa/pl/4f580acc-5df9-440e-b168-6beb65823bea" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg yellow-btn text-xs font-extrabold inline-flex items-center gap-1.5">
+                            <span>Lien Paiement Jeko</span>
+                            <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
+                        </a>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-yellow-300 uppercase mb-2">Numéros Mobile Money (Cliquer pour copier)</label>
+                        <div id="recharge-numbers-list" class="space-y-2"></div>
+                    </div>
+
+                    <div class="bg-neutral-950 border border-neutral-800 text-white rounded-xl p-3 flex items-center justify-between text-xs">
+                        <div>
+                            <span class="text-neutral-400">Opérateur :</span>
+                            <strong id="selected-op-label" class="text-yellow-400 ml-1">Wave</strong>
+                        </div>
+                        <div>
+                            <span class="text-neutral-400">Numéro copié :</span>
+                            <strong id="copied-number-display" class="font-mono text-yellow-300 ml-1">0509302107</strong>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-yellow-300 uppercase mb-1.5">Montant (FCFA)</label>
+                        <input type="number" id="recharge-amount" min="1000" value="4000" oninput="syncRechargeAmountFromStep1()" placeholder="Ex: 10000" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl py-2.5 px-4 text-sm font-bold text-white placeholder-neutral-500 focus:outline-none focus:border-yellow-400">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-yellow-300 uppercase mb-1.5">ID de transaction</label>
+                        <input type="text" id="recharge-txid" placeholder="Ex: TX-984321" class="w-full bg-neutral-950 border border-neutral-700 rounded-xl py-2.5 px-4 text-sm uppercase font-mono text-white placeholder-neutral-500 focus:outline-none focus:border-yellow-400">
+                    </div>
+
+                    <button type="button" onclick="prepareRechargeConfirmation()" class="w-full yellow-btn font-extrabold py-3 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                        <span>Continuer vers la confirmation</span>
+                        <i class="fas fa-arrow-right text-xs"></i>
+                    </button>
+                </div>
+
+                <div id="recharge-step-2" class="recharge-dark-card rounded-2xl p-4 space-y-4 hidden border-2 border-yellow-400">
+                    <div class="flex items-center justify-between border-b border-neutral-800 pb-3">
+                        <div>
+                            <span class="text-[10px] font-extrabold uppercase text-neutral-950 bg-yellow-400 px-2 py-0.5 rounded-full">Vérification finale</span>
+                            <h3 class="text-sm font-extrabold text-white mt-1">Confirmer votre paiement</h3>
+                        </div>
+                        <button type="button" onclick="backToRechargeStep1()" class="text-xs font-bold text-yellow-400 hover:text-white underline">
+                            Modifier
+                        </button>
+                    </div>
+
+                    <div class="bg-neutral-950 border border-neutral-800 rounded-xl p-3.5 space-y-2 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-neutral-400">Opérateur :</span>
+                            <strong id="confirm-op" class="text-white">Wave</strong>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-400">Numéro destinataire :</span>
+                            <strong id="confirm-number" class="font-mono text-yellow-400">0509302107</strong>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-400">Montant à créditer :</span>
+                            <strong id="confirm-amount" class="text-yellow-300 font-extrabold text-sm">0 FCFA</strong>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-400">ID de transaction :</span>
+                            <strong id="confirm-txid" class="font-mono text-yellow-400">-</strong>
+                        </div>
+                    </div>
+
+                    <label class="flex items-start gap-2.5 bg-neutral-950 border border-yellow-500/50 rounded-xl p-3 cursor-pointer">
+                        <input type="checkbox" id="confirm-payment-checkbox" class="mt-0.5 w-4 h-4 accent-yellow-400 rounded">
+                        <span class="text-[11px] font-bold text-neutral-100 leading-snug">
+                            Je confirme avoir effectué le paiement avec l'ID de transaction ci-dessus et je souhaite soumettre ma recharge pour validation.
+                        </span>
+                    </label>
+
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <button type="button" onclick="backToRechargeStep1()" class="py-2.5 px-3 rounded-xl border border-neutral-700 bg-neutral-950 text-neutral-200 font-bold text-xs hover:bg-neutral-900">
+                            Retour
+                        </button>
+                        <button type="button" onclick="confirmAndSubmitRecharge()" class="py-2.5 px-3 rounded-xl yellow-btn font-extrabold text-xs shadow-md flex items-center justify-center gap-1.5">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Confirmer le paiement</span>
+                        </button>
+                    </div>
                 </div>
             </section>
 
-            <!-- PAGES HISTORIQUES & ÉQUIPE -->
-            <section id="page-recharge-history" class="hidden space-y-3">
-                <h2 class="text-lg font-extrabold text-neutral-950">Historique des recharges</h2>
-                <div class="real-card rounded-2xl p-4 text-xs text-neutral-600">Aucune recharge enregistrée pour le moment.</div>
+            <!-- PAGE 5 : HISTORIQUE DES RECHARGES -->
+            <section id="page-recharge-history" class="hidden space-y-4">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-neutral-950">Historique des Recharges</h2>
+                        <p class="text-xs text-neutral-500 mt-1">Toutes vos demandes de rechargement.</p>
+                    </div>
+                    <button onclick="navigateTo('recharge')" class="px-3 py-1.5 rounded-xl bg-neutral-950 text-yellow-400 text-[11px] font-bold">
+                        + Recharger
+                    </button>
+                </div>
+                <div id="recharge-history-list" class="space-y-2.5"></div>
             </section>
 
-            <section id="page-withdraw-history" class="hidden space-y-3">
-                <h2 class="text-lg font-extrabold text-neutral-950">Historique des retraits</h2>
-                <div class="real-card rounded-2xl p-4 text-xs text-neutral-600">Aucun retrait enregistré pour le moment.</div>
+            <!-- PAGE 6 : DEMANDE DE RETRAIT -->
+            <section id="page-withdraw" class="hidden space-y-4">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-neutral-950">Demande de Retrait</h2>
+                        <p class="text-xs text-neutral-500 mt-1">Frais de retrait : <strong>-6 % déduits</strong> sur le montant retiré.</p>
+                    </div>
+                    <div class="flex gap-1.5">
+                        <button onclick="navigateTo('withdraw-pending')" class="px-2.5 py-1.5 rounded-xl bg-yellow-100 text-neutral-950 text-[11px] font-bold">En attente</button>
+                        <button onclick="navigateTo('withdraw-history')" class="px-2.5 py-1.5 rounded-xl bg-neutral-950 text-yellow-400 text-[11px] font-bold">Historique</button>
+                    </div>
+                </div>
+
+                <div class="real-card rounded-2xl p-4 flex justify-between items-center">
+                    <div>
+                        <p class="text-xs text-neutral-500">Solde disponible</p>
+                        <p class="text-xl font-extrabold text-neutral-950" id="withdraw-available">0 FCFA</p>
+                    </div>
+                    <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-neutral-950 text-yellow-400 border border-yellow-500/40">-6% déduits</span>
+                </div>
+
+                <form onsubmit="submitWithdraw(event)" class="real-card rounded-2xl p-4 space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Numéro de réception</label>
+                        <input type="tel" id="withdraw-phone" required placeholder="07 00 00 00 00" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-4 text-sm text-neutral-950 focus:outline-none focus:border-yellow-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Montant du retrait (FCFA)</label>
+                        <input type="number" id="withdraw-amount" required min="1000" oninput="updateWithdrawFeePreview()" placeholder="Ex: 5000" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-4 text-sm font-bold text-neutral-950 focus:outline-none focus:border-yellow-500">
+                    </div>
+
+                    <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-3 space-y-1.5 text-xs">
+                        <div class="flex justify-between">
+                            <span class="text-neutral-500">Montant demandé :</span>
+                            <strong id="withdraw-gross-amount" class="text-neutral-950">0 FCFA</strong>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-neutral-500">Frais déduits (-6%) :</span>
+                            <strong id="withdraw-fee-amount" class="text-neutral-800">-0 FCFA</strong>
+                        </div>
+                        <div class="flex justify-between pt-1 border-t border-neutral-200">
+                            <span class="text-neutral-800 font-bold">Montant net reçu (réduit de 6%) :</span>
+                            <strong id="withdraw-net-amount" class="text-yellow-600 font-extrabold">0 FCFA</strong>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-neutral-700 uppercase mb-1.5">Mot de passe du portefeuille (6 chiffres)</label>
+                        <input type="password" id="withdraw-pin" required maxlength="6" pattern="\d{6}" inputmode="numeric" placeholder="••••••" class="w-full bg-neutral-50 border border-neutral-300 rounded-xl py-2.5 px-4 text-sm font-mono tracking-widest text-neutral-950 focus:outline-none focus:border-yellow-500">
+                    </div>
+
+                    <button type="submit" class="w-full yellow-btn font-extrabold py-3 rounded-xl shadow-md transition">
+                        Lancer le retrait (-6% déduits)
+                    </button>
+                </form>
             </section>
 
-            <section id="page-withdraw-pending" class="hidden space-y-3">
-                <h2 class="text-lg font-extrabold text-neutral-950">Retraits en attente</h2>
-                <div class="real-card rounded-2xl p-4 text-xs text-neutral-600">Aucun retrait en attente.</div>
+            <!-- PAGE 7 : RETRAITS EN ATTENTE -->
+            <section id="page-withdraw-pending" class="hidden space-y-4">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-neutral-950">Retraits en Attente</h2>
+                        <p class="text-xs text-neutral-500 mt-1">Demandes en cours de traitement.</p>
+                    </div>
+                    <button onclick="navigateTo('withdraw')" class="px-3 py-1.5 rounded-xl bg-neutral-950 text-yellow-400 text-[11px] font-bold">
+                        + Nouveau retrait
+                    </button>
+                </div>
+                <div id="withdraw-pending-list" class="space-y-2.5"></div>
             </section>
 
-            <section id="page-team" class="hidden space-y-3">
-                <h2 class="text-lg font-extrabold text-neutral-950">Mon équipe</h2>
-                <div class="real-card rounded-2xl p-4 text-xs text-neutral-600">Bonus de parrainage : 250 F.</div>
+            <!-- PAGE 8 : HISTORIQUE DES RETRAITS -->
+            <section id="page-withdraw-history" class="hidden space-y-4">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl font-extrabold text-neutral-950">Historique des Retraits</h2>
+                        <p class="text-xs text-neutral-500 mt-1">Ensemble de vos retraits (validés, rejetés, en attente).</p>
+                    </div>
+                    <button onclick="navigateTo('withdraw-pending')" class="px-3 py-1.5 rounded-xl bg-yellow-100 text-neutral-950 text-[11px] font-bold">
+                        Voir en attente
+                    </button>
+                </div>
+                <div id="withdraw-history-list" class="space-y-2.5"></div>
             </section>
+
+            <!-- PAGE 9 : ÉQUIPE -->
+            <section id="page-team" class="hidden space-y-4">
+                <div>
+                    <h2 class="text-xl font-extrabold text-neutral-950">Mon Équipe & Parrainage</h2>
+                    <p class="text-xs text-neutral-500 mt-1">Partagez votre lien : <strong>250 FCFA</strong> crédités automatiquement uniquement après le 1er rechargement validé de votre filleul.</p>
+                </div>
+
+                <div class="real-card rounded-2xl p-4 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-extrabold text-neutral-950">Lien de Parrainage</h3>
+                        <span class="text-[11px] font-extrabold text-neutral-950 bg-yellow-300 px-2.5 py-0.5 rounded-full">+250 F / filleul rechargé</span>
+                    </div>
+
+                    <div class="bg-neutral-950 text-white rounded-xl p-3.5 space-y-2 border border-yellow-500/40">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-[10px] uppercase text-neutral-400">Mon Code</p>
+                                <p id="referral-code-display" class="text-sm font-extrabold font-mono text-yellow-400">AVN-000000</p>
+                            </div>
+                            <button onclick="copyReferralCode()" class="px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-bold">
+                                Copier code
+                            </button>
+                        </div>
+                        <div class="pt-2 border-t border-neutral-800 flex items-center justify-between gap-2">
+                            <p id="referral-link-display" class="text-[11px] font-mono text-yellow-300 truncate"></p>
+                            <button onclick="copyReferralLink()" class="px-3 py-1.5 rounded-lg yellow-btn text-xs font-extrabold shrink-0">
+                                Copier lien
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-2.5">
+                            <p class="text-[10px] text-neutral-500">Filleuls inscrits</p>
+                            <p id="team-count-badge" class="text-base font-extrabold text-neutral-950 mt-0.5">0</p>
+                        </div>
+                        <div class="bg-yellow-50 border border-yellow-300 rounded-xl p-2.5">
+                            <p class="text-[10px] text-neutral-700">Bonus parrainage gagné</p>
+                            <p id="team-bonus-total" class="text-base font-extrabold text-neutral-950 mt-0.5">0 FCFA</p>
+                        </div>
+                    </div>
+
+                    <div class="text-[11px] text-neutral-700 bg-neutral-50 border border-neutral-200 rounded-xl px-3 py-2">
+                        Mon parrain : <strong id="referrer-name-display">Aucun</strong>
+                    </div>
+                </div>
+
+                <div class="real-card rounded-2xl p-4 space-y-3">
+                    <h3 class="text-sm font-extrabold text-neutral-950">Membres de mon équipe (Filleuls)</h3>
+                    <div id="team-members-list" class="space-y-2"></div>
+                </div>
+
+                <div class="wallet-yellow-card rounded-2xl p-4 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-xl wallet-yellow-btn flex items-center justify-center shadow-xs">
+                                <i class="fas fa-wallet text-xs"></i>
+                            </div>
+                            <h3 class="text-sm font-extrabold text-neutral-950">Portefeuille — Compte Lié</h3>
+                        </div>
+                        <span id="account-link-badge" class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white text-neutral-900 border border-yellow-500">Non lié</span>
+                    </div>
+
+                    <div id="linked-account-card" class="bg-white/90 border border-yellow-400 rounded-xl p-3 text-xs space-y-1">
+                        <p class="text-neutral-700">Aucun compte de portefeuille lié pour le moment.</p>
+                    </div>
+
+                    <div id="wallet-link-form" class="space-y-2.5 pt-1">
+                        <input type="text" id="wallet-username" placeholder="Nom d'utilisateur (ex: JeanKouassi)" class="w-full bg-white border border-yellow-500 rounded-xl py-2 px-3 text-xs text-neutral-950 focus:outline-none focus:border-neutral-950">
+                        <input type="tel" id="wallet-usernumber" placeholder="Numéro du portefeuille (ex: 07 00 00 00 00)" class="w-full bg-white border border-yellow-500 rounded-xl py-2 px-3 text-xs text-neutral-950 focus:outline-none focus:border-neutral-950">
+                        <input type="password" id="wallet-pin" maxlength="6" minlength="6" pattern="\d{6}" inputmode="numeric" placeholder="Mot de passe du portefeuille 6 chiffres (ex: 123456)" class="w-full bg-white border border-yellow-500 rounded-xl py-2 px-3 text-xs font-mono tracking-widest text-neutral-950 focus:outline-none focus:border-neutral-950">
+                        <button type="button" id="btn-lier-mon-compte" onclick="linkWalletAccount()" class="w-full wallet-yellow-btn font-extrabold py-2.5 rounded-xl text-xs shadow-sm hover:opacity-95 transition flex items-center justify-center gap-2">
+                            <i class="fas fa-link"></i>
+                            <span>Lier mon compte</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
         </main>
 
-        <!-- BARRE DE NAVIGATION BASSE -->
-        <nav class="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white border-t border-neutral-200 px-4 py-2.5 flex justify-around items-center z-30">
-            <button onclick="navigateTo('dashboard')" id="nav-dashboard" class="nav-active flex flex-col items-center gap-1 text-[11px] font-bold">
-                <i class="fas fa-house text-base"></i><span>Accueil</span>
+        <!-- BARRE DE NAVIGATION INFÉRIEURE -->
+        <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto bg-white border-t border-neutral-200 px-1 py-2 flex justify-around items-center z-40">
+            <button onclick="navigateTo('dashboard')" id="nav-dashboard" class="flex flex-col items-center gap-1 text-neutral-400 nav-active w-1/6">
+                <i class="fas fa-wallet text-sm"></i>
+                <span class="text-[9px] font-bold">Solde</span>
             </button>
-            <button onclick="navigateTo('plans')" id="nav-plans" class="text-neutral-400 flex flex-col items-center gap-1 text-[11px] font-bold">
-                <i class="fas fa-chart-line text-base"></i><span>Plans</span>
+            <button onclick="navigateTo('plans')" id="nav-plans" class="flex flex-col items-center gap-1 text-neutral-400 w-1/6">
+                <i class="fas fa-chart-line text-sm"></i>
+                <span class="text-[9px] font-bold">Plans</span>
             </button>
-            <button onclick="navigateTo('packs')" id="nav-packs" class="text-neutral-400 flex flex-col items-center gap-1 text-[11px] font-bold">
-                <i class="fas fa-box-open text-base"></i><span>Actifs</span>
+            <button onclick="navigateTo('packs')" id="nav-packs" class="flex flex-col items-center gap-1 text-neutral-400 w-1/6">
+                <i class="fas fa-box-open text-sm"></i>
+                <span class="text-[9px] font-bold">Actifs</span>
             </button>
-            <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" class="text-neutral-400 flex flex-col items-center gap-1 text-[11px] font-bold">
-                <i class="fab fa-whatsapp text-base"></i><span>Service</span>
-            </a>
+            <button onclick="navigateTo('recharge')" id="nav-recharge" class="flex flex-col items-center gap-1 text-neutral-400 w-1/6">
+                <i class="fas fa-plus-circle text-sm"></i>
+                <span class="text-[9px] font-bold">Recharge</span>
+            </button>
+            <button onclick="navigateTo('withdraw')" id="nav-withdraw" class="flex flex-col items-center gap-1 text-neutral-400 w-1/6">
+                <i class="fas fa-arrow-up-right-from-square text-sm"></i>
+                <span class="text-[9px] font-bold">Retrait</span>
+            </button>
+            <button onclick="navigateTo('team')" id="nav-team" class="flex flex-col items-center gap-1 text-neutral-400 w-1/6">
+                <i class="fas fa-users text-sm"></i>
+                <span class="text-[9px] font-bold">Équipe</span>
+            </button>
         </nav>
     </div>
 
     <!-- MODAL SERVICE CLIENT -->
-    <div id="cs-modal" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center p-4">
-        <div class="bg-white rounded-3xl w-full max-w-sm p-6 border border-yellow-400 shadow-2xl space-y-4">
-            <div class="flex items-center justify-between">
-                <h3 class="text-sm font-extrabold text-neutral-950">Service Client</h3>
-                <button onclick="closeCustomerServiceModal()" class="w-8 h-8 rounded-full bg-neutral-100 text-neutral-700 flex items-center justify-center">
-                    <i class="fas fa-times text-xs"></i>
+    <div id="cs-modal" class="fixed inset-0 bg-neutral-950/70 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white border border-neutral-200 rounded-3xl w-full max-w-md max-h-[88vh] flex flex-col overflow-hidden shadow-xl">
+            <div class="p-4 border-b border-neutral-200 flex justify-between items-center brand-gradient text-white">
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-xl bg-yellow-400/15 flex items-center justify-center">
+                        <i class="fas fa-headset text-sm text-yellow-400"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-sm leading-none">service avenir capital 24h/24</h3>
+                        <span class="text-[10px] text-yellow-300">Compte professionnel WhatsApp • 24h/24</span>
+                    </div>
+                </div>
+                <button onclick="closeCustomerServiceModal()" class="w-8 h-8 rounded-full bg-white/15 text-white flex items-center justify-center hover:bg-white/25">
+                    <i class="fas fa-times"></i>
                 </button>
             </div>
-            <div class="bg-neutral-50 border border-neutral-200 rounded-2xl p-3.5 space-y-2">
-                <p class="text-[11px] font-bold text-neutral-500 uppercase">Numéro Service Client</p>
-                <div class="flex items-center justify-between">
-                    <span id="cs-phone-display" class="text-sm font-extrabold text-neutral-950">0556848202</span>
-                    <button onclick="copyCustomerServicePhone()" class="px-2.5 py-1 rounded-lg bg-yellow-100 text-neutral-950 text-[11px] font-extrabold">Copier</button>
+
+            <div class="p-4 overflow-y-auto space-y-4">
+                <!-- Carte WhatsApp officielle -->
+                <div class="bg-neutral-950 text-white border border-yellow-500/50 rounded-2xl p-3.5 space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-2xl bg-green-500/20 border border-green-400/40 flex items-center justify-center shrink-0">
+                            <i class="fab fa-whatsapp text-green-400 text-2xl"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <p class="text-xs font-extrabold text-white truncate">service avenir capital 24h/24</p>
+                            <p class="text-[10px] text-yellow-300">Compte professionnel WhatsApp</p>
+                            <p class="text-[10px] text-neutral-300 mt-0.5">Assistance recharges, retraits, plans & parrainage</p>
+                        </div>
+                    </div>
+
+                    <a id="cs-whatsapp-link" href="https://wa.me/message/MADIVW3PNLKRL10556848202" target="_blank" rel="noopener noreferrer" class="w-full yellow-btn rounded-xl py-3 px-4 text-xs font-extrabold flex items-center justify-center gap-2 shadow-sm transition">
+                        <i class="fab fa-whatsapp text-base"></i>
+                        <span>Démarrer une discussion WhatsApp</span>
+                    </a>
+                    <p class="text-[11px] font-mono font-bold text-yellow-300 text-center">Numéro : 0556848202</p>
                 </div>
-                <p class="text-[11px] text-neutral-500 break-all pt-1 border-t border-neutral-200">
-                    Lien : <span id="cs-link-display" class="font-semibold text-neutral-800">https://wa.me/message/MADIVW3PNLKRL1</span>
-                </p>
+
+                <form onsubmit="submitSupportTicket(event)" class="bg-neutral-50 border border-neutral-200 rounded-2xl p-3.5 space-y-2.5">
+                    <p class="text-xs font-extrabold text-neutral-950">Envoyer un message au support</p>
+                    <select id="cs-topic" class="w-full bg-white border border-neutral-300 rounded-xl py-2 px-3 text-xs font-bold text-neutral-900 focus:outline-none focus:border-yellow-500">
+                        <option value="Recharge / Confirmation paiement">Recharge / Confirmation paiement</option>
+                        <option value="Retrait en attente">Retrait en attente</option>
+                        <option value="Plans d'investissement (4j & 8j)">Plans d'investissement (4j & 8j)</option>
+                        <option value="Parrainage / Bonus 250 FCFA">Parrainage / Bonus 250 FCFA</option>
+                        <option value="Autre question">Autre question</option>
+                    </select>
+                    <textarea id="cs-message" rows="3" required placeholder="Décrivez votre demande (ex: ID de transaction, montant, question)..." class="w-full bg-white border border-neutral-300 rounded-xl py-2 px-3 text-xs text-neutral-950 focus:outline-none focus:border-yellow-500"></textarea>
+                    <button type="submit" class="w-full bg-neutral-950 text-yellow-400 font-extrabold py-2.5 rounded-xl text-xs hover:bg-neutral-800 transition">
+                        Envoyer au Service Client
+                    </button>
+                </form>
+
+                <div class="space-y-2">
+                    <h4 class="text-xs font-extrabold text-neutral-700 uppercase">Mes demandes récentes</h4>
+                    <div id="cs-tickets-list" class="space-y-2"></div>
+                </div>
             </div>
-            <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" class="w-full yellow-btn font-extrabold py-3 px-4 rounded-xl text-xs shadow-md flex items-center justify-center gap-2">
-                <i class="fab fa-whatsapp text-base"></i>
-                <span>Ouvrir WhatsApp Service Client</span>
-            </a>
         </div>
     </div>
 
+    <!-- ===================== LOGIQUE DE L'APPLICATION ===================== -->
     <script>
-        const CUSTOMER_SERVICE_PHONE = "0556848202";
-        const CUSTOMER_SERVICE_WHATSAPP_URL = "https://wa.me/message/MADIVW3PNLKRL1";
+        const DAY_MS = 24 * 60 * 60 * 1000;
+        const WITHDRAW_FEE_RATE = 0.06;
+        const REFERRAL_BONUS = 250;
+        const REFERRAL_BASE_URL = 'https://avenircapitalavenir-commits.github.io/avenir-capital-68/';
+        const CS_WHATSAPP_URL = 'https://wa.me/message/MADIVW3PNLKRL10556848202';
+        const TEST_MODE = false; // true = affiche le bouton "+24h" (à laisser false en production)
 
         const COUNTRIES = [
-            { name: "Côte d'Ivoire", dial: "+225", placeholder: "05 56 84 82 02" },
-            { name: "Sénégal", dial: "+221", placeholder: "77 000 00 00" },
-            { name: "Mali", dial: "+223", placeholder: "70 00 00 00" },
-            { name: "Burkina Faso", dial: "+226", placeholder: "70 00 00 00" },
-            { name: "Bénin", dial: "+229", placeholder: "90 00 00 00" },
-            { name: "Togo", dial: "+228", placeholder: "90 00 00 00" }
+            { code: 'CI', name: "Côte d'Ivoire", dial: '225', label: '+225' },
+            { code: 'TG', name: 'Togo', dial: '228', label: '+228' },
+            { code: 'BJ', name: 'Bénin', dial: '229', label: '+229' },
+            { code: 'ML', name: 'Mali', dial: '223', label: '+223' },
+            { code: 'BF', name: 'Burkina Faso', dial: '226', label: '+226' },
+            { code: 'SN', name: 'Sénégal', dial: '221', label: '+221' }
         ];
 
-        function showToast(message, type = "info") {
-            const toast = document.getElementById("toast");
-            const content = document.getElementById("toast-content");
-            const styles = {
-                success: "bg-neutral-950 text-yellow-400 border-yellow-500",
-                error: "bg-red-600 text-white border-red-700",
-                info: "bg-neutral-950 text-white border-neutral-700"
+        const INVESTMENT_PLANS_12 = [
+            { id: 'plan-1', name: '🌱 Plan 1 — Découverte', price: 3000, daily: 120, days: 8 },
+            { id: 'plan-flash-4k', name: '⚡ Plan Express 4K (4j)', price: 4000, daily: 200, days: 4 },
+            { id: 'plan-2', name: '🚀 Plan 2 — Starter', price: 5000, daily: 220, days: 8 },
+            { id: 'plan-flash-6k', name: '🔥 Plan Express 6K (4j)', price: 6000, daily: 300, days: 4 },
+            { id: 'plan-flash-7k', name: '💫 Plan Express 7K (4j)', price: 7000, daily: 310, days: 4 },
+            { id: 'plan-3', name: '⚡ Plan 3 — Essentiel', price: 10000, daily: 460, days: 8 },
+            { id: 'plan-4', name: '💼 Plan 4 — Croissance', price: 20000, daily: 950, days: 8 },
+            { id: 'plan-5', name: '📈 Plan 5 — Pro', price: 50000, daily: 2500, days: 8 },
+            { id: 'plan-6', name: '💎 Plan 6 — Premium', price: 100000, daily: 5200, days: 8 },
+            { id: 'plan-7', name: '👑 Plan 7 — VIP', price: 250000, daily: 13500, days: 8 },
+            { id: 'plan-8', name: '🏆 Plan 8 — Prestige', price: 500000, daily: 28000, days: 8 },
+            { id: 'plan-9', name: '🔴 Plan 9 — Élite Suprême', price: 1000000, daily: 58000, days: 8 }
+        ].map(p => ({
+            ...p,
+            profit: p.daily * p.days,
+            total: p.price + (p.daily * p.days)
+        }));
+
+        const RECHARGE_NUMBERS = [
+            { op: 'Moov Money', label: 'Moov money', phone: '0104217547' },
+            { op: 'Wave', label: 'Wave', phone: '0509302107' },
+            { op: 'MTN Money', label: 'MTN money', phone: '0545576710' }
+        ];
+
+        let selectedOperator = 'Wave';
+        let copiedNumber = '0509302107';
+        let pendingRechargeDraft = null;
+        let rechargeSubView = 'home';
+        let currentUser = null;
+        let transactionsDB = [];
+        let supportTicketsDB = [];
+
+        // ---------- Utilitaires ----------
+        const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const newId = prefix => `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`;
+        const todayFR = () => new Date().toLocaleDateString('fr-FR');
+        const onlyDigits = s => (s || '').replace(/\D/g, '');
+
+        function getCountryByCode(code) {
+            return COUNTRIES.find(c => c.code === code) || COUNTRIES[0];
+        }
+
+        function initCountrySelectors() {
+            const optionsHtml = COUNTRIES.map(c =>
+                `<option value="${c.code}">${c.name} (${c.label})</option>`
+            ).join('');
+
+            const regSelect = document.getElementById('reg-country');
+            const loginSelect = document.getElementById('login-country');
+            if (regSelect) regSelect.innerHTML = optionsHtml;
+            if (loginSelect) loginSelect.innerHTML = optionsHtml;
+
+            const savedCountry = localStorage.getItem('avenir_v6_last_country');
+            const defaultCode = COUNTRIES.some(c => c.code === savedCountry) ? savedCountry : 'CI';
+            if (regSelect) regSelect.value = defaultCode;
+            if (loginSelect) loginSelect.value = defaultCode;
+
+            onCountryChange('reg');
+            onCountryChange('login');
+        }
+
+        function onCountryChange(prefix) {
+            const selectEl = document.getElementById(`${prefix}-country`);
+            const labelEl = document.getElementById(`${prefix}-prefix-label`);
+            if (!selectEl || !labelEl) return;
+            const country = getCountryByCode(selectEl.value);
+            labelEl.textContent = country.label;
+        }
+
+        function buildFullPhone(countryCode, rawPhone) {
+            const country = getCountryByCode(countryCode);
+            let digits = onlyDigits(rawPhone);
+            if (!digits) return '';
+            if (digits.startsWith('00' + country.dial)) {
+                digits = digits.slice(2);
+            }
+            if (!digits.startsWith(country.dial)) {
+                digits = country.dial + digits;
+            }
+            return digits;
+        }
+
+        async function hashPin(pin) {
+            if (!window.crypto || !crypto.subtle) throw new Error('crypto-indisponible');
+            const data = new TextEncoder().encode(currentUser.phone + ':' + pin);
+            const buf = await crypto.subtle.digest('SHA-256', data);
+            return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        function refreshCustomerServiceWhatsAppLink() {
+            const linkEl = document.getElementById('cs-whatsapp-link');
+            if (!linkEl) return;
+            linkEl.href = CS_WHATSAPP_URL;
+        }
+
+        // ---------- Démarrage ----------
+        window.onload = () => {
+            initCountrySelectors();
+            renderRechargeNumbers();
+            renderPlans();
+            syncRechargeAmountFromHome();
+            updateWithdrawFeePreview();
+            refreshCustomerServiceWhatsAppLink();
+
+            if (TEST_MODE) document.getElementById('btn-sim-day').classList.remove('hidden');
+
+            const params = new URLSearchParams(window.location.search);
+            const urlRef = params.get('ref');
+            if (urlRef) {
+                document.getElementById('reg-ref').value = urlRef.toUpperCase();
+                switchAuthTab('register');
+            }
+
+            const lastPhone = localStorage.getItem('avenir_v6_last_phone');
+            const lastCountry = localStorage.getItem('avenir_v6_last_country');
+            if (lastCountry && COUNTRIES.some(c => c.code === lastCountry)) {
+                document.getElementById('login-country').value = lastCountry;
+                onCountryChange('login');
+            }
+            if (lastPhone) {
+                const c = getCountryByCode(document.getElementById('login-country').value);
+                const localPart = lastPhone.startsWith(c.dial) ? lastPhone.slice(c.dial.length) : lastPhone;
+                document.getElementById('login-phone').value = localPart;
+            }
+
+            setInterval(() => {
+                if (!currentUser) return;
+                if (!document.getElementById('page-packs').classList.contains('hidden')) {
+                    renderMyPurchasedPacks();
+                }
+            }, 1000);
+
+            setTimeout(() => {
+                if (!currentUser && !window.fbReady) revealAuth();
+            }, 6000);
+        };
+
+        function revealAuth() {
+            document.getElementById('splash').classList.add('hidden');
+            document.getElementById('main-app').classList.add('hidden');
+            document.getElementById('auth-screen').classList.remove('hidden');
+        }
+
+        function normalizeUser(user) {
+            return {
+                ...user,
+                countryCode: user.countryCode || 'CI',
+                countryName: user.countryName || "Côte d'Ivoire",
+                registeredAt: user.registeredAt || todayFR(),
+                balance: user.balance || 0,
+                revenueTotal: user.revenueTotal || 0,
+                referralBonusTotal: user.referralBonusTotal || 0,
+                referralRewardPaid: Boolean(user.referralRewardPaid),
+                sponsorUid: user.sponsorUid || null,
+                referredBy: user.referredBy || null,
+                activePlans: (user.activePlans || []).map(p => ({
+                    ...p,
+                    totalDays: p.totalDays || 8,
+                    lastCreditAt: p.lastCreditAt || p.purchasedAt || Date.now(),
+                    earnedSoFar: p.earnedSoFar || 0
+                })),
+                wallet: user.wallet || null,
+                referralCode: user.referralCode || ('AVN-' + String(user.phone || '000000').slice(-6).padStart(6, '0')),
+                team: user.team || []
             };
-            content.className = `px-4 py-3 rounded-xl shadow-xl border flex items-center gap-3 text-xs font-bold ${styles[type] || styles.info}`;
-            content.innerHTML = `<i class="fas fa-info-circle"></i><span>${message}</span>`;
-            toast.classList.remove("hidden");
-            clearTimeout(window.__toastTimer);
-            window.__toastTimer = setTimeout(() => toast.classList.add("hidden"), 2800);
         }
 
-        function goToCustomerServiceWhatsApp() {
-            window.open(CUSTOMER_SERVICE_WHATSAPP_URL, "_blank", "noopener,noreferrer");
+        function getClaimableDays(plan) {
+            if (!plan || plan.daysLeft <= 0) return 0;
+            const now = Date.now();
+            const anchor = plan.lastCreditAt || now;
+            if (now - anchor < DAY_MS) return 0;
+            const elapsedDays = Math.floor((now - anchor) / DAY_MS);
+            return Math.min(elapsedDays, plan.daysLeft);
         }
 
-        function openCustomerServiceModal() {
-            document.getElementById("cs-phone-display").textContent = CUSTOMER_SERVICE_PHONE;
-            document.getElementById("cs-link-display").textContent = CUSTOMER_SERVICE_WHATSAPP_URL;
-            const modal = document.getElementById("cs-modal");
-            modal.classList.remove("hidden");
-            modal.classList.add("flex");
+        function claimPlanRevenue(planId) {
+            if (!currentUser) return;
+            const plan = (currentUser.activePlans || []).find(p => p.id === planId);
+            if (!plan) return;
+
+            const totalDays = plan.totalDays || 8;
+            if (plan.daysLeft <= 0) {
+                return notify(`Les ${totalDays} jours de ce plan sont déjà tous réclamés.`, 'warning');
+            }
+
+            const daysToClaim = getClaimableDays(plan);
+            if (daysToClaim <= 0) {
+                const msLeft = Math.max(0, ((plan.lastCreditAt || Date.now()) + DAY_MS) - Date.now());
+                const hrs = Math.floor(msLeft / 3600000);
+                const mins = Math.floor((msLeft % 3600000) / 60000);
+                return notify(`Patientez encore ${hrs}h ${mins}min (cycle strict de 24h).`, 'warning');
+            }
+
+            const gain = daysToClaim * plan.daily;
+            plan.daysLeft -= daysToClaim;
+            plan.earnedSoFar = (plan.earnedSoFar || 0) + gain;
+            plan.lastCreditAt = Date.now();
+
+            currentUser.balance += gain;
+            currentUser.revenueTotal = (currentUser.revenueTotal || 0) + gain;
+
+            transactionsDB.unshift({
+                id: newId('CLM'),
+                userPhone: currentUser.phone,
+                userName: currentUser.name,
+                category: 'revenue',
+                type: `Revenu réclamé (${plan.name} • ${daysToClaim}j / 24h)`,
+                amount: gain,
+                status: 'Validé',
+                date: todayFR()
+            });
+
+            saveData();
+            notify(`Revenu réclamé : +${formatFCFA(gain)} ! Prochaine réclamation dans 24h.`, 'success');
         }
 
-        function closeCustomerServiceModal() {
-            const modal = document.getElementById("cs-modal");
-            modal.classList.add("hidden");
-            modal.classList.remove("flex");
-        }
-
-        function copyCustomerServicePhone() {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(CUSTOMER_SERVICE_PHONE).then(() => {
-                    showToast(`Numéro ${CUSTOMER_SERVICE_PHONE} copié`, "success");
-                });
+        function simulateNextDay() {
+            if (!TEST_MODE || !currentUser || !currentUser.activePlans) return;
+            let updated = false;
+            currentUser.activePlans.forEach(plan => {
+                if (plan.daysLeft > 0) {
+                    plan.lastCreditAt = Date.now() - DAY_MS;
+                    updated = true;
+                }
+            });
+            if (updated) {
+                saveData();
+                notify('24h écoulées (test) : bouton Réclamer débloqué.');
             } else {
-                showToast(`Service Client : ${CUSTOMER_SERVICE_PHONE}`, "info");
+                notify('Aucun plan actif avec jours restants.', 'warning');
             }
         }
 
-        function populateCountries() {
-            ["login-country", "reg-country"].forEach(selectId => {
-                const select = document.getElementById(selectId);
-                if (!select) return;
-                select.innerHTML = COUNTRIES.map(c => `<option value="${c.dial}">${c.name} (${c.dial})</option>`).join("");
-            });
-            onCountryChange("login");
-            onCountryChange("reg");
+        // ---------- Recharge ----------
+        function renderRechargeNumbers() {
+            const container = document.getElementById('recharge-numbers-list');
+            container.innerHTML = RECHARGE_NUMBERS.map(item => `
+                <div class="flex items-center justify-between bg-neutral-950 border border-neutral-800 rounded-xl px-3.5 py-2.5">
+                    <div>
+                        <p class="text-[11px] text-yellow-300 font-semibold">${item.label}</p>
+                        <p class="text-sm font-extrabold text-white font-mono">${item.phone}</p>
+                    </div>
+                    <button type="button" onclick="copyRechargeNumber('${item.op}', '${item.phone}')" class="px-3 py-1 rounded-lg yellow-btn text-xs font-extrabold">
+                        Copier
+                    </button>
+                </div>
+            `).join('');
         }
 
-        function onCountryChange(mode) {
-            const select = document.getElementById(mode === "login" ? "login-country" : "reg-country");
-            const prefixLabel = document.getElementById(mode === "login" ? "login-prefix-label" : "reg-prefix-label");
-            const phoneInput = document.getElementById(mode === "login" ? "login-phone" : "reg-phone");
-            const selected = COUNTRIES.find(c => c.dial === select.value) || COUNTRIES[0];
-            if (prefixLabel) prefixLabel.textContent = selected.dial;
-            if (phoneInput) phoneInput.placeholder = selected.placeholder;
+        function copyRechargeNumber(op, phone) {
+            selectedOperator = op;
+            copiedNumber = phone;
+            navigator.clipboard?.writeText(phone).catch(() => {});
+            document.getElementById('selected-op-label').innerText = op;
+            document.getElementById('copied-number-display').innerText = phone;
+            notify(`Numéro ${op} (${phone}) copié.`);
+        }
+
+        function syncRechargeAmountFromHome() {
+            const val = parseInt(document.getElementById('home-recharge-amount').value) || 0;
+            document.getElementById('home-recharge-amount-display').innerText = `${val.toLocaleString('fr-FR')} F`;
+            document.getElementById('recharge-amount').value = val || '';
+        }
+
+        function syncRechargeAmountFromStep1() {
+            const val = parseInt(document.getElementById('recharge-amount').value) || 0;
+            document.getElementById('home-recharge-amount').value = val || '';
+            document.getElementById('home-recharge-amount-display').innerText = `${val.toLocaleString('fr-FR')} F`;
+        }
+
+        function openRechargeHomeView() {
+            rechargeSubView = 'home';
+            document.getElementById('recharge-home-view').classList.remove('hidden');
+            document.getElementById('recharge-step-1').classList.add('hidden');
+            document.getElementById('recharge-step-2').classList.add('hidden');
+            document.getElementById('recharge-back-label').innerText = 'Retour';
+            syncRechargeAmountFromStep1();
+        }
+
+        function selectPaymentMethodAndOpenStep1(op, phone) {
+            const amount = parseInt(document.getElementById('home-recharge-amount').value);
+            if (!amount || amount < 1000) {
+                return notify('Montant minimum : 1 000 FCFA.', 'error');
+            }
+            document.getElementById('recharge-amount').value = amount;
+            copyRechargeNumber(op, phone);
+            backToRechargeStep1(true);
+        }
+
+        function handleRechargeBackButton() {
+            if (rechargeSubView === 'step2') {
+                backToRechargeStep1(true);
+            } else if (rechargeSubView === 'step1') {
+                openRechargeHomeView();
+            } else {
+                navigateTo('dashboard');
+            }
+        }
+
+        // ---------- Plans ----------
+        function renderPlans() {
+            const container = document.getElementById('plans-list');
+            container.innerHTML = INVESTMENT_PLANS_12.map(p => `
+                <div class="real-card rounded-2xl p-3.5 space-y-2">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-extrabold text-neutral-950">${p.name}</span>
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full ${p.days === 4 ? 'bg-neutral-950 text-yellow-400' : 'bg-yellow-100 text-neutral-900'}">${p.days}j</span>
+                            <span class="text-xs font-extrabold text-yellow-600">${formatFCFA(p.price)}</span>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 text-[11px] bg-neutral-50 border border-neutral-200 rounded-xl p-2 text-center">
+                        <div>
+                            <p class="text-neutral-500">Revenu / 24h</p>
+                            <p class="font-extrabold text-red-600">+${p.daily.toLocaleString('fr-FR')} F</p>
+                        </div>
+                        <div>
+                            <p class="text-neutral-500">Bénéfice (${p.days}j)</p>
+                            <p class="font-extrabold text-red-600">+${p.profit.toLocaleString('fr-FR')} F</p>
+                        </div>
+                        <div>
+                            <p class="text-neutral-500">Total (${p.days}j)</p>
+                            <p class="font-extrabold text-neutral-950">${p.total.toLocaleString('fr-FR')} F</p>
+                        </div>
+                    </div>
+                    <button onclick="subscribePlan('${p.id}')" class="w-full yellow-btn font-extrabold py-2 rounded-xl text-xs transition shadow-xs">
+                        Investir sur ce plan (${p.days} jours • 24h/24)
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function subscribePlan(planId) {
+            if (!currentUser) return;
+            const plan = INVESTMENT_PLANS_12.find(x => x.id === planId);
+            if (!plan) return;
+
+            if (currentUser.balance < plan.price) {
+                notify(`Solde insuffisant (${formatFCFA(plan.price)} requis).`, 'error');
+                return navigateTo('recharge');
+            }
+
+            const now = Date.now();
+            currentUser.balance -= plan.price;
+            currentUser.activePlans.unshift({
+                id: newId('PCK'),
+                name: plan.name,
+                price: plan.price,
+                daily: plan.daily,
+                totalDays: plan.days,
+                daysLeft: plan.days,
+                earnedSoFar: 0,
+                purchasedAt: now,
+                lastCreditAt: now
+            });
+
+            transactionsDB.unshift({
+                id: newId('TX'),
+                userPhone: currentUser.phone,
+                userName: currentUser.name,
+                category: 'pack',
+                type: `Achat ${plan.name}`,
+                amount: -plan.price,
+                status: 'Validé',
+                date: todayFR()
+            });
+
+            saveData();
+            notify(`${plan.name} activé (${plan.days} jours) ! Première réclamation disponible dans 24h exactes.`);
+            navigateTo('packs');
+        }
+
+        function saveData() {
+            updateUI();
+            if (window.fbPush) window.fbPush();
+        }
+
+        function notify(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const content = document.getElementById('toast-content');
+
+            const styles = {
+                success: 'bg-neutral-950 border-yellow-400 text-yellow-300',
+                error: 'bg-neutral-950 border-red-500 text-red-400',
+                warning: 'bg-yellow-50 border-yellow-500 text-neutral-950'
+            };
+
+            content.className = `px-4 py-3 rounded-xl shadow-lg border flex items-center gap-2.5 text-xs font-bold ${styles[type]}`;
+            content.innerHTML = `<i class="fas fa-info-circle"></i><span>${esc(message)}</span>`;
+
+            toast.classList.remove('hidden');
+            clearTimeout(window.__toastTimer);
+            window.__toastTimer = setTimeout(() => toast.classList.add('hidden'), 3400);
         }
 
         function switchAuthTab(tab) {
-            const isLogin = tab === "login";
-            document.getElementById("login-form").classList.toggle("hidden", !isLogin);
-            document.getElementById("register-form").classList.toggle("hidden", isLogin);
-            document.getElementById("tab-login").className = isLogin
-                ? "w-1/2 pb-3 text-xs font-bold border-b-2 border-yellow-500 text-neutral-950"
-                : "w-1/2 pb-3 text-xs font-bold border-b-2 border-transparent text-neutral-400";
-            document.getElementById("tab-register").className = !isLogin
-                ? "w-1/2 pb-3 text-xs font-bold border-b-2 border-yellow-500 text-neutral-950"
-                : "w-1/2 pb-3 text-xs font-bold border-b-2 border-transparent text-neutral-400";
+            document.getElementById('login-form').classList.toggle('hidden', tab !== 'login');
+            document.getElementById('register-form').classList.toggle('hidden', tab !== 'register');
+
+            const activeCls = 'w-1/2 pb-3 text-xs font-bold border-b-2 border-yellow-500 text-neutral-950';
+            const inactiveCls = 'w-1/2 pb-3 text-xs font-bold border-b-2 border-transparent text-neutral-400';
+
+            document.getElementById('tab-login').className = tab === 'login' ? activeCls : inactiveCls;
+            document.getElementById('tab-register').className = tab === 'register' ? activeCls : inactiveCls;
         }
 
-        function enterApp(userName = "Membre") {
-            localStorage.setItem("avenir_session", JSON.stringify({ userName }));
-            document.getElementById("header-user-name").textContent = userName;
-            document.getElementById("auth-screen").classList.add("hidden");
-            document.getElementById("main-app").classList.remove("hidden");
-            navigateTo("dashboard");
-        }
-
-        function handleLogin(e) {
-            e.preventDefault();
-            const phone = document.getElementById("login-phone").value.trim();
-            enterApp(phone || "Membre");
-            showToast("Connexion réussie", "success");
-        }
-
-        function handleRegister(e) {
-            e.preventDefault();
-            const name = document.getElementById("reg-name").value.trim();
-            enterApp(name || "Nouveau Membre");
-            showToast("Compte créé avec succès", "success");
+        function logout() {
+            const lastPhone = currentUser ? currentUser.phone : localStorage.getItem('avenir_v6_last_phone');
+            const lastCountry = currentUser ? currentUser.countryCode : localStorage.getItem('avenir_v6_last_country');
+            if (lastPhone) localStorage.setItem('avenir_v6_last_phone', lastPhone);
+            if (lastCountry) localStorage.setItem('avenir_v6_last_country', lastCountry);
+            if (window.fbSignOut) window.fbSignOut();
+            currentUser = null;
+            transactionsDB = [];
+            supportTicketsDB = [];
+            pendingRechargeDraft = null;
+            refreshCustomerServiceWhatsAppLink();
+            revealAuth();
+            switchAuthTab('login');
+            if (lastCountry && COUNTRIES.some(c => c.code === lastCountry)) {
+                document.getElementById('login-country').value = lastCountry;
+                onCountryChange('login');
+            }
+            if (lastPhone) {
+                const c = getCountryByCode(document.getElementById('login-country').value);
+                document.getElementById('login-phone').value = lastPhone.startsWith(c.dial) ? lastPhone.slice(c.dial.length) : lastPhone;
+            }
+            document.getElementById('login-pass').value = '';
         }
 
         function logoutAndReconnect() {
-            localStorage.removeItem("avenir_session");
-            document.getElementById("main-app").classList.add("hidden");
-            document.getElementById("auth-screen").classList.remove("hidden");
-            showToast("Session fermée", "info");
+            const name = currentUser ? currentUser.name : '';
+            logout();
+            notify(name ? `Déconnecté (${name}). Vous pouvez vous reconnecter.` : 'Déconnecté.', 'warning');
+            setTimeout(() => document.getElementById('login-pass')?.focus(), 100);
         }
 
-        function navigateTo(page) {
-            const pages = ["dashboard", "plans", "packs", "recharge", "withdraw", "recharge-history", "withdraw-history", "withdraw-pending", "team"];
-            pages.forEach(p => {
+        function showMainApp() {
+            document.getElementById('splash').classList.add('hidden');
+            document.getElementById('auth-screen').classList.add('hidden');
+            document.getElementById('main-app').classList.remove('hidden');
+            refreshCustomerServiceWhatsAppLink();
+            updateUI();
+        }
+
+        const ALL_PAGES = ['dashboard', 'plans', 'packs', 'recharge', 'recharge-history', 'withdraw', 'withdraw-pending', 'withdraw-history', 'team'];
+
+        function navigateTo(pageId) {
+            ALL_PAGES.forEach(p => {
                 const el = document.getElementById(`page-${p}`);
-                if (el) el.classList.toggle("hidden", p !== page);
+                if (el) el.classList.add('hidden');
             });
-            ["dashboard", "plans", "packs"].forEach(nav => {
+
+            ['dashboard', 'plans', 'packs', 'recharge', 'withdraw', 'team'].forEach(nav => {
                 const btn = document.getElementById(`nav-${nav}`);
-                if (!btn) return;
-                btn.className = nav === page
-                    ? "nav-active flex flex-col items-center gap-1 text-[11px] font-bold"
-                    : "text-neutral-400 flex flex-col items-center gap-1 text-[11px] font-bold";
+                if (btn) btn.classList.remove('nav-active');
+            });
+
+            const target = document.getElementById(`page-${pageId}`);
+            if (target) target.classList.remove('hidden');
+
+            const navMap = {
+                'dashboard': 'dashboard', 'plans': 'plans', 'packs': 'packs',
+                'recharge': 'recharge', 'recharge-history': 'recharge',
+                'withdraw': 'withdraw', 'withdraw-pending': 'withdraw', 'withdraw-history': 'withdraw',
+                'team': 'team'
+            };
+            const activeBtn = document.getElementById(`nav-${navMap[pageId]}`);
+            if (activeBtn) activeBtn.classList.add('nav-active');
+
+            if (pageId === 'recharge') openRechargeHomeView();
+            else if (pageId === 'withdraw') updateWithdrawFeePreview();
+
+            window.scrollTo(0, 0);
+            updateUI();
+        }
+
+        function getReferralLink() {
+            if (!currentUser) return `${REFERRAL_BASE_URL}?ref=AVN-000000`;
+            return `${REFERRAL_BASE_URL}?ref=${encodeURIComponent(currentUser.referralCode)}`;
+        }
+
+        function copyReferralCode() {
+            if (!currentUser) return;
+            navigator.clipboard?.writeText(currentUser.referralCode).catch(() => {});
+            notify(`Code ${currentUser.referralCode} copié.`);
+        }
+
+        function copyReferralLink() {
+            if (!currentUser) return;
+            navigator.clipboard?.writeText(getReferralLink()).catch(() => {});
+            notify('Lien de parrainage copié ! Bonus 250 FCFA dès le 1er rechargement validé du filleul.');
+        }
+
+        function formatFCFA(num) {
+            return (num || 0).toLocaleString('fr-FR') + ' FCFA';
+        }
+
+        function updateUI() {
+            if (!currentUser) return;
+
+            const rev = currentUser.revenueTotal || 0;
+            const refBonus = currentUser.referralBonusTotal || 0;
+
+            document.getElementById('header-user-name').innerText = `${currentUser.name} • ${currentUser.countryName}`;
+            document.getElementById('dash-balance').innerHTML = `${currentUser.balance.toLocaleString('fr-FR')} <span class="text-base font-bold text-yellow-400">FCFA</span>`;
+            document.getElementById('dash-revenue').innerText = '+' + formatFCFA(rev);
+            document.getElementById('dash-ref-bonus').innerText = '+' + formatFCFA(refBonus);
+            document.getElementById('packs-revenue-total').innerText = formatFCFA(rev);
+            document.getElementById('withdraw-available').innerText = formatFCFA(currentUser.balance);
+
+            const isLinked = Boolean(currentUser.wallet);
+            document.getElementById('dash-linked-status').innerText = isLinked ? currentUser.wallet.username : 'Non lié';
+
+            const accBadge = document.getElementById('account-link-badge');
+            const accCard = document.getElementById('linked-account-card');
+            if (isLinked) {
+                accBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-neutral-950 text-yellow-400';
+                accBadge.innerText = 'Compte lié actif';
+                accCard.innerHTML = `
+                    <div class="flex justify-between"><span class="text-neutral-600">Nom lié :</span><strong class="text-neutral-950">${esc(currentUser.wallet.username)}</strong></div>
+                    <div class="flex justify-between"><span class="text-neutral-600">Numéro lié :</span><strong class="text-neutral-950 font-mono">${esc(currentUser.wallet.userNumber)}</strong></div>
+                    <div class="flex justify-between"><span class="text-neutral-600">Code PIN :</span><strong class="text-yellow-600 font-mono">•••••• (Configuré)</strong></div>
+                `;
+                const u = document.getElementById('wallet-username');
+                const n = document.getElementById('wallet-usernumber');
+                if (document.activeElement !== u && !u.value) u.value = currentUser.wallet.username;
+                if (document.activeElement !== n && !n.value) n.value = currentUser.wallet.userNumber;
+            } else {
+                accBadge.className = 'text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-white text-neutral-900 border border-yellow-500';
+                accBadge.innerText = 'Non lié';
+                accCard.innerHTML = `<p class="text-neutral-700">Aucun compte de portefeuille lié pour le moment.</p>`;
+            }
+
+            document.getElementById('referral-code-display').innerText = currentUser.referralCode;
+            document.getElementById('referral-link-display').innerText = getReferralLink();
+            document.getElementById('referrer-name-display').innerText = currentUser.referredBy || 'Aucun';
+            document.getElementById('team-bonus-total').innerText = formatFCFA(refBonus);
+
+            renderMyPurchasedPacks();
+            renderRechargeHistory();
+            renderWithdrawPending();
+            renderWithdrawHistory();
+            renderTeam();
+        }
+
+        function renderMyPurchasedPacks() {
+            const container = document.getElementById('my-purchased-packs-list');
+            const packs = currentUser.activePlans || [];
+            document.getElementById('packs-count-badge').innerText = `${packs.length} plan${packs.length > 1 ? 's' : ''}`;
+
+            if (packs.length === 0) {
+                container.innerHTML = `
+                    <div class="real-card rounded-2xl p-5 text-center space-y-2">
+                        <p class="text-xs font-bold text-neutral-700">Aucun plan d'investissement actif.</p>
+                        <button onclick="navigateTo('plans')" class="px-4 py-2 rounded-xl yellow-btn text-xs font-extrabold">Choisir un plan</button>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = packs.map(p => {
+                const totalDays = p.totalDays || 8;
+                const claimableDays = getClaimableDays(p);
+                const claimableAmount = claimableDays * p.daily;
+                const isFinished = p.daysLeft <= 0;
+
+                let actionButtonHtml = '';
+                if (isFinished) {
+                    actionButtonHtml = `
+                        <button type="button" disabled class="w-full bg-neutral-200 text-neutral-500 font-bold py-2.5 rounded-xl text-xs">
+                            Plan terminé (${totalDays}/${totalDays} jours réclamés)
+                        </button>`;
+                } else if (claimableDays > 0) {
+                    actionButtonHtml = `
+                        <button type="button" onclick="claimPlanRevenue('${esc(p.id)}')" class="w-full yellow-btn font-extrabold py-2.5 rounded-xl text-xs shadow-sm transition flex items-center justify-center gap-2">
+                            <i class="fas fa-hand-holding-dollar"></i>
+                            <span>Réclamer mon revenu (+${claimableAmount.toLocaleString('fr-FR')} FCFA • ${claimableDays}j)</span>
+                        </button>`;
+                } else {
+                    const nextAt = (p.lastCreditAt || Date.now()) + DAY_MS;
+                    const msLeft = Math.max(0, nextAt - Date.now());
+                    const hrs = Math.floor(msLeft / 3600000);
+                    const mins = Math.floor((msLeft % 3600000) / 60000);
+                    const secs = Math.floor((msLeft % 60000) / 1000);
+                    actionButtonHtml = `
+                        <button type="button" disabled class="w-full bg-neutral-100 border border-neutral-300 text-neutral-600 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1.5">
+                            <i class="fas fa-clock text-yellow-600"></i>
+                            <span>Disponible dans ${hrs}h ${String(mins).padStart(2, '0')}m ${String(secs).padStart(2, '0')}s (24h/24)</span>
+                        </button>`;
+                }
+
+                return `
+                <div class="real-card rounded-2xl p-4 space-y-2.5">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-extrabold text-neutral-950">${esc(p.name)}</span>
+                        <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full ${!isFinished ? 'bg-yellow-200 text-neutral-950' : 'bg-neutral-200 text-neutral-600'}">
+                            ${!isFinished ? p.daysLeft + 'j restants / ' + totalDays + 'j' : 'Terminé (' + totalDays + 'j)'}
+                        </span>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 text-xs bg-neutral-50 border border-neutral-200 rounded-xl p-2.5">
+                        <div>
+                            <p class="text-[10px] text-neutral-500">Revenu / 24h</p>
+                            <p class="font-extrabold text-red-600">+${p.daily.toLocaleString('fr-FR')} FCFA</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[10px] text-neutral-500">Revenus réclamés</p>
+                            <p class="font-extrabold text-red-600">+${(p.earnedSoFar || 0).toLocaleString('fr-FR')} FCFA</p>
+                        </div>
+                    </div>
+                    ${actionButtonHtml}
+                </div>
+            `}).join('');
+        }
+
+        async function linkWalletAccount() {
+            if (!currentUser) return;
+            const username = document.getElementById('wallet-username').value.trim();
+            const userNumber = document.getElementById('wallet-usernumber').value.trim();
+            const pin = document.getElementById('wallet-pin').value.trim();
+
+            if (!username) return notify('Veuillez saisir le nom d\'utilisateur du portefeuille.', 'error');
+            if (!userNumber) return notify('Veuillez saisir le numéro du portefeuille.', 'error');
+            if (!/^\d{6}$/.test(pin)) return notify('Le mot de passe du portefeuille doit contenir exactement 6 chiffres.', 'error');
+
+            try {
+                const pinHash = await hashPin(pin);
+                currentUser.wallet = { username, userNumber, pinHash };
+                document.getElementById('wallet-pin').value = '';
+                saveData();
+                notify('Compte du portefeuille lié avec succès !');
+            } catch (err) {
+                notify('Sécurité indisponible : ouvrez le site en HTTPS ou sur localhost.', 'error');
+            }
+        }
+
+        function prepareRechargeConfirmation() {
+            const amount = parseInt(document.getElementById('recharge-amount').value);
+            const txid = document.getElementById('recharge-txid').value.trim().toUpperCase();
+
+            if (!amount || amount < 1000) return notify('Montant minimum : 1 000 FCFA.', 'error');
+            if (!txid) return notify('Veuillez renseigner l\'ID de transaction.', 'error');
+            if (transactionsDB.some(t => t.txid === txid)) return notify('Cet ID de transaction a déjà été utilisé.', 'error');
+
+            pendingRechargeDraft = { amount, txid, operator: selectedOperator, number: copiedNumber };
+
+            document.getElementById('confirm-op').innerText = selectedOperator;
+            document.getElementById('confirm-number').innerText = copiedNumber;
+            document.getElementById('confirm-amount').innerText = formatFCFA(amount);
+            document.getElementById('confirm-txid').innerText = txid;
+            document.getElementById('confirm-payment-checkbox').checked = false;
+
+            rechargeSubView = 'step2';
+            document.getElementById('recharge-home-view').classList.add('hidden');
+            document.getElementById('recharge-step-1').classList.add('hidden');
+            document.getElementById('recharge-step-2').classList.remove('hidden');
+            document.getElementById('recharge-back-label').innerText = 'Retour paiement';
+        }
+
+        function backToRechargeStep1(keepInputs = true) {
+            rechargeSubView = 'step1';
+            document.getElementById('recharge-home-view').classList.add('hidden');
+            document.getElementById('recharge-step-2').classList.add('hidden');
+            document.getElementById('recharge-step-1').classList.remove('hidden');
+            document.getElementById('recharge-back-label').innerText = 'Modes de paiement';
+
+            if (!keepInputs) {
+                document.getElementById('recharge-txid').value = '';
+                pendingRechargeDraft = null;
+            }
+        }
+
+        function confirmAndSubmitRecharge() {
+            if (!pendingRechargeDraft) return prepareRechargeConfirmation();
+
+            if (!document.getElementById('confirm-payment-checkbox').checked) {
+                return notify('Veuillez cocher la case pour confirmer votre paiement.', 'error');
+            }
+
+            const { amount, txid, operator, number } = pendingRechargeDraft;
+
+            transactionsDB.unshift({
+                id: newId('DEP'),
+                userPhone: currentUser.phone,
+                userName: currentUser.name,
+                category: 'recharge',
+                type: `Recharge confirmée (${operator} • ${number})`,
+                amount: amount,
+                txid: txid,
+                paymentConfirmed: true,
+                status: 'En attente',
+                date: todayFR()
+            });
+
+            pendingRechargeDraft = null;
+            backToRechargeStep1(false);
+            openRechargeHomeView();
+            saveData();
+            notify('Paiement confirmé ! Recharge envoyée en attente.', 'success');
+            navigateTo('recharge-history');
+        }
+
+        function updateWithdrawFeePreview() {
+            const amount = parseInt(document.getElementById('withdraw-amount')?.value) || 0;
+            const fee = amount > 0 ? Math.round(amount * WITHDRAW_FEE_RATE) : 0;
+            const netAmount = Math.max(0, amount - fee);
+
+            document.getElementById('withdraw-gross-amount').innerText = formatFCFA(amount);
+            document.getElementById('withdraw-fee-amount').innerText = `-${formatFCFA(fee)}`;
+            document.getElementById('withdraw-net-amount').innerText = formatFCFA(netAmount);
+        }
+
+        async function submitWithdraw(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type=submit]');
+            const phone = onlyDigits(document.getElementById('withdraw-phone').value);
+            const amount = parseInt(document.getElementById('withdraw-amount').value);
+            const pin = document.getElementById('withdraw-pin').value.trim();
+
+            if (phone.length < 8) return notify('Numéro de réception invalide.', 'error');
+            if (!amount || amount < 1000) return notify('Montant minimum de retrait : 1 000 FCFA.', 'error');
+            if (!currentUser.wallet) return notify('Veuillez d\'abord cliquer sur "Lier mon compte" dans l\'onglet Équipe.', 'error');
+            if (!/^\d{6}$/.test(pin)) return notify('Mot de passe du portefeuille : 6 chiffres.', 'error');
+
+            btn.disabled = true;
+            try {
+                const hash = await hashPin(pin);
+                if (hash !== currentUser.wallet.pinHash) return notify('Mot de passe du portefeuille (6 chiffres) incorrect.', 'error');
+                if (amount > currentUser.balance) return notify(`Solde insuffisant (${formatFCFA(amount)} requis).`, 'error');
+
+                const fee = Math.round(amount * WITHDRAW_FEE_RATE);
+                const netAmount = Math.max(0, amount - fee);
+
+                currentUser.balance -= amount;
+                transactionsDB.unshift({
+                    id: newId('RET'),
+                    userPhone: currentUser.phone,
+                    userName: currentUser.name,
+                    category: 'withdraw',
+                    type: `Retrait (${phone}) • Net: ${netAmount.toLocaleString('fr-FR')} F (-6% frais)`,
+                    amount: -amount,
+                    fee: fee,
+                    netAmount: netAmount,
+                    receivePhone: phone,
+                    status: 'En attente',
+                    date: todayFR()
+                });
+
+                document.getElementById('withdraw-amount').value = '';
+                document.getElementById('withdraw-pin').value = '';
+                updateWithdrawFeePreview();
+                saveData();
+                notify(`Retrait lancé : -6% (${formatFCFA(fee)}) déduits, net ${formatFCFA(netAmount)}.`);
+                navigateTo('withdraw-pending');
+            } catch (err) {
+                notify('Sécurité indisponible : ouvrez le site en HTTPS ou sur localhost.', 'error');
+            } finally {
+                btn.disabled = false;
+            }
+        }
+
+        function renderTxList(containerId, items, emptyText) {
+            const container = document.getElementById(containerId);
+            if (!items || items.length === 0) {
+                container.innerHTML = `<div class="real-card rounded-2xl p-5 text-center text-xs text-neutral-400">${emptyText}</div>`;
+                return;
+            }
+
+            container.innerHTML = items.map(tx => {
+                const pos = tx.amount > 0;
+                const isRev = tx.category === 'revenue';
+                const badgeClass = tx.status === 'Validé'
+                    ? 'bg-neutral-950 text-yellow-400'
+                    : (tx.status === 'Rejeté' ? 'bg-red-100 text-red-700' : 'bg-yellow-100 text-neutral-900');
+
+                const amountColor = isRev ? 'text-red-600' : (pos ? 'text-yellow-600' : 'text-neutral-950');
+
+                return `
+                <div class="real-card rounded-2xl p-3.5 flex justify-between items-center">
+                    <div>
+                        <p class="text-xs font-bold text-neutral-950">${esc(tx.type)}</p>
+                        <p class="text-[10px] text-neutral-500 mt-0.5">${esc(tx.date)} ${tx.txid ? '• ID: ' + esc(tx.txid) : ''} ${tx.paymentConfirmed ? '• Paiement confirmé' : ''}</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-xs font-extrabold ${amountColor}">
+                            ${pos ? '+' : ''}${(tx.amount || 0).toLocaleString('fr-FR')} F
+                        </p>
+                        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${badgeClass}">${esc(tx.status)}</span>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        const isRecharge = t => t.category === 'recharge' || (t.type && t.type.startsWith('Recharge'));
+        const isWithdraw = t => t.category === 'withdraw' || (t.type && t.type.startsWith('Retrait'));
+
+        function renderRechargeHistory() {
+            renderTxList('recharge-history-list', transactionsDB.filter(t => t.userPhone === currentUser.phone && isRecharge(t)), 'Aucune recharge dans votre historique.');
+        }
+        function renderWithdrawPending() {
+            renderTxList('withdraw-pending-list', transactionsDB.filter(t => t.userPhone === currentUser.phone && isWithdraw(t) && t.status === 'En attente'), 'Aucune demande de retrait en attente.');
+        }
+        function renderWithdrawHistory() {
+            renderTxList('withdraw-history-list', transactionsDB.filter(t => t.userPhone === currentUser.phone && isWithdraw(t)), 'Aucun retrait dans votre historique.');
+        }
+
+        function renderTeam() {
+            const team = currentUser.team || [];
+            document.getElementById('team-count-badge').innerText = `${team.length}`;
+            const container = document.getElementById('team-members-list');
+
+            if (team.length === 0) {
+                container.innerHTML = `<p class="text-xs text-neutral-400 text-center py-3">Aucun filleul inscrit via votre lien pour le moment.</p>`;
+                return;
+            }
+
+            container.innerHTML = team.map(m => `
+                <div class="flex justify-between items-center bg-neutral-50 border border-neutral-200 rounded-xl px-3.5 py-2.5 text-xs">
+                    <div>
+                        <p class="font-bold text-neutral-950">${esc(m.name)}</p>
+                        <p class="text-[11px] font-mono text-neutral-600">${esc(m.phone)} ${m.countryName ? '• ' + esc(m.countryName) : ''} • ${esc(m.date)}</p>
+                    </div>
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${m.bonusCredited ? 'bg-neutral-950 text-yellow-400' : 'bg-yellow-100 text-neutral-900'}">
+                        ${m.bonusCredited ? '+250 F crédités' : 'En attente recharge'}
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        // ---------- Service client ----------
+        function openCustomerServiceModal() {
+            refreshCustomerServiceWhatsAppLink();
+            document.getElementById('cs-modal').classList.remove('hidden');
+            renderSupportTickets();
+        }
+
+        function closeCustomerServiceModal() {
+            document.getElementById('cs-modal').classList.add('hidden');
+        }
+
+        function submitSupportTicket(e) {
+            e.preventDefault();
+            if (!currentUser) {
+                return notify('Connectez-vous pour envoyer un ticket, ou utilisez WhatsApp.', 'warning');
+            }
+            const topic = document.getElementById('cs-topic').value;
+            const message = document.getElementById('cs-message').value.trim();
+            if (!message) return;
+
+            supportTicketsDB.unshift({
+                id: newId('SUP'),
+                userPhone: currentUser.phone,
+                userName: currentUser.name,
+                topic,
+                message,
+                reply: 'Merci pour votre message. Notre équipe (service avenir capital 24h/24) traite votre demande.',
+                date: todayFR()
+            });
+
+            document.getElementById('cs-message').value = '';
+            saveData();
+            renderSupportTickets();
+            notify('Message envoyé au service avenir capital 24h/24.');
+        }
+
+        function renderSupportTickets() {
+            const container = document.getElementById('cs-tickets-list');
+            const list = currentUser ? supportTicketsDB.filter(t => t.userPhone === currentUser.phone) : [];
+
+            if (list.length === 0) {
+                container.innerHTML = `<p class="text-xs text-neutral-400 text-center py-3 bg-neutral-50 rounded-xl border border-neutral-200">Aucun message envoyé pour le moment.</p>`;
+                return;
+            }
+
+            container.innerHTML = list.map(t => `
+                <div class="bg-neutral-50 border border-neutral-200 rounded-xl p-3 text-xs space-y-1.5">
+                    <div class="flex justify-between items-center">
+                        <span class="font-extrabold text-neutral-950">${esc(t.topic)}</span>
+                        <span class="text-[10px] text-neutral-400">${esc(t.date)}</span>
+                    </div>
+                    <p class="text-neutral-800 font-medium">${esc(t.message)}</p>
+                    <p class="text-[11px] text-neutral-950 bg-yellow-100 border border-yellow-300 rounded-lg px-2.5 py-1.5">
+                        <strong>Support (24h/24) :</strong> ${esc(t.reply)}
+                    </p>
+                </div>
+            `).join('');
+        }
+    </script>
+
+    <!-- ===================== FIREBASE (Auth + Realtime Database) ===================== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut }
+            from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { getDatabase, ref, set, get, onValue, query, orderByChild, equalTo }
+            from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBqs0z7GK6UmAAgfjXmlWA3dn9jOd7d6g0",
+            authDomain: "avenir-capital-h4.firebaseapp.com",
+            databaseURL: "https://avenir-capital-h4-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "avenir-capital-h4",
+            storageBucket: "avenir-capital-h4.firebasestorage.app",
+            messagingSenderId: "349708344991",
+            appId: "1:349708344991:web:9eddd458a38b72f3878caa"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+        window.fbReady = true;
+
+        const toEmail = phone => onlyDigits(phone) + '@avenir-capital.app';
+        const idTime = x => Number(String(x.id).split('-')[1]) || 0;
+
+        let unsubs = [];
+        let pushTimer = null;
+        let profileTimer = null;
+        let teamCache = [];
+        const payingBonus = new Set();
+
+        function stopListening() {
+            unsubs.forEach(u => u());
+            unsubs = [];
+            clearTimeout(profileTimer);
+        }
+
+        function cleanUser(u) {
+            const c = JSON.parse(JSON.stringify(u));
+            delete c.pass;
+            delete c.team;
+            return c;
+        }
+
+        function authError(err) {
+            const m = {
+                'auth/email-already-in-use': 'Ce numéro est déjà inscrit.',
+                'auth/weak-password': 'Mot de passe : 6 caractères minimum.',
+                'auth/invalid-credential': 'Numéro ou mot de passe incorrect.',
+                'auth/invalid-login-credentials': 'Numéro ou mot de passe incorrect.',
+                'auth/user-not-found': 'Numéro ou mot de passe incorrect.',
+                'auth/wrong-password': 'Numéro ou mot de passe incorrect.',
+                'auth/too-many-requests': 'Trop de tentatives. Réessayez dans quelques minutes.',
+                'auth/network-request-failed': 'Pas de connexion internet.',
+                'auth/operation-not-allowed': 'E-mail/Mot de passe non activé dans Firebase.'
+            };
+            return m[err.code] || ('Erreur : ' + (err.code || err.message));
+        }
+
+        window.fbPush = () => {
+            clearTimeout(pushTimer);
+            pushTimer = setTimeout(pushNow, 250);
+        };
+
+        function pushNew(list, path, uid) {
+            list.filter(x => x.userPhone === currentUser.phone && !x.synced && !x.pushing).forEach(x => {
+                x.pushing = true;
+                const { synced, pushing, ...data } = x;
+                const payload = JSON.parse(JSON.stringify({ ...data, uid, createdAt: Date.now() }));
+                set(ref(db, `${path}/${x.id}`), payload)
+                    .then(() => { x.synced = true; })
+                    .catch(e => console.error('Envoi refusé', path, e))
+                    .finally(() => { x.pushing = false; });
             });
         }
 
-        window.addEventListener("DOMContentLoaded", () => {
-            populateCountries();
-            const session = JSON.parse(localStorage.getItem("avenir_session") || "null");
-            setTimeout(() => {
-                document.getElementById("splash").classList.add("hidden");
-                if (session && session.userName) {
-                    enterApp(session.userName);
-                } else {
-                    document.getElementById("auth-screen").classList.remove("hidden");
+        function pushNow() {
+            const fu = auth.currentUser;
+            if (!fu || !currentUser) return;
+            set(ref(db, 'users/' + fu.uid), cleanUser(currentUser)).catch(e => console.error('Profil non enregistré', e));
+            pushNew(transactionsDB, 'transactions', fu.uid);
+            pushNew(supportTicketsDB, 'tickets', fu.uid);
+        }
+
+        function mergeRemote(local, snap) {
+            const remote = {};
+            snap.forEach(c => { remote[c.key] = { ...c.val(), id: c.key, synced: true }; });
+            const keep = local.filter(x => !remote[x.id] && !x.synced);
+            return [...Object.values(remote), ...keep].sort((a, b) => idTime(b) - idTime(a));
+        }
+
+        function listenAll(uid) {
+            stopListening();
+
+            profileTimer = setTimeout(() => {
+                if (!currentUser) {
+                    notify('Profil introuvable. Réessayez ou contactez le support.', 'error');
+                    signOut(auth);
                 }
-            }, 350);
+            }, 10000);
+
+            unsubs.push(onValue(ref(db, 'users/' + uid), snap => {
+                const v = snap.val();
+                if (!v) return;
+                clearTimeout(profileTimer);
+                currentUser = normalizeUser({ ...v, team: teamCache });
+                localStorage.setItem('avenir_v6_last_phone', currentUser.phone);
+                if (currentUser.countryCode) localStorage.setItem('avenir_v6_last_country', currentUser.countryCode);
+                refreshCustomerServiceWhatsAppLink();
+                if (document.getElementById('main-app').classList.contains('hidden')) showMainApp();
+                else updateUI();
+                checkReferralSignal(uid);
+            }, err => console.error('Lecture profil refusée', err)));
+
+            unsubs.push(onValue(query(ref(db, 'transactions'), orderByChild('uid'), equalTo(uid)), snap => {
+                transactionsDB = mergeRemote(transactionsDB, snap);
+                if (currentUser) { updateUI(); checkReferralSignal(uid); }
+            }, err => console.error('Lecture transactions refusée', err)));
+
+            unsubs.push(onValue(query(ref(db, 'tickets'), orderByChild('uid'), equalTo(uid)), snap => {
+                supportTicketsDB = mergeRemote(supportTicketsDB, snap);
+                if (currentUser) renderSupportTickets();
+            }, err => console.error('Lecture tickets refusée', err)));
+
+            unsubs.push(onValue(ref(db, 'referrals/' + uid), snap => {
+                const team = [];
+                snap.forEach(c => { team.unshift({ ...c.val(), uid: c.key }); });
+                teamCache = team;
+                if (currentUser) {
+                    currentUser.team = team;
+                    updateUI();
+                    team.filter(m => m.recharged === true && !m.bonusCredited).forEach(m => payReferralBonus(uid, m));
+                }
+            }, err => console.error('Lecture filleuls refusée', err)));
+        }
+
+        function checkReferralSignal(uid) {
+            if (!currentUser || !currentUser.sponsorUid || currentUser.referralRewardPaid) return;
+            const hasValidatedRecharge = transactionsDB.some(t => isRecharge(t) && t.status === 'Validé' && Number(t.amount) > 0);
+            if (!hasValidatedRecharge) return;
+            currentUser.referralRewardPaid = true;
+            set(ref(db, `referrals/${currentUser.sponsorUid}/${uid}/recharged`), true)
+                .then(() => saveData())
+                .catch(e => { currentUser.referralRewardPaid = false; console.error(e); });
+        }
+
+        function payReferralBonus(uid, m) {
+            if (!m || m.recharged !== true || m.bonusCredited) return;
+            if (payingBonus.has(m.uid)) return;
+            payingBonus.add(m.uid);
+            set(ref(db, `referrals/${uid}/${m.uid}/bonusCredited`), true).then(() => {
+                currentUser.balance += REFERRAL_BONUS;
+                currentUser.referralBonusTotal += REFERRAL_BONUS;
+                transactionsDB.unshift({
+                    id: newId('REF'),
+                    userPhone: currentUser.phone,
+                    userName: currentUser.name,
+                    category: 'bonus',
+                    type: `Bonus parrainage (250 F) — ${m.name}`,
+                    amount: REFERRAL_BONUS,
+                    status: 'Validé',
+                    date: todayFR()
+                });
+                saveData();
+                notify(`Bonus parrainage : +${formatFCFA(REFERRAL_BONUS)} (${m.name})`);
+            }).catch(e => { payingBonus.delete(m.uid); console.error(e); });
+        }
+
+        window.handleRegister = async function (e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type=submit]');
+            const name = document.getElementById('reg-name').value.trim();
+            const countryObj = getCountryByCode(document.getElementById('reg-country').value);
+            const rawPhone = document.getElementById('reg-phone').value;
+            const phone = buildFullPhone(countryObj.code, rawPhone);
+            const refCode = document.getElementById('reg-ref').value.trim().toUpperCase();
+            const pass = document.getElementById('reg-pass').value;
+
+            if (name.length < 2) return notify('Veuillez saisir votre nom complet.', 'error');
+            if (onlyDigits(rawPhone).length < 7) return notify('Numéro de téléphone invalide.', 'error');
+            if (pass.length < 6) return notify('Mot de passe : 6 caractères minimum.', 'error');
+
+            btn.disabled = true;
+            try {
+                const cred = await createUserWithEmailAndPassword(auth, toEmail(phone), pass);
+                const uid = cred.user.uid;
+
+                const base = 'AVN-' + phone.slice(-6).padStart(6, '0');
+                let myCode = base;
+                for (let i = 0; i < 5; i++) {
+                    const taken = await get(ref(db, 'referralCodes/' + myCode));
+                    if (!taken.exists()) break;
+                    myCode = base + Math.random().toString(36).slice(2, 4).toUpperCase();
+                }
+
+                let sponsorUid = null, referredBy = null;
+                if (refCode && refCode !== myCode) {
+                    try {
+                        const s = await get(ref(db, 'referralCodes/' + refCode));
+                        if (s.exists()) { sponsorUid = s.val(); referredBy = refCode; }
+                        else notify('Code de parrainage introuvable : inscription sans parrain.', 'warning');
+                    } catch (_) {}
+                }
+
+                const newUser = normalizeUser({
+                    name,
+                    phone,
+                    countryCode: countryObj.code,
+                    countryName: countryObj.name,
+                    registeredAt: todayFR(),
+                    balance: 0, revenueTotal: 0, referralBonusTotal: 0,
+                    referralRewardPaid: false,
+                    sponsorUid, referredBy,
+                    activePlans: [], wallet: null,
+                    referralCode: myCode
+                });
+
+                await set(ref(db, 'users/' + uid), cleanUser(newUser));
+                await set(ref(db, 'referralCodes/' + myCode), uid);
+                if (sponsorUid) {
+                    await set(ref(db, `referrals/${sponsorUid}/${uid}`), {
+                        name,
+                        phone,
+                        countryName: countryObj.name,
+                        date: todayFR(),
+                        recharged: false,
+                        bonusCredited: false
+                    });
+                }
+
+                localStorage.setItem('avenir_v6_last_phone', phone);
+                localStorage.setItem('avenir_v6_last_country', countryObj.code);
+                notify(`Compte créé avec succès (${countryObj.name}).`);
+            } catch (err) {
+                console.error(err);
+                notify(authError(err), 'error');
+            } finally {
+                btn.disabled = false;
+            }
+        };
+
+        window.handleLogin = async function (e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type=submit]');
+            const countryObj = getCountryByCode(document.getElementById('login-country').value);
+            const rawPhone = document.getElementById('login-phone').value;
+            const pass = document.getElementById('login-pass').value;
+
+            const fullPhone = buildFullPhone(countryObj.code, rawPhone);
+            const localDigits = onlyDigits(rawPhone);
+
+            btn.disabled = true;
+            try {
+                try {
+                    await signInWithEmailAndPassword(auth, toEmail(fullPhone), pass);
+                    localStorage.setItem('avenir_v6_last_phone', fullPhone);
+                    localStorage.setItem('avenir_v6_last_country', countryObj.code);
+                } catch (firstErr) {
+                    if (localDigits && fullPhone !== localDigits && (firstErr.code === 'auth/invalid-credential' || firstErr.code === 'auth/user-not-found')) {
+                        await signInWithEmailAndPassword(auth, toEmail(localDigits), pass);
+                        localStorage.setItem('avenir_v6_last_phone', localDigits);
+                        localStorage.setItem('avenir_v6_last_country', countryObj.code);
+                    } else {
+                        throw firstErr;
+                    }
+                }
+                notify('Connexion réussie.');
+            } catch (err) {
+                console.error(err);
+                notify(authError(err), 'error');
+            } finally {
+                btn.disabled = false;
+            }
+        };
+
+        window.fbSignOut = () => {
+            stopListening();
+            signOut(auth).catch(() => {});
+        };
+
+        onAuthStateChanged(auth, user => {
+            if (user) {
+                listenAll(user.uid);
+            } else {
+                stopListening();
+                currentUser = null;
+                refreshCustomerServiceWhatsAppLink();
+                revealAuth();
+            }
         });
     </script>
 </body>
