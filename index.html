@@ -229,6 +229,24 @@
                     </div>
                 </div>
 
+                <!-- BLOC PRÊT D'INVESTISSEMENT (REDIRECTION DIRECTE VERS WHATSAPP SERVICE CLIENT) -->
+                <div class="real-card rounded-2xl p-4 space-y-3 border-yellow-400">
+                    <div class="flex justify-between items-center gap-2">
+                        <div>
+                            <p class="text-xs font-extrabold text-neutral-950">Prêt Boost Investissement (1 mois)</p>
+                            <p class="text-[11px] text-neutral-500">Investissez <strong>25 000 F</strong> → Prêt <strong>95 000 F</strong> + Pack <strong>5 000 F</strong></p>
+                        </div>
+                        <span class="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-yellow-100 text-neutral-950 shrink-0">
+                            Service Client
+                        </span>
+                    </div>
+
+                    <button type="button" id="btn-activate-loan-25k" onclick="goToCustomerServiceWhatsApp()" class="w-full yellow-btn font-extrabold py-2.5 px-3 rounded-xl text-xs shadow-sm transition flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-sm"></i>
+                        <span>Demander le prêt sur WhatsApp Service Client</span>
+                    </button>
+                </div>
+
                 <div class="grid grid-cols-2 gap-3">
                     <button onclick="openCustomerServiceModal()" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-yellow-500 transition">
                         <div class="w-9 h-9 rounded-xl bg-neutral-950 text-yellow-400 flex items-center justify-center shrink-0">
@@ -866,6 +884,11 @@
             const linkEl = document.getElementById('cs-whatsapp-link');
             if (!linkEl) return;
             linkEl.href = CS_WHATSAPP_URL;
+        }
+
+        function goToCustomerServiceWhatsApp() {
+            refreshCustomerServiceWhatsAppLink();
+            window.location.href = CS_WHATSAPP_URL;
         }
 
         // ---------- Démarrage ----------
