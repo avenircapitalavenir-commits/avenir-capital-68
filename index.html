@@ -91,7 +91,7 @@
                 <i class="fas fa-landmark text-yellow-400 text-2xl"></i>
             </div>
             <h1 class="text-3xl font-extrabold tracking-tight text-neutral-950">Avenir <span class="text-yellow-500">Capital</span></h1>
-            <p class="text-neutral-500 text-sm mt-1.5">Investissement (8j), parrainage 250 F, recharges & retraits</p>
+            <p class="text-neutral-500 text-sm mt-1.5">Investissement (4j & 8j), parrainage 250 F, recharges & retraits</p>
         </div>
 
         <div class="real-card rounded-3xl p-6">
@@ -257,7 +257,7 @@
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <p class="text-sm font-extrabold text-neutral-950">Investissement</p>
-                        <p class="text-[11px] text-neutral-500 mt-0.5">9 plans (cycle 8 jours)</p>
+                        <p class="text-[11px] text-neutral-500 mt-0.5">12 plans (cycles 4j & 8j)</p>
                     </button>
 
                     <button onclick="navigateTo('packs')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
@@ -265,7 +265,7 @@
                             <i class="fas fa-box-open"></i>
                         </div>
                         <p class="text-sm font-extrabold text-neutral-950">Plans Actifs</p>
-                        <p class="text-[11px] text-neutral-500 mt-0.5">Réclamer toutes les 24h (8j)</p>
+                        <p class="text-[11px] text-neutral-500 mt-0.5">Réclamer toutes les 24h</p>
                     </button>
 
                     <button onclick="navigateTo('recharge-history')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
@@ -302,14 +302,14 @@
                 </div>
             </section>
 
-            <!-- PAGE 2 : INVESTISSEMENT (9 PLANS) -->
+            <!-- PAGE 2 : INVESTISSEMENT (12 PLANS : 4 JOURS & 8 JOURS) -->
             <section id="page-plans" class="hidden space-y-4">
                 <div class="flex justify-between items-center">
                     <div>
                         <h2 class="text-xl font-extrabold text-neutral-950">Plans d'Investissement</h2>
-                        <p class="text-xs text-neutral-500 mt-1">9 plans disponibles • Cycle 24h/24 sur 8 jours.</p>
+                        <p class="text-xs text-neutral-500 mt-1">12 plans disponibles • Cycle 24h/24 (4 jours ou 8 jours).</p>
                     </div>
-                    <span class="text-[11px] font-extrabold text-neutral-950 bg-yellow-300 px-2.5 py-1 rounded-full">Chaque 24h • 8j</span>
+                    <span class="text-[11px] font-extrabold text-neutral-950 bg-yellow-300 px-2.5 py-1 rounded-full">4j & 8j • 24h/24</span>
                 </div>
                 <div id="plans-list" class="space-y-2.5"></div>
             </section>
@@ -319,7 +319,7 @@
                 <div class="flex justify-between items-center">
                     <div>
                         <h2 class="text-xl font-extrabold text-neutral-950">Mes Plans Actifs</h2>
-                        <p class="text-xs text-neutral-500 mt-1">Réclamation disponible toutes les 24h exactes pendant 8 jours.</p>
+                        <p class="text-xs text-neutral-500 mt-1">Réclamation disponible toutes les 24h exactes selon la durée du plan.</p>
                     </div>
                     <button id="btn-sim-day" onclick="simulateNextDay()" class="hidden px-3 py-1.5 rounded-xl bg-yellow-100 hover:bg-yellow-200 text-neutral-950 border border-yellow-400 text-[11px] font-bold">
                         +24h (Test)
@@ -736,7 +736,7 @@
                     <select id="cs-topic" class="w-full bg-white border border-neutral-300 rounded-xl py-2 px-3 text-xs font-bold text-neutral-900 focus:outline-none focus:border-yellow-500">
                         <option value="Recharge / Confirmation paiement">Recharge / Confirmation paiement</option>
                         <option value="Retrait en attente">Retrait en attente</option>
-                        <option value="Plans d'investissement (8 jours)">Plans d'investissement (8 jours)</option>
+                        <option value="Plans d'investissement (4j & 8j)">Plans d'investissement (4j & 8j)</option>
                         <option value="Parrainage / Bonus 250 FCFA">Parrainage / Bonus 250 FCFA</option>
                         <option value="Autre question">Autre question</option>
                     </select>
@@ -772,9 +772,12 @@
             { code: 'SN', name: 'Sénégal', dial: '221', label: '+221' }
         ];
 
-        const INVESTMENT_PLANS_9 = [
+        const INVESTMENT_PLANS_12 = [
             { id: 'plan-1', name: '🌱 Plan 1 — Découverte', price: 3000, daily: 120, days: 8 },
+            { id: 'plan-flash-4k', name: '⚡ Plan Express 4K (4j)', price: 4000, daily: 200, days: 4 },
             { id: 'plan-2', name: '🚀 Plan 2 — Starter', price: 5000, daily: 220, days: 8 },
+            { id: 'plan-flash-6k', name: '🔥 Plan Express 6K (4j)', price: 6000, daily: 300, days: 4 },
+            { id: 'plan-flash-7k', name: '💫 Plan Express 7K (4j)', price: 7000, daily: 310, days: 4 },
             { id: 'plan-3', name: '⚡ Plan 3 — Essentiel', price: 10000, daily: 460, days: 8 },
             { id: 'plan-4', name: '💼 Plan 4 — Croissance', price: 20000, daily: 950, days: 8 },
             { id: 'plan-5', name: '📈 Plan 5 — Pro', price: 50000, daily: 2500, days: 8 },
@@ -951,8 +954,9 @@
             const plan = (currentUser.activePlans || []).find(p => p.id === planId);
             if (!plan) return;
 
+            const totalDays = plan.totalDays || 8;
             if (plan.daysLeft <= 0) {
-                return notify('Les 8 jours de ce plan sont déjà tous réclamés.', 'warning');
+                return notify(`Les ${totalDays} jours de ce plan sont déjà tous réclamés.`, 'warning');
             }
 
             const daysToClaim = getClaimableDays(plan);
@@ -1072,11 +1076,14 @@
         // ---------- Plans ----------
         function renderPlans() {
             const container = document.getElementById('plans-list');
-            container.innerHTML = INVESTMENT_PLANS_9.map(p => `
+            container.innerHTML = INVESTMENT_PLANS_12.map(p => `
                 <div class="real-card rounded-2xl p-3.5 space-y-2">
                     <div class="flex justify-between items-center">
                         <span class="text-xs font-extrabold text-neutral-950">${p.name}</span>
-                        <span class="text-xs font-extrabold text-yellow-600">${formatFCFA(p.price)}</span>
+                        <div class="flex items-center gap-1.5">
+                            <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full ${p.days === 4 ? 'bg-neutral-950 text-yellow-400' : 'bg-yellow-100 text-neutral-900'}">${p.days}j</span>
+                            <span class="text-xs font-extrabold text-yellow-600">${formatFCFA(p.price)}</span>
+                        </div>
                     </div>
                     <div class="grid grid-cols-3 gap-2 text-[11px] bg-neutral-50 border border-neutral-200 rounded-xl p-2 text-center">
                         <div>
@@ -1084,16 +1091,16 @@
                             <p class="font-extrabold text-red-600">+${p.daily.toLocaleString('fr-FR')} F</p>
                         </div>
                         <div>
-                            <p class="text-neutral-500">Bénéfice (8j)</p>
+                            <p class="text-neutral-500">Bénéfice (${p.days}j)</p>
                             <p class="font-extrabold text-red-600">+${p.profit.toLocaleString('fr-FR')} F</p>
                         </div>
                         <div>
-                            <p class="text-neutral-500">Total (8j)</p>
+                            <p class="text-neutral-500">Total (${p.days}j)</p>
                             <p class="font-extrabold text-neutral-950">${p.total.toLocaleString('fr-FR')} F</p>
                         </div>
                     </div>
                     <button onclick="subscribePlan('${p.id}')" class="w-full yellow-btn font-extrabold py-2 rounded-xl text-xs transition shadow-xs">
-                        Investir sur ce plan (8 jours • 24h/24)
+                        Investir sur ce plan (${p.days} jours • 24h/24)
                     </button>
                 </div>
             `).join('');
@@ -1101,7 +1108,7 @@
 
         function subscribePlan(planId) {
             if (!currentUser) return;
-            const plan = INVESTMENT_PLANS_9.find(x => x.id === planId);
+            const plan = INVESTMENT_PLANS_12.find(x => x.id === planId);
             if (!plan) return;
 
             if (currentUser.balance < plan.price) {
@@ -1135,7 +1142,7 @@
             });
 
             saveData();
-            notify(`${plan.name} activé ! Première réclamation disponible dans 24h exactes.`);
+            notify(`${plan.name} activé (${plan.days} jours) ! Première réclamation disponible dans 24h exactes.`);
             navigateTo('packs');
         }
 
