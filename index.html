@@ -35,6 +35,32 @@
         .yellow-btn:hover {
             background: linear-gradient(135deg, #fde047 0%, #facc15 100%);
         }
+        .recharge-dark-card {
+            background: linear-gradient(160deg, #09090b 0%, #18181b 65%, #27272a 100%);
+            border: 1px solid #eab308;
+            color: #ffffff;
+            box-shadow: 0 8px 24px rgba(10, 10, 10, 0.25);
+        }
+        .recharge-method-btn {
+            background: linear-gradient(135deg, #111111 0%, #1f1f23 100%);
+            border: 1px solid #52525b;
+            transition: all 0.2s ease;
+        }
+        .recharge-method-btn:hover {
+            border-color: #facc15;
+            background: linear-gradient(135deg, #18181b 0%, #27272a 100%);
+            transform: translateY(-1px);
+        }
+        .wallet-yellow-card {
+            background: linear-gradient(155deg, #ffffff 0%, #fefce8 60%, #fef9c3 100%);
+            border: 1px solid #eab308;
+            box-shadow: 0 4px 16px rgba(234, 179, 8, 0.12);
+        }
+        .wallet-yellow-btn {
+            background: linear-gradient(135deg, #0a0a0a 0%, #27272a 100%);
+            color: #facc15;
+            border: 1px solid #eab308;
+        }
         .nav-active { color: #ca8a04; }
         .nav-active i { transform: translateY(-2px); transition: transform 0.2s ease; }
         ::-webkit-scrollbar { width: 0px; background: transparent; }
@@ -70,8 +96,8 @@
 
         <div class="real-card rounded-3xl p-6">
             <div class="flex border-b border-neutral-200 mb-6">
-                <button type="button" onclick="switchAuthTab('login')" id="tab-login" class="w-1/2 pb-3 text-xs font-bold border-b-2 border-yellow-500 text-neutral-950">Connexion</button>
-                <button type="button" onclick="switchAuthTab('register')" id="tab-register" class="w-1/2 pb-3 text-xs font-bold border-b-2 border-transparent text-neutral-400">Inscription</button>
+                <button onclick="switchAuthTab('login')" id="tab-login" class="w-1/2 pb-3 text-xs font-bold border-b-2 border-yellow-500 text-neutral-950">Connexion</button>
+                <button onclick="switchAuthTab('register')" id="tab-register" class="w-1/2 pb-3 text-xs font-bold border-b-2 border-transparent text-neutral-400">Inscription</button>
             </div>
 
             <!-- CONNEXION -->
@@ -127,10 +153,10 @@
             </form>
 
             <div class="mt-5 pt-4 border-t border-neutral-200 flex items-center justify-between text-xs">
-                <span class="text-neutral-500 font-medium">Service avenir capital • 0556848202</span>
-                <button type="button" onclick="openCustomerServiceModal()" class="text-neutral-950 font-extrabold hover:underline flex items-center gap-1.5">
-                    <i class="fas fa-phone text-yellow-500 text-xs"></i> Service Client
-                </button>
+                <span class="text-neutral-500 font-medium">Service avenir capital 24h/24 • 0556848202</span>
+                <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" class="text-neutral-950 font-extrabold hover:underline flex items-center gap-1.5">
+                    <i class="fas fa-headset text-yellow-500"></i> Service Client
+                </a>
             </div>
         </div>
     </div>
@@ -151,12 +177,12 @@
             </div>
 
             <div class="flex items-center gap-1.5">
-                <button type="button" onclick="openCustomerServiceModal()" title="Service Client" class="px-2.5 py-2 rounded-xl bg-neutral-950 hover:bg-neutral-800 text-yellow-400 border border-yellow-500/40 text-[11px] font-bold flex items-center gap-1 shadow-sm transition">
+                <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" title="Service Client" class="px-2.5 py-2 rounded-xl bg-neutral-950 hover:bg-neutral-800 text-yellow-400 border border-yellow-500/40 text-[11px] font-bold flex items-center gap-1 shadow-sm transition">
                     <i class="fas fa-headset text-xs"></i>
                     <span>0556848202</span>
-                </button>
+                </a>
 
-                <button type="button" onclick="logoutAndReconnect()" id="header-auth-btn" title="Se déconnecter" class="w-8 h-8 rounded-xl bg-white border border-neutral-300 flex items-center justify-center text-neutral-900 hover:bg-yellow-50">
+                <button onclick="logoutAndReconnect()" id="header-auth-btn" title="Se déconnecter" class="w-8 h-8 rounded-xl bg-white border border-neutral-300 flex items-center justify-center text-neutral-900 hover:bg-yellow-50">
                     <i class="fas fa-right-from-bracket text-xs"></i>
                 </button>
             </div>
@@ -194,16 +220,16 @@
                     </div>
 
                     <div class="grid grid-cols-2 gap-3 mt-5">
-                        <button type="button" onclick="navigateTo('recharge')" class="yellow-btn font-extrabold py-2.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 transition shadow-sm">
+                        <button onclick="navigateTo('recharge')" class="yellow-btn font-extrabold py-2.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 transition shadow-sm">
                             <i class="fas fa-plus-circle"></i> Recharger
                         </button>
-                        <button type="button" onclick="navigateTo('withdraw')" class="bg-white/10 hover:bg-white/20 text-white border border-yellow-400/40 font-bold py-2.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 transition">
+                        <button onclick="navigateTo('withdraw')" class="bg-white/10 hover:bg-white/20 text-white border border-yellow-400/40 font-bold py-2.5 px-4 rounded-xl text-sm flex items-center justify-center gap-2 transition">
                             <i class="fas fa-arrow-up-right-from-square text-yellow-400"></i> Retirer
                         </button>
                     </div>
                 </div>
 
-                <!-- BLOC PRÊT D'INVESTISSEMENT -->
+                <!-- BLOC PRÊT D'INVESTISSEMENT (REDIRECTION DIRECTE VERS WHATSAPP SERVICE CLIENT) -->
                 <div class="real-card rounded-2xl p-4 space-y-3 border-yellow-400">
                     <div class="flex justify-between items-center gap-2">
                         <div>
@@ -215,24 +241,24 @@
                         </span>
                     </div>
 
-                    <button type="button" id="btn-activate-loan-25k" onclick="openCustomerServiceModal()" class="w-full yellow-btn font-extrabold py-2.5 px-3 rounded-xl text-xs shadow-sm transition flex items-center justify-center gap-2">
-                        <i class="fas fa-phone text-xs"></i>
-                        <span>Contacter le Service Client (0556848202)</span>
-                    </button>
+                    <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" id="btn-activate-loan-25k" class="w-full yellow-btn font-extrabold py-2.5 px-3 rounded-xl text-xs shadow-sm transition flex items-center justify-center gap-2">
+                        <i class="fab fa-whatsapp text-sm"></i>
+                        <span>Demander le prêt sur WhatsApp Service Client (0556848202)</span>
+                    </a>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
-                    <button type="button" onclick="openCustomerServiceModal()" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-yellow-500 transition">
+                    <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-yellow-500 transition">
                         <div class="w-9 h-9 rounded-xl bg-neutral-950 text-yellow-400 flex items-center justify-center shrink-0">
                             <i class="fas fa-headset"></i>
                         </div>
                         <div>
                             <p class="text-xs font-extrabold text-neutral-950">Service Client</p>
-                            <p class="text-[10px] text-neutral-500">Tél : 0556848202</p>
+                            <p class="text-[10px] text-neutral-500">0556848202</p>
                         </div>
-                    </button>
+                    </a>
 
-                    <button type="button" onclick="logoutAndReconnect()" id="dash-session-btn" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-yellow-500 transition">
+                    <button onclick="logoutAndReconnect()" id="dash-session-btn" class="real-card rounded-2xl p-3.5 flex items-center gap-3 text-left hover:border-yellow-500 transition">
                         <div class="w-9 h-9 rounded-xl bg-yellow-100 text-neutral-950 flex items-center justify-center shrink-0">
                             <i class="fas fa-right-from-bracket"></i>
                         </div>
@@ -244,7 +270,7 @@
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
-                    <button type="button" onclick="navigateTo('plans')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
+                    <button onclick="navigateTo('plans')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
                         <div class="w-9 h-9 rounded-xl bg-yellow-100 text-neutral-950 flex items-center justify-center mb-2">
                             <i class="fas fa-chart-line"></i>
                         </div>
@@ -252,7 +278,7 @@
                         <p class="text-[11px] text-neutral-500 mt-0.5">12 plans (cycles 4j & 8j)</p>
                     </button>
 
-                    <button type="button" onclick="navigateTo('packs')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
+                    <button onclick="navigateTo('packs')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
                         <div class="w-9 h-9 rounded-xl bg-neutral-950 text-yellow-400 flex items-center justify-center mb-2">
                             <i class="fas fa-box-open"></i>
                         </div>
@@ -260,20 +286,36 @@
                         <p class="text-[11px] text-neutral-500 mt-0.5">Réclamer toutes les 24h</p>
                     </button>
 
-                    <button type="button" onclick="navigateTo('recharge')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
+                    <button onclick="navigateTo('recharge-history')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
                         <div class="w-9 h-9 rounded-xl bg-yellow-100 text-neutral-950 flex items-center justify-center mb-2">
                             <i class="fas fa-receipt"></i>
                         </div>
-                        <p class="text-sm font-extrabold text-neutral-950">Recharges</p>
-                        <p class="text-[11px] text-neutral-500 mt-0.5">Dépôts & suivi</p>
+                        <p class="text-sm font-extrabold text-neutral-950">Hist. Recharges</p>
+                        <p class="text-[11px] text-neutral-500 mt-0.5">Suivi de mes dépôts</p>
                     </button>
 
-                    <button type="button" onclick="navigateTo('withdraw')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
+                    <button onclick="navigateTo('withdraw-history')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
                         <div class="w-9 h-9 rounded-xl bg-neutral-950 text-yellow-400 flex items-center justify-center mb-2">
                             <i class="fas fa-clock-rotate-left"></i>
                         </div>
-                        <p class="text-sm font-extrabold text-neutral-950">Retraits</p>
-                        <p class="text-[11px] text-neutral-500 mt-0.5">Demandes & suivi</p>
+                        <p class="text-sm font-extrabold text-neutral-950">Hist. Retraits</p>
+                        <p class="text-[11px] text-neutral-500 mt-0.5">Suivi de mes retraits</p>
+                    </button>
+
+                    <button onclick="navigateTo('withdraw-pending')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
+                        <div class="w-9 h-9 rounded-xl bg-yellow-100 text-neutral-950 flex items-center justify-center mb-2">
+                            <i class="fas fa-hourglass-half"></i>
+                        </div>
+                        <p class="text-sm font-extrabold text-neutral-950">Retraits en attente</p>
+                        <p class="text-[11px] text-neutral-500 mt-0.5">Demandes en cours</p>
+                    </button>
+
+                    <button onclick="navigateTo('team')" class="real-card rounded-2xl p-4 text-left hover:border-yellow-500 transition">
+                        <div class="w-9 h-9 rounded-xl bg-neutral-950 text-yellow-400 flex items-center justify-center mb-2">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <p class="text-sm font-extrabold text-neutral-950">Équipe</p>
+                        <p class="text-[11px] text-neutral-500 mt-0.5">Parrainage & bonus</p>
                     </button>
                 </div>
             </section>
@@ -281,20 +323,8 @@
             <!-- PAGE : PLANS -->
             <section id="page-plans" class="hidden space-y-3">
                 <h2 class="text-lg font-extrabold text-neutral-950">Plans d'investissement</h2>
-                <p class="text-xs text-neutral-500">Sélectionnez un cycle pour démarrer votre investissement.</p>
-                <div class="real-card rounded-2xl p-4 flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-extrabold text-neutral-950">Plan Express 4 Jours</p>
-                        <p class="text-xs text-neutral-500">Mise minimum : 5 000 FCFA</p>
-                    </div>
-                    <button type="button" onclick="showToast('Plan Express sélectionné', 'success')" class="yellow-btn px-3.5 py-2 rounded-xl text-xs font-extrabold">Choisir</button>
-                </div>
-                <div class="real-card rounded-2xl p-4 flex items-center justify-between">
-                    <div>
-                        <p class="text-sm font-extrabold text-neutral-950">Plan Croissance 8 Jours</p>
-                        <p class="text-xs text-neutral-500">Mise minimum : 25 000 FCFA</p>
-                    </div>
-                    <button type="button" onclick="showToast('Plan Croissance sélectionné', 'success')" class="yellow-btn px-3.5 py-2 rounded-xl text-xs font-extrabold">Choisir</button>
+                <div class="real-card rounded-2xl p-4 text-xs text-neutral-600">
+                    12 plans disponibles sur des cycles de 4 jours et 8 jours.
                 </div>
             </section>
 
@@ -302,92 +332,100 @@
             <section id="page-packs" class="hidden space-y-3">
                 <h2 class="text-lg font-extrabold text-neutral-950">Plans Actifs</h2>
                 <div class="real-card rounded-2xl p-4 text-xs text-neutral-600">
-                    Aucun plan actif pour le moment. Rendez-vous dans l'onglet <strong>Plans</strong> pour en activer un.
+                    Réclamez vos revenus toutes les 24 heures.
                 </div>
             </section>
 
             <!-- PAGE : RECHARGE -->
             <section id="page-recharge" class="hidden space-y-3">
-                <h2 class="text-lg font-extrabold text-neutral-950">Recharger mon compte</h2>
-                <div class="real-card rounded-2xl p-4 space-y-3">
-                    <p class="text-xs text-neutral-600">Pour toute recharge ou assistance directe, contactez le Service Client au <strong>0556848202</strong>.</p>
-                    <button type="button" onclick="openCustomerServiceModal()" class="w-full yellow-btn font-extrabold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2">
-                        <i class="fas fa-phone text-xs"></i> Service Client : 0556848202
-                    </button>
+                <h2 class="text-lg font-extrabold text-neutral-950">Recharger</h2>
+                <div class="recharge-dark-card rounded-2xl p-4 space-y-2 text-xs">
+                    <p class="font-bold text-yellow-400">Service Client : 0556848202</p>
+                    <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" class="yellow-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-extrabold">
+                        <i class="fab fa-whatsapp"></i> Contacter le Service Client
+                    </a>
                 </div>
             </section>
 
             <!-- PAGE : RETRAIT -->
             <section id="page-withdraw" class="hidden space-y-3">
-                <h2 class="text-lg font-extrabold text-neutral-950">Retirer mes fonds</h2>
-                <div class="real-card rounded-2xl p-4 space-y-3">
-                    <p class="text-xs text-neutral-600">Besoin d'aide pour un retrait ? Contactez le Service Client au <strong>0556848202</strong>.</p>
-                    <button type="button" onclick="openCustomerServiceModal()" class="w-full yellow-btn font-extrabold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2">
-                        <i class="fas fa-phone text-xs"></i> Service Client : 0556848202
-                    </button>
+                <h2 class="text-lg font-extrabold text-neutral-950">Retirer</h2>
+                <div class="wallet-yellow-card rounded-2xl p-4 space-y-2 text-xs">
+                    <p class="font-bold text-neutral-950">Service Client : 0556848202</p>
+                    <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" class="wallet-yellow-btn inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-extrabold">
+                        <i class="fab fa-whatsapp"></i> Contacter le Service Client
+                    </a>
                 </div>
             </section>
 
+            <!-- PAGES HISTORIQUES & ÉQUIPE -->
+            <section id="page-recharge-history" class="hidden space-y-3">
+                <h2 class="text-lg font-extrabold text-neutral-950">Historique des recharges</h2>
+                <div class="real-card rounded-2xl p-4 text-xs text-neutral-600">Aucune recharge enregistrée pour le moment.</div>
+            </section>
+
+            <section id="page-withdraw-history" class="hidden space-y-3">
+                <h2 class="text-lg font-extrabold text-neutral-950">Historique des retraits</h2>
+                <div class="real-card rounded-2xl p-4 text-xs text-neutral-600">Aucun retrait enregistré pour le moment.</div>
+            </section>
+
+            <section id="page-withdraw-pending" class="hidden space-y-3">
+                <h2 class="text-lg font-extrabold text-neutral-950">Retraits en attente</h2>
+                <div class="real-card rounded-2xl p-4 text-xs text-neutral-600">Aucun retrait en attente.</div>
+            </section>
+
+            <section id="page-team" class="hidden space-y-3">
+                <h2 class="text-lg font-extrabold text-neutral-950">Mon équipe</h2>
+                <div class="real-card rounded-2xl p-4 text-xs text-neutral-600">Bonus de parrainage : 250 F.</div>
+            </section>
         </main>
 
         <!-- BARRE DE NAVIGATION BASSE -->
         <nav class="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white border-t border-neutral-200 px-4 py-2.5 flex justify-around items-center z-30">
-            <button type="button" onclick="navigateTo('dashboard')" id="nav-dashboard" class="nav-active flex flex-col items-center gap-1 text-[11px] font-bold">
-                <i class="fas fa-house text-base"></i>
-                <span>Accueil</span>
+            <button onclick="navigateTo('dashboard')" id="nav-dashboard" class="nav-active flex flex-col items-center gap-1 text-[11px] font-bold">
+                <i class="fas fa-house text-base"></i><span>Accueil</span>
             </button>
-            <button type="button" onclick="navigateTo('plans')" id="nav-plans" class="text-neutral-400 flex flex-col items-center gap-1 text-[11px] font-bold">
-                <i class="fas fa-chart-line text-base"></i>
-                <span>Plans</span>
+            <button onclick="navigateTo('plans')" id="nav-plans" class="text-neutral-400 flex flex-col items-center gap-1 text-[11px] font-bold">
+                <i class="fas fa-chart-line text-base"></i><span>Plans</span>
             </button>
-            <button type="button" onclick="navigateTo('packs')" id="nav-packs" class="text-neutral-400 flex flex-col items-center gap-1 text-[11px] font-bold">
-                <i class="fas fa-box-open text-base"></i>
-                <span>Actifs</span>
+            <button onclick="navigateTo('packs')" id="nav-packs" class="text-neutral-400 flex flex-col items-center gap-1 text-[11px] font-bold">
+                <i class="fas fa-box-open text-base"></i><span>Actifs</span>
             </button>
-            <button type="button" onclick="openCustomerServiceModal()" class="text-neutral-400 flex flex-col items-center gap-1 text-[11px] font-bold">
-                <i class="fas fa-headset text-base"></i>
-                <span>Support</span>
-            </button>
+            <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" class="text-neutral-400 flex flex-col items-center gap-1 text-[11px] font-bold">
+                <i class="fab fa-whatsapp text-base"></i><span>Service</span>
+            </a>
         </nav>
     </div>
 
-    <!-- MODAL SERVICE CLIENT (NUMÉRO 0556848202 UNIQUEMENT) -->
-    <div id="cs-modal" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden items-center justify-center p-4">
+    <!-- MODAL SERVICE CLIENT -->
+    <div id="cs-modal" class="fixed inset-0 bg-black/60 z-50 hidden items-center justify-center p-4">
         <div class="bg-white rounded-3xl w-full max-w-sm p-6 border border-yellow-400 shadow-2xl space-y-4">
             <div class="flex items-center justify-between">
-                <div class="flex items-center gap-2.5">
-                    <div class="w-10 h-10 rounded-xl bg-neutral-950 text-yellow-400 flex items-center justify-center">
-                        <i class="fas fa-headset"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-extrabold text-neutral-950">Service Client</h3>
-                        <p class="text-[11px] text-neutral-500">Assistance officielle 24h/24</p>
-                    </div>
-                </div>
-                <button type="button" onclick="closeCustomerServiceModal()" class="w-8 h-8 rounded-full bg-neutral-100 text-neutral-700 flex items-center justify-center hover:bg-neutral-200">
+                <h3 class="text-sm font-extrabold text-neutral-950">Service Client</h3>
+                <button onclick="closeCustomerServiceModal()" class="w-8 h-8 rounded-full bg-neutral-100 text-neutral-700 flex items-center justify-center">
                     <i class="fas fa-times text-xs"></i>
                 </button>
             </div>
-
             <div class="bg-neutral-50 border border-neutral-200 rounded-2xl p-3.5 space-y-2">
                 <p class="text-[11px] font-bold text-neutral-500 uppercase">Numéro Service Client</p>
                 <div class="flex items-center justify-between">
-                    <span id="cs-phone-display" class="text-base font-extrabold text-neutral-950">0556848202</span>
-                    <button type="button" onclick="copyCustomerServicePhone()" class="px-2.5 py-1 rounded-lg bg-yellow-100 text-neutral-950 text-[11px] font-extrabold hover:bg-yellow-200">
-                        Copier
-                    </button>
+                    <span id="cs-phone-display" class="text-sm font-extrabold text-neutral-950">0556848202</span>
+                    <button onclick="copyCustomerServicePhone()" class="px-2.5 py-1 rounded-lg bg-yellow-100 text-neutral-950 text-[11px] font-extrabold">Copier</button>
                 </div>
+                <p class="text-[11px] text-neutral-500 break-all pt-1 border-t border-neutral-200">
+                    Lien : <span id="cs-link-display" class="font-semibold text-neutral-800">https://wa.me/message/MADIVW3PNLKRL1</span>
+                </p>
             </div>
-
-            <a href="tel:0556848202" class="w-full yellow-btn font-extrabold py-3 px-4 rounded-xl text-xs shadow-md flex items-center justify-center gap-2">
-                <i class="fas fa-phone text-sm"></i>
-                <span>Appeler le 0556848202</span>
+            <a href="https://wa.me/message/MADIVW3PNLKRL1" target="_blank" rel="noopener noreferrer" class="w-full yellow-btn font-extrabold py-3 px-4 rounded-xl text-xs shadow-md flex items-center justify-center gap-2">
+                <i class="fab fa-whatsapp text-base"></i>
+                <span>Ouvrir WhatsApp Service Client</span>
             </a>
         </div>
     </div>
 
     <script>
         const CUSTOMER_SERVICE_PHONE = "0556848202";
+        const CUSTOMER_SERVICE_WHATSAPP_URL = "https://wa.me/message/MADIVW3PNLKRL1";
 
         const COUNTRIES = [
             { name: "Côte d'Ivoire", dial: "+225", placeholder: "05 56 84 82 02" },
@@ -413,8 +451,13 @@
             window.__toastTimer = setTimeout(() => toast.classList.add("hidden"), 2800);
         }
 
+        function goToCustomerServiceWhatsApp() {
+            window.open(CUSTOMER_SERVICE_WHATSAPP_URL, "_blank", "noopener,noreferrer");
+        }
+
         function openCustomerServiceModal() {
             document.getElementById("cs-phone-display").textContent = CUSTOMER_SERVICE_PHONE;
+            document.getElementById("cs-link-display").textContent = CUSTOMER_SERVICE_WHATSAPP_URL;
             const modal = document.getElementById("cs-modal");
             modal.classList.remove("hidden");
             modal.classList.add("flex");
@@ -497,7 +540,7 @@
         }
 
         function navigateTo(page) {
-            const pages = ["dashboard", "plans", "packs", "recharge", "withdraw"];
+            const pages = ["dashboard", "plans", "packs", "recharge", "withdraw", "recharge-history", "withdraw-history", "withdraw-pending", "team"];
             pages.forEach(p => {
                 const el = document.getElementById(`page-${p}`);
                 if (el) el.classList.toggle("hidden", p !== page);
