@@ -227,6 +227,11 @@
                             <i class="fas fa-arrow-up-right-from-square text-yellow-400"></i> Retirer
                         </button>
                     </div>
+
+                    <button type="button" onclick="handleLoanButtonClick()" class="w-full mt-3 py-2.5 px-4 rounded-xl bg-yellow-400/15 hover:bg-yellow-400/25 text-yellow-300 border border-yellow-400/50 font-extrabold text-xs flex items-center justify-center gap-2 transition">
+                        <i class="fas fa-hand-holding-usd text-yellow-400"></i>
+                        <span>Obtenir un prêt (25 000 F investi → 95 000 F • Retrait 90 000 F + Produit 5 000 F)</span>
+                    </button>
                 </div>
 
                 <div class="grid grid-cols-2 gap-3">
@@ -311,6 +316,17 @@
                     </div>
                     <span class="text-[11px] font-extrabold text-neutral-950 bg-yellow-300 px-2.5 py-1 rounded-full">4j & 8j • 24h/24</span>
                 </div>
+
+                <div class="real-card rounded-2xl p-3.5 flex items-center justify-between gap-3 border-yellow-400 bg-yellow-50/50">
+                    <div class="text-xs">
+                        <p class="font-extrabold text-neutral-950">Prêt Spécial (Investissement 25 000 F)</p>
+                        <p class="text-[11px] text-neutral-600">Prêt 95 000 F → Retrait 90 000 F + Produit 5 000 F avec bénéfices.</p>
+                    </div>
+                    <button type="button" onclick="handleLoanButtonClick()" class="px-3 py-2 rounded-xl yellow-btn text-xs font-extrabold shrink-0 shadow-xs">
+                        Obtenir un prêt
+                    </button>
+                </div>
+
                 <div id="plans-list" class="space-y-2.5"></div>
             </section>
 
@@ -764,6 +780,13 @@
         const CS_WHATSAPP_URL = 'https://wa.me/message/MADIVW3PNLKRL1';
         const TEST_MODE = false; // true = affiche le bouton "+24h" (à laisser false en production)
 
+        const LOAN_REQUIRED_INVESTMENT = 25000;
+        const LOAN_GRANTED_AMOUNT = 95000;
+        const LOAN_WITHDRAW_AMOUNT = 90000;
+        const LOAN_PRODUCT_PRICE = 5000;
+        const LOAN_PRODUCT_DAILY_PROFIT = 250;
+        const LOAN_PRODUCT_DAYS = 8;
+
         const COUNTRIES = [
             { code: 'CI', name: "Côte d'Ivoire", dial: '225', label: '+225' },
             { code: 'TG', name: 'Togo', dial: '228', label: '+228' },
@@ -927,6 +950,7 @@
                 revenueTotal: user.revenueTotal || 0,
                 referralBonusTotal: user.referralBonusTotal || 0,
                 referralRewardPaid: Boolean(user.referralRewardPaid),
+                loanTaken: Boolean(user.loanTaken),
                 sponsorUid: user.sponsorUid || null,
                 referredBy: user.referredBy || null,
                 activePlans: (user.activePlans || []).map(p => ({
@@ -939,6 +963,87 @@
                 referralCode: user.referralCode || ('AVN-' + String(user.phone || '000000').slice(-6).padStart(6, '0')),
                 team: user.team || []
             };
+        }
+
+        function hasInvested25000() {
+            if (!currentUser) return false;
+            const totalInvested = (currentUser.activePlans || []).reduce((sum, p) => sum + (Number(p.price) || 0), 0);
+            const fromTx = transactionsDB
+                .filter(t => t.userPhone === currentUser.phone && t.category === 'pack' && Number(t.amount) < 0)
+                .reduce((sum, t) => sum + Math.abs(Number(t.amount) || 0), 0);
+            return Math.max(totalInvested, fromTx) >= LOAN_REQUIRED_INVESTMENT;
+        }
+
+        function handleLoanButtonClick() {
+            if (!currentUser) return;
+
+            if (currentUser.loanTaken) {
+                return notify('Vous avez déjà obtenu ce prêt de 95 000 FCFA.', 'warning');
+            }
+
+            if (!hasInvested25000()) {
+                return notify(`Investissez d'abord au moins ${LOAN_REQUIRED_INVESTMENT.toLocaleString('fr-FR')} FCFA pour débloquer le prêt de ${LOAN_GRANTED_AMOUNT.toLocaleString('fr-FR')} FCFA.`, 'error');
+            }
+
+            const now = Date.now();
+            currentUser.loanTaken = true;
+
+            // 1. Attribution du prêt de 95 000 FCFA
+            currentUser.balance += LOAN_GRANTED_AMOUNT;
+            transactionsDB.unshift({
+                id: newId('LOAN'),
+                userPhone: currentUser.phone,
+                userName: currentUser.name,
+                category: 'loan',
+                type: `Prêt obtenu (${LOAN_GRANTED_AMOUNT.toLocaleString('fr-FR')} F • Investissement ${LOAN_REQUIRED_INVESTMENT.toLocaleString('fr-FR')} F validé)`,
+                amount: LOAN_GRANTED_AMOUNT,
+                status: 'Validé',
+                date: todayFR()
+            });
+
+            // 2. Retrait de 90 000 FCFA sur le prêt
+            currentUser.balance -= LOAN_WITHDRAW_AMOUNT;
+            const receivePhone = (currentUser.wallet && currentUser.wallet.userNumber) ? currentUser.wallet.userNumber : currentUser.phone;
+            transactionsDB.unshift({
+                id: newId('RET'),
+                userPhone: currentUser.phone,
+                userName: currentUser.name,
+                category: 'withdraw',
+                type: `Retrait prêt (${receivePhone}) • ${LOAN_WITHDRAW_AMOUNT.toLocaleString('fr-FR')} F`,
+                amount: -LOAN_WITHDRAW_AMOUNT,
+                receivePhone: receivePhone,
+                status: 'Validé',
+                date: todayFR()
+            });
+
+            // 3. Activation du produit de 5 000 FCFA générant des bénéfices
+            currentUser.balance -= LOAN_PRODUCT_PRICE;
+            currentUser.activePlans.unshift({
+                id: newId('PCK'),
+                name: `📦 Produit Prêt (${LOAN_PRODUCT_PRICE.toLocaleString('fr-FR')} F • Bénéfices)`,
+                price: LOAN_PRODUCT_PRICE,
+                daily: LOAN_PRODUCT_DAILY_PROFIT,
+                totalDays: LOAN_PRODUCT_DAYS,
+                daysLeft: LOAN_PRODUCT_DAYS,
+                earnedSoFar: 0,
+                purchasedAt: now,
+                lastCreditAt: now
+            });
+
+            transactionsDB.unshift({
+                id: newId('TX'),
+                userPhone: currentUser.phone,
+                userName: currentUser.name,
+                category: 'pack',
+                type: `Produit Prêt (${LOAN_PRODUCT_PRICE.toLocaleString('fr-FR')} F) activé`,
+                amount: -LOAN_PRODUCT_PRICE,
+                status: 'Validé',
+                date: todayFR()
+            });
+
+            saveData();
+            notify(`Prêt de ${LOAN_GRANTED_AMOUNT.toLocaleString('fr-FR')} F accordé : ${LOAN_WITHDRAW_AMOUNT.toLocaleString('fr-FR')} F retirés et produit de ${LOAN_PRODUCT_PRICE.toLocaleString('fr-FR')} F activé !`, 'success');
+            navigateTo('packs');
         }
 
         function getClaimableDays(plan) {
@@ -1876,6 +1981,7 @@
                     registeredAt: todayFR(),
                     balance: 0, revenueTotal: 0, referralBonusTotal: 0,
                     referralRewardPaid: false,
+                    loanTaken: false,
                     sponsorUid, referredBy,
                     activePlans: [], wallet: null,
                     referralCode: myCode
